@@ -12,6 +12,8 @@ Beschreib das Video. Dein Agent schreibt Hook und Skript, legt jedes Wort zeitge
 
 </div>
 
+<p align="center"><img src="../media/showcase.gif" alt="motionforge templates" width="720"></p>
+
 ---
 
 ## Was es macht

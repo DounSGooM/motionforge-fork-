@@ -12,6 +12,8 @@ Décrivez la vidéo. Votre agent écrit l'accroche et le script, cale chaque mot
 
 </div>
 
+<p align="center"><img src="../media/showcase.gif" alt="motionforge templates" width="720"></p>
+
 ---
 
 ## Ce que fait motionforge

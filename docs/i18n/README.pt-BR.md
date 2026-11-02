@@ -12,6 +12,8 @@ Descreva o vídeo. Seu agente escreve o gancho e o roteiro, sincroniza cada pala
 
 </div>
 
+<p align="center"><img src="../media/showcase.gif" alt="motionforge templates" width="720"></p>
+
 ---
 
 ## O que ele faz

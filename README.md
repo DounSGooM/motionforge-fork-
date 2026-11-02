@@ -12,6 +12,8 @@ Describe the video. Your agent writes the hook and script, times every word to t
 
 </div>
 
+<p align="center"><img src="docs/media/showcase.gif" alt="The 8 motionforge templates, rendered with HyperFrames" width="720"></p>
+
 ---
 
 ## What it does
@@ -77,8 +79,7 @@ Here is a 10-second clip of me at my desk. Use the first 5 seconds as the intro 
 
 ## What's inside
 
-![The 8 ready-made templates, rendered with HyperFrames](docs/media/templates.png)
-<sub>The 8 templates in `templates/`, rendered with the default engine.</sub>
+See every template animated in [templates/README.md](templates/README.md).
 
 ```
 motionforge/

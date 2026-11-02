@@ -12,6 +12,8 @@ Describe el video. Tu agente escribe el gancho y el guion, sincroniza cada palab
 
 </div>
 
+<p align="center"><img src="../media/showcase.gif" alt="motionforge templates" width="720"></p>
+
 ---
 
 ## Qué hace

@@ -12,6 +12,8 @@
 
 </div>
 
+<p align="center"><img src="../media/showcase.gif" alt="motionforge templates" width="720"></p>
+
 ---
 
 ## できること
