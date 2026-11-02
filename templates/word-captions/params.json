@@ -1,0 +1,22 @@
+{
+  "id": "word-captions",
+  "title": "Word-synced captions",
+  "description": "Short caption chunks that follow the voiceover; the word being spoken is in the accent colour, spoken words turn white, upcoming words are dimmed. A new chunk starts at a pause, a sentence end or maxWords.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template word-captions --params values.json",
+  "parameters": {
+    "words": {"type": "array", "default": [{"w": "Captions", "s": 0.2, "e": 0.62}, {"w": "follow", "s": 0.66, "e": 0.98}, {"w": "the", "s": 1.0, "e": 1.1}, {"w": "voice,", "s": 1.12, "e": 1.55}, {"w": "one", "s": 2.05, "e": 2.25}, {"w": "word", "s": 2.28, "e": 2.55}, {"w": "at", "s": 2.58, "e": 2.68}, {"w": "a", "s": 2.7, "e": 2.76}, {"w": "time.", "s": 2.8, "e": 3.3}], "description": "[{w, s, e}] in scene-local seconds, from tools/word_timings.py (subtract the scene start)."},
+    "maxWords": {"type": "integer", "default": 4, "description": "Most words per chunk; 2-4 reads best on phones."},
+    "pauseSplit": {"type": "number", "default": 0.35, "description": "A gap longer than this (s) starts a new chunk."},
+    "hold": {"type": "number", "default": 0.6, "description": "How long a chunk may stay after its last word (s) when no chunk follows at once."},
+    "bottom": {"type": "number", "default": 1480, "description": "Bottom edge of the captions in px. Keep it at or above ~1500 so the app's own caption and buttons do not cover it."},
+    "fontSize": {"type": "number", "default": 64, "description": "Caption size in px."},
+    "style": {"type": "string", "enum": ["pill", "outline", "plain"], "default": "pill", "description": "pill = dark rounded box, outline = text stroke, plain = nothing behind the words."},
+    "uppercase": {"type": "boolean", "default": false, "description": "Uppercase words (follows the lang rules)."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."},
+    "transparent": {"type": "boolean", "default": false, "description": "No backdrop, for an overlay render (needs an output format with alpha)."},
+    "duration": {"type": "number", "default": 4.6, "description": "Scene length in seconds. new-scene.sh --params also rewrites data-duration to match."}
+  },
+  "checks": ["textcheck: chunks never overlap and stay above the bottom UI zone", "review --words: <= 3.6 words per second"]
+}

@@ -1,0 +1,80 @@
+<!doctype html>
+<!--
+  motionforge template: checklist-reveal — a title, then items that slide in one by one and get a drawn check mark
+  © 2026 motionforge contributors, MIT
+  Sync each item to the word that names it: set "times" to the voiceover seconds (scene-local), or use start + gap.
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      #title { top: 330px; font-size: 88px; }
+      #list { position: absolute; left: 90px; right: 90px; top: 620px; }
+      .item { display: flex; align-items: center; gap: 30px; padding: 30px 34px; margin-bottom: 24px; border-radius: 30px; background: var(--mf-card); border: 2px solid var(--mf-line); }
+      .box { flex: none; width: 74px; height: 74px; border-radius: 20px; border: 4px solid var(--mf-line); position: relative; }
+      .box svg { position: absolute; inset: -4px; width: 74px; height: 74px; }
+      .box path { fill: none; stroke: var(--mf-accent-ink); stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+      .fill { position: absolute; inset: -4px; border-radius: 20px; background: var(--mf-accent); transform: scale(0); }
+      .label { font: 700 50px/1.2 var(--mf-font-display); letter-spacing: -0.02em; }
+      .num { font: 500 28px var(--mf-font-mono); color: var(--mf-muted); margin-left: auto; }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="6" data-width="1080" data-height="1920">
+      <h1 id="title" class="title clip" data-start="0" data-duration="6" data-track-index="0"></h1>
+      <div id="list" class="clip" data-start="0" data-duration="6" data-track-index="1"></div>
+    </div>
+
+    <script id="params" type="application/json">
+{
+  "title": "Before you <span class=\"serif accent\">post</span>",
+  "items": ["Hook in the first second", "Captions readable at phone size", "Loudness near -14 LUFS", "Sources listed for every claim"],
+  "times": [],
+  "start": 0.9,
+  "gap": 0.9,
+  "checkDelay": 0.35,
+  "numbered": true,
+  "theme": "dark",
+  "lang": "en",
+  "duration": 6
+}
+    </script>
+
+    <script>
+      const P = MF.params();
+      document.documentElement.lang = P.lang;
+      if (P.theme === "light") document.getElementById("root").classList.add("light");
+      document.getElementById("title").innerHTML = P.title || "";
+
+      const list = document.getElementById("list");
+      const rows = P.items.map((text, i) => {
+        const row = document.createElement("div");
+        row.className = "item";
+        row.innerHTML = '<div class="box"><div class="fill"></div><svg viewBox="0 0 74 74"><path d="M20 38 L32 50 L55 25" /></svg></div><div class="label"></div>' +
+          (P.numbered ? `<div class="num">${String(i + 1).padStart(2, "0")}</div>` : "");
+        row.querySelector(".label").textContent = text;
+        list.appendChild(row);
+        return row;
+      });
+
+      const tl = MF.timeline("main", P.duration);
+      tl.fromTo("#title", { opacity: 0, y: 40, filter: "blur(10px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "back.out(1.6)" }, 0.15);
+      rows.forEach((row, i) => {
+        const at = P.times && P.times[i] != null ? P.times[i] : P.start + i * P.gap;
+        const path = row.querySelector("path");
+        const length = 60; // the check path is about 55 units long
+        path.style.strokeDasharray = length;
+        tl.fromTo(row, { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at);
+        tl.fromTo(row.querySelector(".fill"), { scale: 0 }, { scale: 1, duration: 0.25, ease: "back.out(2.2)" }, at + P.checkDelay);
+        tl.fromTo(path, { strokeDashoffset: length }, { strokeDashoffset: 0, duration: 0.3, ease: "power2.out" }, at + P.checkDelay + 0.08);
+        tl.to(row.querySelector(".box"), { borderColor: "transparent", duration: 0.1 }, at + P.checkDelay);
+      });
+      MF.ready();
+      tl.seek(0);
+    </script>
+  </body>
+</html>

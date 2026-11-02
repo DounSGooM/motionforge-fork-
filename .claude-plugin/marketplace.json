@@ -1,0 +1,14 @@
+{
+  "name": "motionforge",
+  "owner": {
+    "name": "motionforge contributors"
+  },
+  "description": "Open-source AI motion design toolkit for coding agents.",
+  "plugins": [
+    {
+      "name": "motionforge",
+      "source": "./",
+      "description": "Make motion design videos in code: story, hooks and script in 10 languages, consent-gated TTS with word timings and captions, a style library, brand kits, HyperFrames scenes (Remotion optional), and self-checking QA with an independent critic."
+    }
+  ]
+}

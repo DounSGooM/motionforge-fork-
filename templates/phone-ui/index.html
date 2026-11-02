@@ -1,0 +1,123 @@
+<!doctype html>
+<!--
+  motionforge template: phone-ui — a phone that rises in, shows an app screen (a real screenshot, or a simple
+  list built from params), then a tap on one item
+  © 2026 motionforge contributors, MIT
+  Prefer a real screenshot of the app you talk about ("screenshot"); the drawn list is for generic ideas.
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      #title { top: 250px; font-size: 76px; }
+      #phone { position: absolute; left: 50%; top: 420px; width: 600px; height: 1200px; margin-left: -300px; border-radius: 86px; background: #0b0b0d; padding: 16px;
+        box-shadow: 0 60px 140px rgba(0, 0, 0, 0.6), inset 0 0 0 3px #2a2c33; }
+      #screen { position: relative; width: 100%; height: 100%; border-radius: 72px; overflow: hidden; background: #f4f5f7; }
+      #island { position: absolute; top: 20px; left: 50%; width: 170px; height: 48px; margin-left: -85px; border-radius: 24px; background: #0b0b0d; z-index: 5; }
+      #status { position: absolute; top: 28px; left: 64px; right: 60px; display: flex; justify-content: space-between; font: 700 28px var(--mf-font-body); color: #111; z-index: 4; }
+      #app { position: absolute; top: 100px; left: 0; right: 0; bottom: 0; padding: 18px 30px; }
+      #appbar { display: flex; align-items: center; gap: 18px; margin-bottom: 26px; }
+      #appbar img, #appbar .icon { width: 64px; height: 64px; border-radius: 16px; background: var(--mf-accent); object-fit: cover; }
+      #appname { font: 800 44px var(--mf-font-display); letter-spacing: -0.02em; color: #111; }
+      .item { position: relative; display: flex; align-items: center; gap: 22px; padding: 24px; margin-bottom: 18px; border-radius: 26px; background: #fff;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06); border: 3px solid transparent; overflow: hidden; }
+      .item .thumb { flex: none; width: 92px; height: 92px; border-radius: 20px; background: #e6e8ec; }
+      .item .t { font: 700 32px/1.2 var(--mf-font-body); color: #111; }
+      .item .s { font: 500 26px/1.3 var(--mf-font-body); color: #6b7280; margin-top: 4px; }
+      .item .meta { margin-left: auto; font: 700 28px var(--mf-font-body); color: #111; white-space: nowrap; }
+      #shot { position: absolute; top: 0; left: 0; width: 100%; }
+      #tap { position: absolute; width: 120px; height: 120px; margin: -60px 0 0 -60px; border-radius: 50%; background: rgba(0, 0, 0, 0.18); border: 4px solid rgba(255, 255, 255, 0.9); opacity: 0; z-index: 6; }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="5" data-width="1080" data-height="1920">
+      <h1 id="title" class="title clip" data-start="0" data-duration="5" data-track-index="0"></h1>
+      <div id="phone" class="clip" data-start="0" data-duration="5" data-track-index="1">
+        <div id="screen">
+          <div id="island"></div>
+          <div id="status"><span>9:41</span><span>100%</span></div>
+          <div id="app"><div id="appbar"><div class="icon"></div><div id="appname"></div></div><div id="list"></div></div>
+          <div id="tap"></div>
+        </div>
+      </div>
+    </div>
+
+    <script id="params" type="application/json">
+{
+  "title": "Your app, <span class=\"serif accent\">in context</span>",
+  "appName": "Example app",
+  "appIcon": "",
+  "screenshot": "",
+  "items": [
+    { "title": "First item", "subtitle": "Short supporting line", "meta": "12" },
+    { "title": "Second item", "subtitle": "Short supporting line", "meta": "8" },
+    { "title": "Third item", "subtitle": "Short supporting line", "meta": "5" },
+    { "title": "Fourth item", "subtitle": "Short supporting line", "meta": "3" }
+  ],
+  "tapIndex": 1,
+  "tapAt": 2.6,
+  "lang": "en",
+  "duration": 5
+}
+    </script>
+
+    <script>
+      const P = MF.params();
+      document.documentElement.lang = P.lang;
+      document.getElementById("title").innerHTML = P.title || "";
+      document.getElementById("appname").textContent = P.appName || "";
+      if (P.appIcon) document.querySelector("#appbar .icon").outerHTML = `<img src="${P.appIcon}" alt="">`;
+
+      const tl = MF.timeline("main", P.duration);
+      tl.fromTo("#title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.6)" }, 0.1);
+      tl.fromTo("#phone", { opacity: 0, y: 260, rotate: -4, scale: 0.94 }, { opacity: 1, y: 0, rotate: 0, scale: 1, duration: 0.8, ease: "power3.out" }, 0.2);
+
+      if (P.screenshot) {
+        document.getElementById("app").style.display = "none";
+        const img = document.createElement("img");
+        img.id = "shot";
+        img.src = P.screenshot;
+        img.alt = "";
+        document.getElementById("screen").prepend(img);
+        tl.to(img, { yPercent: -18, duration: 2.2, ease: "power2.inOut" }, 1.2);
+      } else {
+        const list = document.getElementById("list");
+        const els = P.items.map((it) => {
+          const el = document.createElement("div");
+          el.className = "item";
+          el.innerHTML = '<div class="thumb"></div><div><div class="t"></div><div class="s"></div></div><div class="meta"></div>';
+          el.querySelector(".t").textContent = it.title;
+          el.querySelector(".s").textContent = it.subtitle || "";
+          el.querySelector(".meta").textContent = it.meta || "";
+          list.appendChild(el);
+          return el;
+        });
+        tl.fromTo(els, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.12, ease: "power3.out" }, 0.9);
+
+        const target = els[P.tapIndex];
+        if (target) {
+          // tap position: centre of the target item, measured in screen coordinates (layout only, no animation)
+          const place = () => {
+            const s = document.getElementById("screen").getBoundingClientRect();
+            const r = target.getBoundingClientRect();
+            const scale = s.width / document.getElementById("screen").offsetWidth || 1;
+            gsap.set("#tap", { left: (r.left - s.left + r.width * 0.55) / scale, top: (r.top - s.top + r.height / 2) / scale });
+          };
+          place();
+          MF.ready().then(place);
+          tl.fromTo("#tap", { opacity: 0, scale: 1.4 }, { opacity: 1, scale: 1, duration: 0.18, ease: "power2.out" }, P.tapAt - 0.18);
+          tl.to("#tap", { opacity: 0, scale: 0.7, duration: 0.25, ease: "power2.in" }, P.tapAt + 0.12);
+          tl.to(target, { scale: 0.97, duration: 0.1, yoyo: true, repeat: 1, ease: "power1.inOut" }, P.tapAt);
+          tl.to(target, { borderColor: getComputedStyle(document.documentElement).getPropertyValue("--mf-accent").trim(), duration: 0.2 }, P.tapAt + 0.1);
+          tl.to(els.filter((e) => e !== target), { opacity: 0.45, duration: 0.3 }, P.tapAt + 0.2);
+        }
+      }
+      MF.ready();
+      tl.seek(0);
+    </script>
+  </body>
+</html>

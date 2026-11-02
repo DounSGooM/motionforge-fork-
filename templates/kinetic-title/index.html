@@ -1,0 +1,98 @@
+<!doctype html>
+<!--
+  motionforge template: kinetic-title — a 1–3 line headline that builds word by word
+  © 2026 motionforge contributors, MIT
+  Edit the values in <script id="params">; the schema and defaults are in params.json.
+  Scaffold: engines/hyperframes/scripts/new-scene.sh my-title --template kinetic-title
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      #eyebrow { top: 740px; }
+      #headline { position: absolute; left: 70px; right: 70px; top: 820px; text-align: center; }
+      .line { display: block; font: 800 120px/1.04 var(--mf-font-display); letter-spacing: -0.04em; }
+      .word { display: inline-block; margin: 0 0.12em; will-change: transform, opacity, filter; }
+      .word.accent-word { font-family: var(--mf-font-accent); font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--mf-accent); padding-right: 0.05em; }
+      #underline { position: absolute; left: 50%; width: 0; height: 12px; margin-left: 0; border-radius: 6px; background: var(--mf-accent); }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="3.5" data-width="1080" data-height="1920">
+      <div id="eyebrow" class="eyebrow clip" data-start="0" data-duration="3.5" data-track-index="0"></div>
+      <h1 id="headline" class="clip" data-start="0" data-duration="3.5" data-track-index="1"></h1>
+      <div id="underline" class="clip" data-start="0" data-duration="3.5" data-track-index="2"></div>
+    </div>
+
+    <script id="params" type="application/json">
+{
+  "lines": ["Every frame", "is a choice"],
+  "accentWord": "choice",
+  "eyebrow": "Kinetic title",
+  "theme": "dark",
+  "lang": "en",
+  "fontSize": 120,
+  "start": 0.15,
+  "stagger": 0.09,
+  "underline": true,
+  "exit": true,
+  "duration": 3.5
+}
+    </script>
+
+    <script>
+      const P = MF.params();
+      document.documentElement.lang = P.lang;
+      if (P.theme === "light") document.getElementById("root").classList.add("light");
+
+      // Build the words. The accent word is matched case-insensitively, punctuation ignored.
+      const clean = (w) => w.toLocaleLowerCase(P.lang).replace(/[^\p{L}\p{N}]/gu, "");
+      const headline = document.getElementById("headline");
+      const words = [];
+      P.lines.forEach((text) => {
+        const line = document.createElement("span");
+        line.className = "line";
+        line.style.fontSize = P.fontSize + "px";
+        text.split(/\s+/).filter(Boolean).forEach((w) => {
+          const span = document.createElement("span");
+          span.className = "word" + (P.accentWord && clean(w) === clean(P.accentWord) ? " accent-word" : "");
+          span.textContent = w;
+          line.appendChild(span);
+          words.push(span);
+        });
+        headline.appendChild(line);
+      });
+      document.getElementById("eyebrow").textContent = P.eyebrow || "";
+
+      const tl = MF.timeline("main", P.duration);
+      if (P.eyebrow) tl.fromTo("#eyebrow", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, P.start);
+      words.forEach((el, i) => {
+        tl.fromTo(el,
+          { opacity: 0, y: 60, scale: 0.8, filter: "blur(14px)" },
+          { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.45, ease: "back.out(1.7)" },
+          P.start + 0.1 + i * P.stagger);
+      });
+      const settled = P.start + 0.1 + words.length * P.stagger + 0.35;
+      if (P.underline) {
+        // sits under the last line; measured after fonts load (position only, the tween is width)
+        const place = () => {
+          const box = headline.getBoundingClientRect();
+          gsap.set("#underline", { top: box.bottom + 18, x: -260 });
+        };
+        place();
+        MF.ready().then(place);
+        tl.fromTo("#underline", { width: 0 }, { width: 520, duration: 0.5, ease: "power3.out" }, settled);
+      }
+      if (P.exit) {
+        tl.to([...words].reverse(), { opacity: 0, y: -40, filter: "blur(10px)", duration: 0.25, stagger: 0.03, ease: "power2.in" }, P.duration - 0.45);
+        tl.to(["#eyebrow", "#underline"], { opacity: 0, duration: 0.2 }, P.duration - 0.3);
+      }
+      MF.ready();
+      tl.seek(0);
+    </script>
+  </body>
+</html>

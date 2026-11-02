@@ -1,0 +1,303 @@
+/*
+ * motionforge HyperFrames base stylesheet
+ * © 2026 motionforge contributors, MIT
+ *
+ * What this gives a scene:
+ *   - @font-face rules for Inter, Instrument Serif (italic accent) and JetBrains Mono,
+ *     each split into a "latin" and a "latin-ext" file (see the pitfall note below)
+ *   - brand tokens as CSS custom properties (override them in your scene or brand file)
+ *   - the standard backdrop: dark (charcoal + soft top light) or light (off-white paper),
+ *     both with a STATIC film grain and a gentle vignette
+ *   - a few text primitives: .title, .eyebrow, .accent, .serif, .card, .watermark
+ *
+ * Fonts are NOT shipped with motionforge. Put the .woff2 files in <scene>/assets/fonts/:
+ *   npm i @fontsource/inter @fontsource/instrument-serif @fontsource/jetbrains-mono
+ *   cp node_modules/@fontsource/inter/files/inter-latin{,-ext}-{400,500,700,800}-normal.woff2 assets/fonts/
+ *   (same for the other two families; all three are SIL Open Font License 1.1)
+ *
+ * PITFALL — the latin / latin-ext split (Turkish and other Latin-script languages):
+ *   Fontsource cuts each font into subsets by unicode-range. The "latin" file holds
+ *   U+0000-00FF plus dotless ı (U+0131); the "latin-ext" file holds İ (U+0130), ş (U+015F),
+ *   ğ (U+011F), ő, ł, č, ž ... If you load only the latin file, words such as "İstanbul",
+ *   "şimdi" or "Łódź" render those few letters in a fallback system font. It is easy to miss
+ *   in a contact sheet because most letters look right. Always declare BOTH faces with
+ *   non-overlapping ranges, exactly like below, and check a still with real copy.
+ *   Related: text-transform: uppercase follows the element's lang. With lang="tr",
+ *   "i" becomes "İ"; an English word inside Turkish copy needs <span lang="en">.
+ *
+ * House rules: no grid / graph-paper backgrounds, no purple gradients. Grain stays static
+ * (animated noise makes every frame unique and bloats the encoded file).
+ */
+
+/* ---------- unicode ranges (keep both lists in sync with engines/remotion/kit/fonts.ts) ---------- */
+/* latin:     U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212 */
+/* latin-ext: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF                                       */
+
+/* ---------- Inter (display + body) ---------- */
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  font-display: block;
+  src: url("fonts/inter-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 400;
+  font-display: block;
+  src: url("fonts/inter-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF;
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 500;
+  font-display: block;
+  src: url("fonts/inter-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 500;
+  font-display: block;
+  src: url("fonts/inter-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF;
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 700;
+  font-display: block;
+  src: url("fonts/inter-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 700;
+  font-display: block;
+  src: url("fonts/inter-latin-ext-700-normal.woff2") format("woff2");
+  unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF;
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 800;
+  font-display: block;
+  src: url("fonts/inter-latin-800-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Inter";
+  font-weight: 800;
+  font-display: block;
+  src: url("fonts/inter-latin-ext-800-normal.woff2") format("woff2");
+  unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF;
+}
+
+/* ---------- Instrument Serif (italic accent word) ---------- */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: block;
+  src: url("fonts/instrument-serif-latin-400-italic.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: block;
+  src: url("fonts/instrument-serif-latin-ext-400-italic.woff2") format("woff2");
+  unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF;
+}
+
+/* ---------- JetBrains Mono (labels, code, terminal) ---------- */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 500;
+  font-display: block;
+  src: url("fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 500;
+  font-display: block;
+  src: url("fonts/jetbrains-mono-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 700;
+  font-display: block;
+  src: url("fonts/jetbrains-mono-latin-700-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-weight: 700;
+  font-display: block;
+  src: url("fonts/jetbrains-mono-latin-ext-700-normal.woff2") format("woff2");
+  unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF;
+}
+
+/* ---------- brand tokens: override these per brand (or load a brand.css after this file) ---------- */
+:root {
+  --mf-bg: #0e0f11;            /* backdrop base (dark) */
+  --mf-bg-light: #e9ebee;      /* backdrop base (light) */
+  --mf-glow: #2a2c30;          /* soft light at the top of the dark backdrop */
+  --mf-card: #17181b;          /* cards, windows */
+  --mf-line: #2c2e33;          /* hairlines, card borders */
+  --mf-text: #ffffff;          /* main text on dark */
+  --mf-text-dark: #16171a;     /* main text on light */
+  --mf-muted: #9ea3ad;         /* secondary text */
+  --mf-accent: #c8f53a;        /* the one accent colour */
+  --mf-accent-2: #ffffff;      /* optional second accent (gradient end, highlights) */
+  --mf-accent-ink: #0e0f11;    /* text placed ON the accent colour */
+  --mf-danger: #ff5a5f;
+  --mf-success: #3ddc84;
+
+  --mf-font-display: "Inter", system-ui, sans-serif;
+  --mf-font-body: "Inter", system-ui, sans-serif;
+  --mf-font-accent: "Instrument Serif", Georgia, serif;
+  --mf-font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --mf-w: 1080px;
+  --mf-h: 1920px;
+  --mf-grain-opacity: 0.08;
+  --mf-radius: 34px;
+
+  /* static film grain: an SVG turbulence tile, rendered once */
+  --mf-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='256' height='256'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+}
+
+/* ---------- reset + stage ---------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html,
+body {
+  width: var(--mf-w);
+  height: var(--mf-h);
+  overflow: hidden;
+  background: var(--mf-bg);
+}
+
+/* The composition root. Add class "light" for the paper variant. */
+.mf-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--mf-font-body);
+  color: var(--mf-text);
+  background:
+    radial-gradient(1100px 900px at 50% 18%, var(--mf-glow) 0%, transparent 62%),
+    var(--mf-bg);
+}
+.mf-stage.light {
+  color: var(--mf-text-dark);
+  background:
+    radial-gradient(1200px 900px at 50% 30%, #f8f9fb 0%, transparent 70%),
+    var(--mf-bg-light);
+}
+
+/* grain (above the backdrop, below content: give content z-index >= 1) */
+.mf-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--mf-grain);
+  opacity: var(--mf-grain-opacity);
+  mix-blend-mode: screen;
+}
+.mf-stage.light::before { mix-blend-mode: multiply; opacity: calc(var(--mf-grain-opacity) * 1.4); }
+
+/* vignette */
+.mf-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, transparent 58%, rgba(0, 0, 0, 0.55) 100%);
+}
+.mf-stage.light::after { background: radial-gradient(ellipse at 50% 50%, transparent 62%, rgba(0, 0, 0, 0.1) 100%); }
+
+.mf-stage > * { z-index: 1; }
+
+/* ---------- text primitives ---------- */
+.title {
+  position: absolute;
+  left: 60px;
+  right: 60px;
+  text-align: center;
+  font-family: var(--mf-font-display);
+  font-weight: 800;
+  font-size: 96px;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+.eyebrow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--mf-font-mono);
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mf-accent);
+}
+.accent { color: var(--mf-accent); }
+.accent-gradient {
+  background: linear-gradient(135deg, var(--mf-accent), var(--mf-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  padding-right: 0.06em; /* italic / gradient glyphs get clipped without a little room */
+}
+/* the italic serif accent word inside a bold sans title */
+.serif {
+  font-family: var(--mf-font-accent);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.mono { font-family: var(--mf-font-mono); }
+
+.card {
+  position: absolute;
+  border-radius: var(--mf-radius);
+  background: var(--mf-card);
+  border: 2px solid var(--mf-line);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+.card.glow { box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), 0 0 0 2px var(--mf-accent), 0 0 40px color-mix(in srgb, var(--mf-accent) 35%, transparent); }
+
+/* corner brand mark, semi-transparent, for the whole video */
+.watermark {
+  position: absolute;
+  top: 70px;
+  right: 56px;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  opacity: 0.42;
+}
+
+/* ---------- review helpers (add class "show-safe" to .mf-stage while drafting, remove before render) ---------- */
+.mf-stage.show-safe .mf-safe {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 240px;
+  bottom: 240px;
+  border-top: 3px dashed rgba(255, 80, 80, 0.85);
+  border-bottom: 3px dashed rgba(255, 80, 80, 0.85);
+  pointer-events: none;
+  z-index: 99;
+}
+.mf-safe { display: none; }
+.mf-stage.show-safe .mf-safe { display: block; }

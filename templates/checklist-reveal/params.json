@@ -1,0 +1,21 @@
+{
+  "id": "checklist-reveal",
+  "title": "Checklist reveal",
+  "description": "A title, then items that slide in one by one and get a drawn check mark; times can follow the voiceover.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template checklist-reveal --params values.json",
+  "parameters": {
+    "title": {"type": "string", "default": "Before you <span class=\"serif accent\">post</span>", "description": "Heading above the main element. Trusted HTML: use <span class=\"serif accent\">word</span> for the accent word."},
+    "items": {"type": "array", "default": ["Hook in the first second", "Captions readable at phone size", "Loudness near -14 LUFS", "Sources listed for every claim"], "description": "Item labels (3-6 fit; keep each under ~32 characters)."},
+    "times": {"type": "array", "default": [], "description": "Optional scene-local seconds for each item (e.g. when the voice names it). Empty = start + i * gap."},
+    "start": {"type": "number", "default": 0.9, "description": "First item time when times is empty."},
+    "gap": {"type": "number", "default": 0.9, "description": "Seconds between items when times is empty."},
+    "checkDelay": {"type": "number", "default": 0.35, "description": "Seconds between an item appearing and its check."},
+    "numbered": {"type": "boolean", "default": true, "description": "Show 01, 02, ... on the right."},
+    "theme": {"type": "string", "enum": ["dark", "light"], "default": "dark", "description": "Backdrop variant from base.css."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."},
+    "duration": {"type": "number", "default": 6, "description": "Scene length in seconds. new-scene.sh --params also rewrites data-duration to match."}
+  },
+  "checks": ["readcheck: each item stays readable", "textcheck: long labels wrap inside the card"]
+}

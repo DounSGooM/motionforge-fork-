@@ -1,0 +1,4 @@
+# local copies made by scripts/new-scene.sh (GSAP comes from npm, fonts from Fontsource)
+assets/vendor/
+assets/fonts/
+renders/

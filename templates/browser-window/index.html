@@ -1,0 +1,116 @@
+<!doctype html>
+<!--
+  motionforge template: browser-window — a real screenshot in a browser frame: rise in, scroll, zoom to a highlighted region
+  © 2026 motionforge contributors, MIT
+  Use a REAL screenshot of the page you talk about (put it in assets/, set "screenshot").
+  Without one the template draws a neutral placeholder that says so — never ship the placeholder.
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      #title { top: 260px; font-size: 76px; }
+      #browser { position: absolute; left: 60px; top: 420px; width: 960px; border-radius: 26px; overflow: hidden; background: #fff; border: 2px solid #dadce0; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5); }
+      #browser.dark { background: #1e1f22; border-color: #2c2e33; }
+      .bar { height: 84px; display: flex; align-items: center; gap: 14px; padding: 0 22px; background: #f1f3f4; }
+      .dark .bar { background: #2a2b2f; }
+      .dot { width: 17px; height: 17px; border-radius: 50%; }
+      .url { flex: 1; height: 50px; margin-left: 10px; border-radius: 25px; background: #fff; border: 2px solid #e3e5e8; display: flex; align-items: center; gap: 12px; padding: 0 22px;
+        font: 500 26px var(--mf-font-body); color: #202124; white-space: nowrap; overflow: hidden; }
+      .dark .url { background: #3a3b40; border-color: #4a4b50; color: #e8eaed; }
+      #viewport { position: relative; height: 900px; overflow: hidden; }
+      #content { position: absolute; left: 0; top: 0; width: 960px; transform-origin: 0 0; }
+      #content img { display: block; width: 960px; }
+      #mark { position: absolute; border: 6px solid var(--mf-accent); border-radius: 16px; box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.35); opacity: 0; }
+      #callout { position: absolute; left: 0; right: 0; top: 1436px; text-align: center; opacity: 0; }
+      #callout span { display: inline-block; padding: 16px 30px; border-radius: 18px; background: var(--mf-accent); color: var(--mf-accent-ink); font: 800 40px var(--mf-font-display); letter-spacing: -0.01em; }
+      .ph { padding: 40px; }
+      .ph div { height: 26px; margin-bottom: 22px; border-radius: 13px; background: #e4e6ea; }
+      .ph .hero { height: 360px; border-radius: 22px; background: #eef0f3; display: flex; align-items: center; justify-content: center; font: 600 34px var(--mf-font-body); color: #8a9099; }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="6" data-width="1080" data-height="1920">
+      <h1 id="title" class="title clip" data-start="0" data-duration="6" data-track-index="0"></h1>
+      <div id="browser" class="clip" data-start="0" data-duration="6" data-track-index="1">
+        <div class="bar">
+          <div class="dot" style="background:#ff5f57"></div><div class="dot" style="background:#febc2e"></div><div class="dot" style="background:#28c840"></div>
+          <div class="url">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#5f6368" stroke-width="2.4"><rect x="5" y="11" width="14" height="10" rx="2" /><path d="M8 11V8a4 4 0 0 1 8 0v3" /></svg>
+            <span id="url"></span>
+          </div>
+        </div>
+        <div id="viewport"><div id="content"><div id="mark"></div></div></div>
+      </div>
+      <div id="callout" class="clip" data-start="0" data-duration="6" data-track-index="2"><span id="calloutText"></span></div>
+    </div>
+
+    <script id="params" type="application/json">
+{
+  "title": "Look at <span class=\"serif accent\">this</span>",
+  "url": "example.com/pricing",
+  "screenshot": "",
+  "screenshotWidth": 1280,
+  "scroll": 300,
+  "highlight": { "x": 120, "y": 520, "w": 640, "h": 220 },
+  "zoom": 1.5,
+  "callout": "The part that matters",
+  "dark": false,
+  "lang": "en",
+  "duration": 6
+}
+    </script>
+
+    <script>
+      const P = MF.params();
+      document.documentElement.lang = P.lang;
+      document.getElementById("title").innerHTML = P.title || "";   // trusted, author-written markup
+      document.getElementById("url").textContent = P.url;
+      document.getElementById("calloutText").textContent = P.callout || "";
+      if (P.dark) document.getElementById("browser").classList.add("dark");
+
+      const content = document.getElementById("content");
+      const k = 960 / P.screenshotWidth; // screenshot px -> stage px
+      if (P.screenshot) {
+        const img = new Image();
+        img.src = P.screenshot;
+        img.alt = "";
+        content.prepend(img);
+      } else {
+        const ph = document.createElement("div");
+        ph.className = "ph";
+        const widths = [100, 85, 70, 100, 60, 92, 80, 50, 100, 75, 88, 64];
+        ph.innerHTML = '<div style="width:40%"></div><div class="hero">Your screenshot here</div>' +
+          [...widths, ...widths, ...widths].map((w) => `<div style="width:${w}%"></div>`).join("");
+        content.prepend(ph);
+      }
+
+      const tl = MF.timeline("main", P.duration);
+      tl.fromTo("#title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.4, ease: "back.out(1.6)" }, 0.1);
+      tl.fromTo("#browser", { opacity: 0, y: 160, scale: 0.92, rotateX: 12, transformPerspective: 1600 },
+        { opacity: 1, y: 0, scale: 1, rotateX: 0, duration: 0.7, ease: "power3.out" }, 0.25);
+
+      const scrollPx = (P.scroll || 0) * k;
+      if (scrollPx) tl.to(content, { y: -scrollPx, duration: 1.1, ease: "power2.inOut" }, 1.2);
+
+      if (P.highlight) {
+        const h = P.highlight;
+        const mark = document.getElementById("mark");
+        Object.assign(mark.style, { left: h.x * k - 10 + "px", top: h.y * k - 10 + "px", width: h.w * k + 20 + "px", height: h.h * k + 20 + "px" });
+        // zoom so the highlight centre moves to the viewport centre
+        const cx = (h.x + h.w / 2) * k, cy = (h.y + h.h / 2) * k;
+        const z = P.zoom || 1;
+        const tx = 480 - cx * z, ty = 450 - cy * z; // viewport is 960 x 900
+        tl.to(content, { x: tx, y: ty, scale: z, duration: 0.9, ease: "power3.inOut" }, 2.5);
+        tl.fromTo(mark, { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 3.3);
+      }
+      if (P.callout) tl.fromTo("#callout", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" }, 3.5);
+      MF.ready();
+      tl.seek(0);
+    </script>
+  </body>
+</html>

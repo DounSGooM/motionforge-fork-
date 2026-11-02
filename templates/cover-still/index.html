@@ -1,0 +1,90 @@
+<!doctype html>
+<!--
+  motionforge template: cover-still — a 1080x1920 cover / thumbnail with the text kept inside the safe band
+  © 2026 motionforge contributors, MIT
+  Profile grids crop 9:16 covers to a centred 3:4 window (y 240..1680 at 1080x1920) and the app UI covers the
+  top and bottom of the full view, so all text stays inside that band. Turn "guide" on while designing and OFF
+  for the final export, then run: python3 tools/cover_safe_area.py cover.png --boxes boxes.json
+  Export: node engines/canvas/render.mjs still <scene> 0.5 --out covers/
+  tools/textcheck.mjs may WARN about the right-hand button rail: that zone matters for the video's frames, not for a cover.
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      #photo { position: absolute; inset: 0; background-size: cover; background-position: center; filter: blur(var(--blur, 0px)) brightness(0.62) saturate(1.05); transform: scale(1.06); }
+      #shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.05) 40%, rgba(0, 0, 0, 0.55) 100%); }
+      #block { position: absolute; left: 80px; right: 80px; top: 240px; bottom: 240px; display: flex; flex-direction: column; justify-content: center; text-align: center; gap: 34px; }
+      #kicker { font: 500 34px var(--mf-font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--mf-accent); }
+      #headline { font: 800 150px/0.98 var(--mf-font-display); letter-spacing: -0.045em; }
+      #headline .serif { font-weight: 400; letter-spacing: -0.02em; color: var(--mf-accent); }
+      #sub { font: 600 46px/1.25 var(--mf-font-body); color: var(--mf-muted); }
+      #guide { position: absolute; inset: 0; pointer-events: none; display: none; }
+      #guide .band { position: absolute; left: 0; right: 0; background: rgba(255, 60, 60, 0.18); }
+      #guide .frame { position: absolute; left: 0; right: 0; top: 240px; height: 1440px; border: 4px dashed rgba(255, 215, 0, 0.9); }
+      #guide .tag { position: absolute; right: 16px; font: 600 24px var(--mf-font-mono); color: rgba(255, 215, 0, 0.95); }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="1" data-width="1080" data-height="1920">
+      <div id="photo" class="clip" data-start="0" data-duration="1" data-track-index="0"></div>
+      <div id="shade" class="clip" data-start="0" data-duration="1" data-track-index="1"></div>
+      <div id="block" class="clip" data-start="0" data-duration="1" data-track-index="2">
+        <div id="kicker"></div>
+        <h1 id="headline"></h1>
+        <div id="sub"></div>
+      </div>
+      <div id="guide" class="clip" data-start="0" data-duration="1" data-track-index="3">
+        <div class="band" style="top:0;height:240px"></div>
+        <div class="band" style="bottom:0;height:240px"></div>
+        <div class="frame"></div>
+        <div class="tag" style="top:250px">3:4 grid crop · safe band 240–1680</div>
+      </div>
+    </div>
+
+    <script id="params" type="application/json">
+{
+  "kicker": "Part 1",
+  "headline": "The cover <span class=\"serif\">sells</span> the video",
+  "sub": "Three words beat ten",
+  "photo": "",
+  "photoBlur": 0,
+  "fontSize": 150,
+  "theme": "dark",
+  "guide": true,
+  "lang": "en"
+}
+    </script>
+
+    <script>
+      const P = MF.params();
+      document.documentElement.lang = P.lang;
+      if (P.theme === "light") document.getElementById("root").classList.add("light");
+      document.getElementById("kicker").textContent = P.kicker || "";
+      document.getElementById("headline").innerHTML = P.headline || "";
+      document.getElementById("sub").textContent = P.sub || "";
+      if (P.photo) {
+        const photo = document.getElementById("photo");
+        photo.style.backgroundImage = `url("${P.photo}")`;
+        photo.style.setProperty("--blur", (P.photoBlur || 0) + "px");
+      } else {
+        document.getElementById("photo").style.display = "none";
+        document.getElementById("shade").style.display = "none";
+      }
+      document.getElementById("guide").style.display = P.guide ? "block" : "none";
+
+      // Shrink the headline until it fits its share of the safe band (re-run once fonts are in).
+      const headline = document.getElementById("headline");
+      const fitHeadline = () => MF.fit(headline, P.fontSize, 70, 860);
+      fitHeadline();
+      MF.ready().then(fitHeadline);
+
+      // A still: one paused timeline, nothing moves.
+      MF.timeline("main", 1);
+    </script>
+  </body>
+</html>

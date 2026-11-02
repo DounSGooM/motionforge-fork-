@@ -1,0 +1,26 @@
+{
+  "id": "stat-counter",
+  "title": "Stat counter",
+  "description": "One big number that counts up with a progress ring, a label and an on-screen source line. Every number needs a real, named source.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template stat-counter --params values.json",
+  "parameters": {
+    "value": {"type": "number", "default": 72, "description": "Final number."},
+    "from": {"type": "number", "default": 0, "description": "Start number."},
+    "decimals": {"type": "integer", "default": 0, "description": "Digits after the decimal point."},
+    "prefix": {"type": "string", "default": "", "description": "Text before the number (e.g. $)."},
+    "suffix": {"type": "string", "default": "%", "description": "Text after the number (e.g. %, x, k)."},
+    "locale": {"type": "string", "default": "en-US", "description": "Number formatting locale (e.g. en-US: 1,234.5 / de-DE: 1.234,5 / tr-TR: 1.234,5)."},
+    "label": {"type": "string", "default": "Replace with what the number measures", "description": "What the number measures, one short line."},
+    "eyebrow": {"type": "string", "default": "Example — replace", "description": "Small label above the ring."},
+    "source": {"type": "string", "default": "Source: name of the study, year (required)", "description": "Where the number comes from (name, year). Shown on screen; never leave the placeholder."},
+    "ringPercent": {"type": "number", "default": 72, "description": "How full the ring gets (0-100). 0 hides the ring (use it when the value is not a share)."},
+    "start": {"type": "number", "default": 0.2, "description": "Second the scene starts animating."},
+    "countDuration": {"type": "number", "default": 1.4, "description": "Seconds the count takes."},
+    "theme": {"type": "string", "enum": ["dark", "light"], "default": "dark", "description": "Backdrop variant from base.css."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."},
+    "duration": {"type": "number", "default": 4, "description": "Scene length in seconds. new-scene.sh --params also rewrites data-duration to match."}
+  },
+  "checks": ["the source line names a real source", "readcheck: label readable"]
+}

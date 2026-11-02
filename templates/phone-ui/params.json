@@ -1,0 +1,20 @@
+{
+  "id": "phone-ui",
+  "title": "Phone UI",
+  "description": "A phone that rises in and shows an app screen: a real screenshot (scrolls gently) or a simple list built from params, followed by a tap on one item.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template phone-ui --params values.json",
+  "parameters": {
+    "title": {"type": "string", "default": "Your app, <span class=\"serif accent\">in context</span>", "description": "Heading above the main element. Trusted HTML: use <span class=\"serif accent\">word</span> for the accent word."},
+    "appName": {"type": "string", "default": "Example app", "description": "Name in the app bar."},
+    "appIcon": {"type": "string", "default": "", "description": "Path to the app icon (only a logo you may use). Empty shows an accent square."},
+    "screenshot": {"type": "string", "default": "", "description": "Path to a real app screenshot. When set, the drawn list is skipped."},
+    "items": {"type": "array", "default": [{"title": "First item", "subtitle": "Short supporting line", "meta": "12"}, {"title": "Second item", "subtitle": "Short supporting line", "meta": "8"}, {"title": "Third item", "subtitle": "Short supporting line", "meta": "5"}, {"title": "Fourth item", "subtitle": "Short supporting line", "meta": "3"}], "description": "[{title, subtitle, meta}] for the drawn list (3-5 items fit)."},
+    "tapIndex": {"type": "integer", "default": 1, "description": "Index of the item that gets tapped (0-based); -1 for no tap."},
+    "tapAt": {"type": "number", "default": 2.6, "description": "Second of the tap."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."},
+    "duration": {"type": "number", "default": 5, "description": "Scene length in seconds. new-scene.sh --params also rewrites data-duration to match."}
+  },
+  "checks": ["prefer a real screenshot for a real product", "textcheck: title clear of the top UI zone"]
+}

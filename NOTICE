@@ -1,0 +1,8 @@
+motionforge
+Copyright (c) 2026 motionforge contributors
+Created by Aykut Üçeş (https://github.com/aykutucesai)
+
+This repository contains original work released under the MIT License (see LICENSE).
+It does not bundle third-party code, fonts, media or models. Tools that motionforge
+calls at run time are installed separately by the user and keep their own licenses;
+see THIRD_PARTY.md.

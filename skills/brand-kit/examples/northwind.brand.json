@@ -1,0 +1,86 @@
+{
+  "$schema": "motionforge/brand@1",
+  "name": "Northwind Studio",
+  "note": "Fictional example brand for documentation. Not a real company; the domain uses the reserved .example TLD.",
+  "kind": "agency",
+  "colors": {
+    "bg":           { "hex": "#0F2A24", "name": "Pine",      "use": "default dark ground for every scene" },
+    "surface":      { "hex": "#173B33", "name": "Moss",      "use": "cards, browser and phone frames on the dark ground" },
+    "ink":          { "hex": "#F3EDE2", "name": "Sand",      "use": "headlines and body text on dark" },
+    "accent":       { "hex": "#FF7A45", "name": "Ember",     "use": "the one word or number the scene is about; never decoration" },
+    "accent_2":     { "hex": "#F2C14E", "name": "Sun",       "use": "second highlight inside charts only" },
+    "muted":        { "hex": "#9DB3A9", "name": "Lichen",    "use": "eyebrow labels, captions of captions, axis text" },
+    "line":         { "hex": "#2C5248", "name": "Fern",      "use": "dividers, card borders" },
+    "bg_light":     { "hex": "#F3EDE2", "name": "Sand",      "use": "light scenes (checklists, quotes)" },
+    "ink_on_light": { "hex": "#0F2A24", "name": "Pine",      "use": "text on light scenes" }
+  },
+  "gradients": [
+    { "name": "ember", "stops": ["#FF7A45", "#F2C14E"], "angle": 45, "use": "logo needle and underline strokes only; never a full-frame background" }
+  ],
+  "ground": {
+    "dark": "flat Pine with a soft top light and 3% film grain",
+    "light": "flat Sand with 2% grain",
+    "never": ["full-frame gradients", "grid or graph-paper patterns", "stock tech wallpapers"]
+  },
+  "fonts": {
+    "display": { "family": "Manrope", "weights": [600, 800], "license": "OFL-1.1", "subsets": ["latin", "latin-ext"], "files": [], "fallback": "Inter, sans-serif",
+                 "usage": "headlines, tight tracking (-0.03em), sentence case" },
+    "body":    { "family": "Inter", "weights": [400, 600], "license": "OFL-1.1", "subsets": ["latin", "latin-ext"], "files": [], "fallback": "system-ui, sans-serif",
+                 "usage": "longer explanations, captions" },
+    "mono":    { "family": "IBM Plex Mono", "weights": [500], "license": "OFL-1.1", "subsets": ["latin", "latin-ext"], "files": [], "fallback": "monospace",
+                 "usage": "small uppercase eyebrow labels (letter-spacing 0.16em), code" }
+  },
+  "logo": {
+    "primary_on_dark": "northwind/logo-on-dark.svg",
+    "primary_on_light": "northwind/logo-on-light.svg",
+    "icon": "northwind/icon.svg",
+    "min_width_px": 220,
+    "clearspace": "the height of the needle on every side"
+  },
+  "watermark": {
+    "file": "northwind/icon.svg",
+    "corner": "top-right",
+    "size_px": 72,
+    "margin_px": 56,
+    "opacity": 0.35,
+    "from_s": 0,
+    "hide_during": ["outro"]
+  },
+  "outro": {
+    "duration_s": 3.0,
+    "layout": "logo-on-dark centered at y 760, handle below, site below that, one CTA line at y 1180",
+    "handle": "@northwind.studio",
+    "site": "northwind.example",
+    "cta": { "en": "Save this and send it to your team.", "tr": "Kaydedin, ekibinize gönderin." },
+    "icons": ["save", "send"]
+  },
+  "captions": {
+    "font": "body",
+    "weight": 600,
+    "size_px": 54,
+    "active_word": "accent",
+    "zone_y": [1150, 1500],
+    "stroke": "2px rgba(0,0,0,0.55)"
+  },
+  "voice": {
+    "register": "formal (you plural / siz / Sie / vous)",
+    "tone": ["clear", "calm", "practical", "no hype"],
+    "audience": "small business owners and marketing leads",
+    "goal": "informative clips people save and forward",
+    "cta": "save + send to a colleague; the service is mentioned at most in the last sentence",
+    "words_prefer": ["measure", "step", "result", "free tool"],
+    "words_avoid": ["guaranteed", "number one", "secret", "hack"]
+  },
+  "do": [
+    "Every statistic on screen has a source listed in script.md.",
+    "Use real screenshots of the tool being discussed, inside the browser template.",
+    "One Ember accent per scene.",
+    "Spell jargon out the first time it is spoken."
+  ],
+  "dont": [
+    "No full-frame gradients, no grid backgrounds, no neon glow.",
+    "No presenter footage; the brand speaks through graphics and voice.",
+    "No guarantees, ranking promises or invented client results.",
+    "Do not place the watermark bottom-right (platform buttons)."
+  ]
+}

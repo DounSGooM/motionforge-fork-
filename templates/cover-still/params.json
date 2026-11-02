@@ -1,0 +1,20 @@
+{
+  "id": "cover-still",
+  "title": "Cover still",
+  "description": "A 1080x1920 cover with kicker, headline (accent word) and subline kept inside the 3:4 grid crop / safe band (y 240-1680), over the standard backdrop or a darkened photo. Includes a drafting guide.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template cover-still --params values.json",
+  "parameters": {
+    "kicker": {"type": "string", "default": "Part 1", "description": "Small mono label (series, part number). Empty to hide."},
+    "headline": {"type": "string", "default": "The cover <span class=\"serif\">sells</span> the video", "description": "Main text, trusted HTML: wrap the accent word in <span class=\"serif\">."},
+    "sub": {"type": "string", "default": "Three words beat ten", "description": "One supporting line. Empty to hide."},
+    "photo": {"type": "string", "default": "", "description": "Path to a background photo you have the rights to. Empty uses the standard backdrop."},
+    "photoBlur": {"type": "number", "default": 0, "description": "Blur in px for the photo (0-30)."},
+    "fontSize": {"type": "number", "default": 150, "description": "Largest headline size; it shrinks automatically to fit the safe band."},
+    "theme": {"type": "string", "enum": ["dark", "light"], "default": "dark", "description": "Backdrop variant from base.css."},
+    "guide": {"type": "boolean", "default": true, "description": "Show the safe band and 3:4 crop guide. Turn OFF for the export."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."}
+  },
+  "checks": ["guide is false in the exported PNG", "tools/cover_safe_area.py passes", "the headline reads at 300 px wide"]
+}

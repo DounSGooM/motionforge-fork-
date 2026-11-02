@@ -1,0 +1,22 @@
+{
+  "id": "kinetic-title",
+  "title": "Kinetic title",
+  "description": "One to three lines that build word by word (blur-rise with a small overshoot); one accent word in the italic serif and accent colour; optional underline sweep and exit.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template kinetic-title --params values.json",
+  "parameters": {
+    "lines": {"type": "array", "default": ["Every frame", "is a choice"], "description": "Lines of the headline. Keep each under ~14 characters at fontSize 120."},
+    "accentWord": {"type": "string", "default": "choice", "description": "Word set in the accent font and colour (matched case-insensitively, punctuation ignored). Empty for none."},
+    "eyebrow": {"type": "string", "default": "Kinetic title", "description": "Small mono label above the headline. Empty to hide."},
+    "theme": {"type": "string", "enum": ["dark", "light"], "default": "dark", "description": "Backdrop variant from base.css."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."},
+    "fontSize": {"type": "number", "default": 120, "description": "Headline size in px."},
+    "start": {"type": "number", "default": 0.15, "description": "Second the first element appears (scene-local; voiceover time minus the scene start)."},
+    "stagger": {"type": "number", "default": 0.09, "description": "Seconds between words."},
+    "underline": {"type": "boolean", "default": true, "description": "Accent bar sweeping in under the headline."},
+    "exit": {"type": "boolean", "default": true, "description": "Words leave in reverse order before the end."},
+    "duration": {"type": "number", "default": 3.5, "description": "Scene length in seconds. new-scene.sh --params also rewrites data-duration to match."}
+  },
+  "checks": ["textcheck: no line cut off at the chosen fontSize", "readcheck: headline readable for >= 1.5 s after it settles"]
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<!--
+  motionforge HyperFrames starter scene (1080x1920, 9:16)
+  © 2026 motionforge contributors, MIT
+
+  Contract:
+    - #root carries data-composition-id / data-start / data-duration / data-width / data-height
+    - every timed element has class="clip" + data-start / data-duration / data-track-index
+    - ONE paused GSAP timeline, registered as window.__timelines["main"]
+    - no wall clock, no Math.random(): any seek(t) must give the same frame
+  Voiceover sync:
+    L(v) turns a time on the full voiceover (from words.json) into this scene's local time.
+    Set SCENE_START to the voiceover second where this scene begins.
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <!-- GSAP from npm, copied locally by scripts/new-scene.sh (never a CDN: renders must work offline) -->
+    <script src="assets/vendor/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      #eyebrow { top: 300px; }
+      #title { top: 380px; }
+      #panel { left: 90px; right: 90px; top: 820px; height: 520px; padding: 48px; }
+      #panel p { font: 500 44px/1.35 var(--mf-font-body); color: var(--mf-muted); }
+      #panel b { color: var(--mf-text); font-weight: 700; }
+      #bar { position: absolute; left: 48px; bottom: 56px; height: 14px; width: 0; border-radius: 7px; background: var(--mf-accent); }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="5" data-width="1080" data-height="1920">
+      <div id="eyebrow" class="eyebrow clip" data-start="0" data-duration="5" data-track-index="0">Scene label</div>
+      <h1 id="title" class="title clip" data-start="0" data-duration="5" data-track-index="1">
+        One clear <span class="serif accent">idea</span>
+      </h1>
+      <div id="panel" class="card clip" data-start="0" data-duration="5" data-track-index="2">
+        <p>Put the <b>real thing</b> here: a browser, a phone, a chart.</p>
+        <div id="bar"></div>
+      </div>
+      <div class="mf-safe"></div>
+    </div>
+
+    <script>
+      // Voiceover second where this scene starts (0 for a standalone scene).
+      const SCENE_START = 0;
+      const L = (v) => Math.round((v - SCENE_START) * 100) / 100;
+
+      const tl = gsap.timeline({ paused: true });
+
+      tl.fromTo("#eyebrow", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, L(0.1));
+      tl.fromTo("#title", { opacity: 0, y: 50, filter: "blur(12px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "back.out(1.6)" }, L(0.2));
+      tl.fromTo("#panel", { opacity: 0, y: 120, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, L(0.9));
+      tl.fromTo("#bar", { width: 0 }, { width: 800, duration: 1.6, ease: "power2.inOut" }, L(1.6));
+      tl.to(["#eyebrow", "#title", "#panel"], { opacity: 0, y: -30, duration: 0.3, stagger: 0.05, ease: "power2.in" }, L(4.55));
+
+      // Pad to the composition length so the timeline and data-duration agree.
+      tl.set({}, {}, 5);
+
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

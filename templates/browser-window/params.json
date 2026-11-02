@@ -1,0 +1,22 @@
+{
+  "id": "browser-window",
+  "title": "Browser window",
+  "description": "A real screenshot inside a browser frame: rises in with a slight tilt, scrolls, then zooms to a highlighted region with an accent box and a callout.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template browser-window --params values.json",
+  "parameters": {
+    "title": {"type": "string", "default": "Look at <span class=\"serif accent\">this</span>", "description": "Heading above the main element. Trusted HTML: use <span class=\"serif accent\">word</span> for the accent word."},
+    "url": {"type": "string", "default": "example.com/pricing", "description": "Text in the address bar."},
+    "screenshot": {"type": "string", "default": "", "description": "Path to a real screenshot in the scene folder (e.g. assets/page.png). Empty shows a placeholder that must not ship."},
+    "screenshotWidth": {"type": "number", "default": 1280, "description": "Pixel width of the screenshot file (maps highlight coordinates)."},
+    "scroll": {"type": "number", "default": 300, "description": "Pixels (in screenshot coordinates) to scroll before the zoom; 0 for none."},
+    "highlight": {"type": "object", "default": {"x": 120, "y": 520, "w": 640, "h": 220}, "description": "{x, y, w, h} region in screenshot pixels to zoom to and mark; null for none."},
+    "zoom": {"type": "number", "default": 1.5, "description": "Zoom factor for the highlight."},
+    "callout": {"type": "string", "default": "The part that matters", "description": "Short label shown under the window after the zoom. Empty to hide."},
+    "dark": {"type": "boolean", "default": false, "description": "Dark browser chrome."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."},
+    "duration": {"type": "number", "default": 6, "description": "Scene length in seconds. new-scene.sh --params also rewrites data-duration to match."}
+  },
+  "checks": ["the screenshot is real and current", "textcheck: callout above the bottom UI zone"]
+}

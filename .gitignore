@@ -1,0 +1,13 @@
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+out/
+renders/
+*.mp4
+*.mov
+*.wav
+*.mp3
+!templates/**/preview.mp4
+.env
+.env.*

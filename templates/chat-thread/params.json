@@ -1,0 +1,17 @@
+{
+  "id": "chat-thread",
+  "title": "Chat thread",
+  "description": "A generic messaging conversation that builds message by message, with a typing indicator before each incoming message; older messages move up as new ones arrive.",
+  "engine": "hyperframes",
+  "size": [1080, 1920],
+  "usage": "engines/hyperframes/scripts/new-scene.sh <name> --template chat-thread --params values.json",
+  "parameters": {
+    "contact": {"type": "string", "default": "Sam", "description": "Name in the header (first letter becomes the avatar)."},
+    "status": {"type": "string", "default": "online", "description": "Line under the name."},
+    "messages": {"type": "array", "default": [{"from": "them", "text": "Did the video go out?", "at": 0.9}, {"from": "me", "text": "Rendering now. Checks passed.", "at": 2.2}, {"from": "them", "text": "Captions too?", "at": 3.6}, {"from": "me", "text": "Synced to every word.", "at": 4.8}], "description": "[{from: me|them, text, at}] with at in scene-local seconds, in order."},
+    "typing": {"type": "number", "default": 0.8, "description": "Seconds the typing indicator shows before an incoming message; 0 for none."},
+    "lang": {"type": "string", "default": "en", "description": "Language of the copy (BCP 47, e.g. en, tr, de). Sets <html lang>, which drives uppercase rules (tr: i -> İ)."},
+    "duration": {"type": "number", "default": 7, "description": "Scene length in seconds. new-scene.sh --params also rewrites data-duration to match."}
+  },
+  "checks": ["readcheck: each message readable before the next pushes it up", "generic look, no imitation of a specific app"]
+}
