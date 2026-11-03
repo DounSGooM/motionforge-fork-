@@ -3,9 +3,9 @@
 
 > White technical line work on deep cyanotype blue: parts drawn stroke by stroke, dimension lines, callouts and exploded views — how a thing is built.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes (SVG stroke drawing) or canvas | how-it-works, engineering, architecture, product anatomy | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Education & explainers | hyperframes (SVG stroke drawing) or canvas | how-it-works, engineering, architecture, product anatomy | medium |
 
 ## 1. Essence
 - In one sentence: the hidden structure of something, drawn as if by an engineer while you watch.

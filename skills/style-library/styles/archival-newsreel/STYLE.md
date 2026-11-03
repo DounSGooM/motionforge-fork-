@@ -3,9 +3,9 @@
 
 > Black-and-white film stock, gate weave and dust, bold slab-serif title cards, and an announcer's cadence — history told like a cinema bulletin.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas (film effects) + hyperframes (title cards) | "how it started", anniversaries, history of a technology or company | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Documentary & storytelling | canvas (film effects) + hyperframes (title cards) | "how it started", anniversaries, history of a technology or company | medium |
 
 ## 1. Essence
 - In one sentence: the past reported as breaking news.

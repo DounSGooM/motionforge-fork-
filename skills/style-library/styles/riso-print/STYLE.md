@@ -3,9 +3,9 @@
 
 > Two or three spot inks on uncoated paper: fluorescent pink and blue overprinting into purple, grainy halftones, slightly misregistered layers.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas (or hyperframes with blend modes) | editorial, culture, indie brands, zines, event promos, opinion pieces | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Art direction & design looks | canvas (or hyperframes with blend modes) | editorial, culture, indie brands, zines, event promos, opinion pieces | medium |
 
 ## 1. Essence
 - In one sentence: a hand-made print that moves.

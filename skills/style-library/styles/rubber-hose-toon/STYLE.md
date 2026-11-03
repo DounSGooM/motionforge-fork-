@@ -3,9 +3,9 @@
 
 > Early-cartoon charm: bendy limbs without elbows, pie-cut eyes, everything bouncing to a jaunty beat, printed in sepia ink on cream.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas or hyperframes (SVG) | light-hearted explainers, mascots, product personalities, seasonal posts | medium–high |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Kids & animation | canvas or hyperframes (SVG) | light-hearted explainers, mascots, product personalities, seasonal posts | medium–high |
 
 ## 1. Essence
 - In one sentence: even a spreadsheet can dance.

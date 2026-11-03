@@ -3,9 +3,9 @@
 
 > Layers of coloured card cut with scissors, stacked with real drop shadows and nudged frame by frame like a tabletop stop-motion set.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas or hyperframes (layered SVG/PNG) | friendly explainers, kids' education, nonprofit stories, seasonal posts | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Art direction & design looks | canvas or hyperframes (layered SVG/PNG) | friendly explainers, kids' education, nonprofit stories, seasonal posts | medium |
 
 ## 1. Essence
 - In one sentence: a handmade diorama that tells the story one layer at a time.

@@ -3,9 +3,9 @@
 
 > Small, tidy isometric worlds in soft pastel paint — tiny houses, roads and machines that assemble themselves while a calm voice explains how things connect.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas or hyperframes (CSS 3D / three.js orthographic) | systems, processes, cities, supply chains, "how the internet works" | high |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Education & explainers | canvas or hyperframes (CSS 3D / three.js orthographic) | systems, processes, cities, supply chains, "how the internet works" | high |
 
 ## 1. Essence
 - In one sentence: a complicated system shown as a friendly miniature you could hold in your hand.

@@ -3,9 +3,9 @@
 
 > Clean geometry and equations on a dark slate: shapes transform into each other, terms of an equation move to where they belong, and colour ties each symbol to its picture.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas (or hyperframes with SVG + KaTeX) | maths, physics, algorithms, ML concepts, any "why does this work" | high |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Education & explainers | canvas (or hyperframes with SVG + KaTeX) | maths, physics, algorithms, ML concepts, any "why does this work" | high |
 
 ## 1. Essence
 - In one sentence: seeing the idea before reading the formula.

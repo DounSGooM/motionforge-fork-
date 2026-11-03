@@ -3,9 +3,9 @@
 
 > Graphite sketches and notes on a sketchbook page: loose construction lines, smudged shading, sticky notes and taped-in photos — ideas caught while they form.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas or hyperframes | creative process, design thinking, travel notes, behind-the-scenes, personal stories | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Art direction & design looks | canvas or hyperframes | creative process, design thinking, travel notes, behind-the-scenes, personal stories | medium |
 
 ## 1. Essence
 - In one sentence: looking over someone's shoulder while they figure something out.

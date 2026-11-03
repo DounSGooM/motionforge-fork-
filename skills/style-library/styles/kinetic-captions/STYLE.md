@@ -3,9 +3,9 @@
 
 > The words are the picture: big, voice-synced type that lands word by word on a quiet field, with one accent colour marking the word you should remember.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes (or canvas) | voice-led shorts without footage, quotes, hot takes, story hooks | low |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Creators & personal brands | hyperframes (or canvas) | voice-led shorts without footage, quotes, hot takes, story hooks | low |
 
 ## 1. Essence
 - In one sentence: reading and listening become the same act.

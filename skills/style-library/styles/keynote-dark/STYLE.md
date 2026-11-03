@@ -3,9 +3,9 @@
 
 > A product-launch stage: near-black space, one luminous object, a gradient-lit headline word and big confident numbers revealed one at a time.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes (CSS 3D / three.js) | launches, feature reveals, before/after numbers, annual recaps | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Tech, SaaS & AI | hyperframes (CSS 3D / three.js) | launches, feature reveals, before/after numbers, annual recaps | medium |
 
 ## 1. Essence
 - In one sentence: one thing at a time, shown like it matters.

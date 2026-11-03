@@ -3,9 +3,9 @@
 
 > Real screens, framed and directed: a browser or app window floats on a soft backdrop, the camera glides and zooms to each click, and highlights point at exactly what matters.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes (or remotion) | product demos, tutorials, repo/site walkthroughs, "how I did X" | low–medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Tech, SaaS & AI | hyperframes (or remotion) | product demos, tutorials, repo/site walkthroughs, "how I did X" | low–medium |
 
 ## 1. Essence
 - In one sentence: a screen recording edited like a film.

@@ -1,6 +1,6 @@
 ---
 name: style-library
-description: Pick, customise or create the visual style of a motionforge video. Use when a video needs a look (palette, type, texture, framing, motion, sound) before scenes are built, when the user names a style or a reference, or when the user wants their own reusable style. Every style is one STYLE.md in the same 9-section format.
+description: Pick, customise or create the visual style of a motionforge video from a library of 100 styles in 20 categories (creators, e-commerce, real estate, sports, documentary, education, tech, finance, food, fitness, travel, events, news, business, gaming, kids, fashion, automotive, art direction, nonprofit). Use when a video needs a look (palette, type, texture, framing, motion, edit rhythm, sound) before scenes are built, when the user names a style, a vertical or a reference, or wants their own reusable style. Every style is one STYLE.md in the same 9-section format.
 license: MIT
 ---
 
@@ -16,27 +16,26 @@ same nine sections (see [`styles/_template/STYLE.md`](styles/_template/STYLE.md)
 4. **Type** — families (free licences only), sizes, case, tracking
 5. **Surfaces and texture** — backgrounds, materials, grain, lines
 6. **Framing and layout** — where things sit in 9:16 (and how it adapts to 1:1 / 16:9)
-7. **Motion** — entrances, exits, easing, timing numbers, transitions, camera
+7. **Motion** — entrances, exits, easing, timing numbers, transitions, camera, edit grammar (shot length, cut types, where cuts land)
 8. **Sound** — music bed, effects, how they sit under the voice
-9. **Build recipe and checks** — engine, templates, steps, style-specific QA
+9. **Build recipe and checks** — engine, templates, signature scenes, steps, style-specific QA
 
-The catalogue — 20 styles, one line each, with best use and engine — is [`styles/README.md`](styles/README.md).
+The catalogue — 100 styles grouped into 20 categories, one line each, with best use and engine — is [`styles/README.md`](styles/README.md). The header table of every style names its category.
 
 ## Step 1 — Pick
 
 1. Read the brief: topic, platform, audience, length, whether a person appears on camera, whether a
    brand kit exists (`brand.json` from the brand-kit skill).
 2. Open [`styles/README.md`](styles/README.md) and shortlist 2–3 styles whose *Best for* matches the content type.
-   Rules of thumb:
-   * talking head + tools/news → `creator-reels-dark`
-   * brand or agency account, save/share info → `agency-info-brand`
-   * voice-led, no footage, fast → `kinetic-captions`
-   * numbers and comparisons → `data-story`, `swiss-poster`, `keynote-dark`
-   * software, sites, repos → `screencast-zoom`, `terminal-crt`
-   * explaining how something works → `blueprint-schematic`, `marker-whiteboard`, `math-explainer`, `storybook-isometric`
-   * history, archives, "how it started" → `archival-newsreel`
-   * playful, nostalgic, kids, games → `paper-cutout`, `pixel-quest`, `rubber-hose-toon`, `retro-anime-cel`
-   * editorial, essay, opinion → `riso-print`, `ink-crosshatch`, `sketchbook-pencil`
+   Start from the category that matches the account or the client, then check *Best for*:
+   * creator / personal account → *Creators & personal brands* (`creator-reels-dark`, `talking-head-pop`, `podcast-clip-studio`, `vlog-film-diary`, `kinetic-captions`, …)
+   * shop, product, ad → *E-commerce & products* (`product-hero-turntable`, `flash-sale`, `ugc-testimonial`, `before-after-split`, …)
+   * listings, neighbourhoods, maps → *Real estate & maps* (`map-flyover-pins`, `floorplan-draw-on`, `neighborhood-guide`, …)
+   * football and other sports → *Football & sports* (`matchday-graphics`, `tactics-board`, `player-stat-card`, …)
+   * documentary, history, investigations → *Documentary & storytelling* (`archival-newsreel`, `true-crime-board`, `history-map-campaign`, …)
+   * how it works, lessons, quizzes → *Education & explainers*; software, repos, AI → *Tech, SaaS & AI*; numbers → *Finance & money* or `data-story`
+   * no category fits → *Art direction & design looks* (`swiss-poster`, `riso-print`, `neon-noir`, `collage-zine`, …) carry any topic
+   Prefer styles whose engine the project can render (3D styles need `engines/hyperframes/three`).
 3. Present the shortlist to the user in their language: name, one-line look, why it fits. If the
    user gave a reference image or video, describe what you see in it in terms of the nine sections
    and pick the closest style (or create one, step 3). Do not copy a specific film, show, artist or

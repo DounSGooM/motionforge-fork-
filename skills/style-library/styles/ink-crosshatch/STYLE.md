@@ -3,9 +3,9 @@
 
 > Pen-and-ink illustration on warm paper: shading built from hatched and cross-hatched lines, a single wash of colour, lines that draw themselves like an engraver at work.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas | essays, literature, history, science stories, long-form opinion | high |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Art direction & design looks | canvas | essays, literature, history, science stories, long-form opinion | high |
 
 ## 1. Essence
 - In one sentence: a thoughtful illustrated essay coming to life on the page.

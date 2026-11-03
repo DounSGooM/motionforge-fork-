@@ -3,9 +3,9 @@
 
 > Hand-painted look of late-20th-century cel animation: hard-edged shadow shapes, glowing highlights, dramatic speed lines and sunset skies — energy and nostalgia.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas (or hyperframes with SVG) | dramatic hooks, launches, "the moment everything changed", music-driven pieces | high |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Kids & animation | canvas (or hyperframes with SVG) | dramatic hooks, launches, "the moment everything changed", music-driven pieces | high |
 
 ## 1. Essence
 - In one sentence: an ordinary moment staged like the climax of a series opening.

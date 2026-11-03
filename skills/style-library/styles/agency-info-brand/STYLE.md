@@ -3,9 +3,9 @@
 
 > A brand-kit-driven explainer that people save and send: brand colours on a dark field, a small corner mark, clean captions, a "save / send" call to action and a logo end card.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| remotion or hyperframes | agency and company accounts, practical tips, checklists, myth vs fact | low–medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Art direction & design looks | remotion or hyperframes | agency and company accounts, practical tips, checklists, myth vs fact | low–medium |
 
 ## 1. Essence
 - In one sentence: useful, calm, unmistakably on-brand information in under 80 seconds.

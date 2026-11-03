@@ -88,7 +88,7 @@ motionforge/
 │  ├─ motion-director/       the full workflow and its approval gates
 │  ├─ script-and-hooks/      hooks, scripts, claim list, banned phrases (10 languages)
 │  ├─ voice-and-timing/      consent-gated TTS, word timings, captions, loudness
-│  ├─ style-library/         20 looks, one STYLE.md each
+│  ├─ style-library/         100 looks in 20 categories, one STYLE.md each
 │  ├─ brand-kit/             brand.json: colors, fonts, logos, watermark, outro
 │  └─ qa-review/             checks + independent critic
 ├─ engines/

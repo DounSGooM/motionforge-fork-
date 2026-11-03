@@ -3,9 +3,9 @@
 
 > Charcoal stage, one lime accent, a bold sans headline with a single italic-serif word, and the presenter's head breaking out of a rounded card at the bottom.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| remotion (edit) + hyperframes (scenes) | talking-head explainers about tools, AI, software, creator tips | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Creators & personal brands | remotion (edit) + hyperframes (scenes) | talking-head explainers about tools, AI, software, creator tips | medium |
 
 ## 1. Essence
 - In one sentence: a confident, fast, personal explainer where the person and the thing they talk about share the screen.

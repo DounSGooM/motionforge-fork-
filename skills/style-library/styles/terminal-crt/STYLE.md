@@ -3,9 +3,9 @@
 
 > A glowing phosphor terminal on a curved tube: monospaced text typing out, a blinking block cursor, scanlines and a faint bloom — code and systems told as a session log.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes (or canvas for the tube effect) | developer tools, AI agents, hacking/security explainers, CLI walkthroughs | low–medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Tech, SaaS & AI | hyperframes (or canvas for the tube effect) | developer tools, AI agents, hacking/security explainers, CLI walkthroughs | low–medium |
 
 ## 1. Essence
 - In one sentence: watching a machine think out loud.

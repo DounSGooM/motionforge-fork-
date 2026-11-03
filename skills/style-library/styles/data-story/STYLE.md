@@ -3,9 +3,9 @@
 
 > Clean, honest charts that animate one insight at a time: bars grow, lines draw, the key point lights up in the accent and gets a plain-language label.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes (SVG/HTML charts) | statistics, trends, comparisons, research summaries | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Finance & money | hyperframes (SVG/HTML charts) | statistics, trends, comparisons, research summaries | medium |
 
 ## 1. Essence
 - In one sentence: one chart, one takeaway, no tricks.

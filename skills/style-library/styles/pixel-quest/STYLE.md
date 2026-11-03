@@ -3,9 +3,9 @@
 
 > A 16-bit adventure: chunky pixel sprites, tile-built levels, dialogue boxes and level-up chimes — explaining a journey as a game.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| canvas (pixel-exact) | step-by-step journeys, "level up your skills", gaming and dev culture | medium–high |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Gaming & esports | canvas (pixel-exact) | step-by-step journeys, "level up your skills", gaming and dev culture | medium–high |
 
 ## 1. Essence
 - In one sentence: progress feels like a game you are winning.

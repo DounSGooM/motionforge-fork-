@@ -2,9 +2,9 @@
 
 > <One line a stranger could picture: medium, era/feel, signature move.>
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes \| canvas \| remotion | <content types> | low \| medium \| high |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| <category from styles/README.md> | hyperframes \| canvas \| remotion | <content types> | low \| medium \| high |
 
 ## 1. Essence
 - In one sentence: <what the viewer should feel and see>.
@@ -49,6 +49,7 @@ Rules: <ratio of accent to the rest, what never gets the accent, light/dark vari
 - Transitions: <cuts, wipes, match moves>.
 - Camera: <static, push-ins, parallax>.
 - Frame rate feel: <smooth 30 fps / held frames on twos / stepped>.
+- Edit grammar: <average shot length, cut types (hard cut, match cut, J-cut, speed ramp, whip), where cuts land (beat, word, action)>.
 
 ## 8. Sound
 - Bed: <genre, tempo, level under voice (dB or LUFS)>.
@@ -57,6 +58,7 @@ Rules: <ratio of accent to the rest, what never gets the accent, light/dark vari
 
 ## 9. Build recipe and checks
 - Engine and templates: <engine; templates/… to start from>.
+- Signature scenes: <3–5 named, reusable scene recipes, e.g. "pin drop: map tilts 30°, pin falls with a bounce, distance label types on">.
 - Steps: <1-5 concrete steps>.
 - Style checks: <style-specific things to verify on the contact sheet>.
 - Common failures: <what usually goes wrong and the fix>.

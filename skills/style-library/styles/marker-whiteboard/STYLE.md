@@ -3,9 +3,9 @@
 
 > Hand-drawn marker sketches appearing on a clean board: simple icons, arrows and boxed words that build an idea step by step, as if a teacher is drawing it live.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes (SVG stroke draw) or canvas | concepts, frameworks, processes, education | medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Education & explainers | hyperframes (SVG stroke draw) or canvas | concepts, frameworks, processes, education | medium |
 
 ## 1. Essence
 - In one sentence: the idea is being thought through in front of you.

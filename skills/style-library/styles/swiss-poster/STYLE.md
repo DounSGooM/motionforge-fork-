@@ -3,9 +3,9 @@
 
 > International-style typography in motion: strict alignment, huge grotesque type, flat primary blocks and asymmetric balance — information as architecture.
 
-| Engine | Best for | Effort |
-|---|---|---|
-| hyperframes | announcements, manifestos, data points, design and architecture topics | low–medium |
+| Category | Engine | Best for | Effort |
+|---|---|---|---|
+| Art direction & design looks | hyperframes | announcements, manifestos, data points, design and architecture topics | low–medium |
 
 ## 1. Essence
 - In one sentence: clarity so strong it becomes the decoration.
