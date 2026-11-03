@@ -1,0 +1,150 @@
+<!doctype html>
+<!--
+  motionforge style preview: neighborhood-guide
+  © 2026 motionforge contributors, MIT
+  A fictional daylight street map (seeded SVG, no real map data) centred on one home: the cobalt pin drops,
+  the camera pulls back, three walking-time rings bloom 0.25 s apart with typed minute labels, then the cafés
+  pop in nearest-first with a count chip; the category then shrinks to dots and parks take over.
+  Places and counts are sample data. Fonts: Bricolage Grotesque, Atkinson Hyperlegible (Fontsource, OFL).
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      /* fonts:begin */
+      @font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/bricolage-grotesque-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/bricolage-grotesque-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/bricolage-grotesque-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/bricolage-grotesque-latin-ext-800-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Atkinson Hyperlegible"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/atkinson-hyperlegible-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      /* fonts:end */
+      :root { --paper: #F1EEE5; --water: #BFD6E2; --park: #D5E3C8; --ink: #23302A; --acc: #2B54D6; --sup: #8B8579; --mf-grain-opacity: .035; }
+      html, body { background: var(--paper); }
+      #root { background: var(--paper); color: var(--ink); }
+      #root::before { mix-blend-mode: multiply; z-index: 9; }
+      #root::after { z-index: 9; background: radial-gradient(ellipse at 50% 50%, transparent 65%, rgba(60,50,30,.08) 100%); }
+      #cam { position: absolute; inset: 0; transform-origin: 540px 900px; }
+      #map { position: absolute; left: -460px; top: -540px; width: 2000px; height: 2880px; }
+      #rings { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; overflow: visible; }
+      .rl { position: absolute; transform: translate(-50%, -50%); padding: 6px 12px; border-radius: 999px; background: var(--paper); font: 700 28px/1 "Atkinson Hyperlegible", sans-serif; color: var(--acc); white-space: nowrap; min-width: 10px; }
+      .badge { position: absolute; width: 72px; height: 72px; margin: -36px 0 0 -36px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(35,48,42,.15), 0 4px 10px rgba(35,48,42,.12); display: flex; align-items: center; justify-content: center; }
+      .badge svg { width: 40px; height: 40px; }
+      .badge svg * { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .badge.on { background: var(--acc); box-shadow: 0 0 0 3px #fff, 0 6px 14px rgba(43,84,214,.3); }
+      .badge.on svg * { stroke: #fff; }
+      #home { position: absolute; left: 492px; top: 792px; width: 96px; height: 120px; }
+      #homeSh { position: absolute; left: 510px; top: 896px; width: 60px; height: 16px; border-radius: 50%; background: rgba(35,48,42,.3); }
+      #banner { position: absolute; left: 0; top: 0; width: 1080px; height: 470px; background: linear-gradient(var(--paper) 78%, rgba(241,238,229,0)); }
+      #title { position: absolute; left: 70px; top: 262px; font: 800 92px/1 "Bricolage Grotesque", sans-serif; letter-spacing: -0.03em; }
+      #sub { position: absolute; left: 72px; top: 372px; font: 700 30px/1 "Atkinson Hyperlegible", sans-serif; color: var(--sup); }
+      .chip { position: absolute; left: 70px; top: 1290px; padding: 16px 26px; border-radius: 999px; background: var(--ink); color: #fff; font: 700 34px/1 "Bricolage Grotesque", sans-serif; white-space: nowrap; }
+      .chip b { color: #b9c9ff; }
+      #legend { position: absolute; left: 70px; right: 70px; top: 1420px; height: 100px; display: flex; gap: 24px; align-items: center; }
+      #legend .badge { position: relative; margin: 0; }
+      #cap { position: absolute; left: 70px; right: 70px; top: 1540px; font: 700 52px/1.15 "Atkinson Hyperlegible", sans-serif; }
+      #credit { position: absolute; left: 70px; top: 1660px; font: 700 22px/1 "Atkinson Hyperlegible", sans-serif; color: var(--sup); }
+      #lowerbg { position: absolute; left: 0; top: 1270px; width: 1080px; height: 650px; background: linear-gradient(rgba(241,238,229,0), var(--paper) 22%); }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="4.5" data-width="1080" data-height="1920">
+      <div id="cam" class="clip" data-start="0" data-duration="4.5" data-track-index="0">
+        <svg id="map" viewBox="0 0 2000 2880" aria-hidden="true"></svg>
+        <svg id="rings" viewBox="0 0 1080 1920" aria-hidden="true"></svg>
+        <div id="badges"></div>
+        <div id="homeSh"></div>
+        <svg id="home" viewBox="0 0 96 120"><path d="M48 118 C 48 118 6 70 6 44 A 42 42 0 0 1 90 44 C 90 70 48 118 48 118Z" fill="#2B54D6" stroke="#fff" stroke-width="4"/><path d="M30 48 L 48 32 L 66 48 V 64 H 30Z" fill="#fff"/><rect x="43" y="52" width="10" height="12" fill="#2B54D6"/></svg>
+      </div>
+      <div id="banner"></div>
+      <div id="title" class="clip" data-start="0" data-duration="4.5" data-track-index="1">Neighborhood guide</div>
+      <div id="sub" class="clip" data-start="0" data-duration="4.5" data-track-index="2">What is a short walk from here</div>
+      <div id="lowerbg"></div>
+      <div id="chip1" class="chip clip" data-start="0" data-duration="4.5" data-track-index="3"><b>6</b> cafés · ≤ 5 min</div>
+      <div id="chip2" class="chip clip" data-start="0" data-duration="4.5" data-track-index="4"><b>3</b> parks · ≤ 10 min</div>
+      <div id="legend" class="clip" data-start="0" data-duration="4.5" data-track-index="5"></div>
+      <div id="cap" class="clip" data-start="0" data-duration="4.5" data-track-index="6">Coffee first, then the park</div>
+      <div id="credit" class="clip" data-start="0" data-duration="4.5" data-track-index="7">Fictional map · sample amenities, as of Oct 2026 · rings ≈ straight-line walk</div>
+    </div>
+
+    <script>
+      const NS = "http://www.w3.org/2000/svg", map = document.getElementById("map"), rr = MF.rng("neighborhood-guide");
+      const el = (tag, a, p = map) => { const e = document.createElementNS(NS, tag); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
+      // map coords: home at (1000, 1440) -> screen (540, 900)
+      el("rect", { width: 2000, height: 2880, fill: "#F1EEE5" });
+      el("path", { d: "M-50 2050 C 500 1960 900 2180 1300 2100 C 1700 2020 1900 2100 2050 2150 L 2050 2400 L -50 2400Z", fill: "#BFD6E2" });
+      el("path", { d: "M1180 1150 C 1340 1100 1480 1180 1460 1320 C 1440 1440 1260 1460 1190 1360 C 1140 1290 1100 1190 1180 1150Z", fill: "#D5E3C8" });
+      el("path", { d: "M560 1560 C 700 1520 820 1600 790 1720 C 760 1830 600 1820 560 1740 C 520 1670 480 1590 560 1560Z", fill: "#D5E3C8" });
+      el("path", { d: "M1380 1700 C 1500 1660 1600 1720 1580 1820 C 1560 1900 1440 1900 1400 1840 C 1360 1790 1320 1730 1380 1700Z", fill: "#D5E3C8" });
+      const fp = el("g", { fill: "#E6E1D4" });
+      for (let i = 0; i < 340; i++) { const x = rr.range(0, 2000), y = rr.range(500, 2050), w = rr.range(30, 80), h = rr.range(26, 70); el("rect", { x, y, width: w, height: h, rx: 4, transform: `rotate(${rr.range(-20, 20)} ${x} ${y})` }, fp); }
+      const roads = ["M-50 1380 C 500 1420 1300 1350 2050 1460", "M960 400 C 1000 900 940 1500 1020 2100", "M300 400 C 420 1000 520 1500 480 2100", "M1600 400 C 1500 1000 1560 1500 1700 2100", "M-50 900 C 600 960 1300 860 2050 980", "M-50 1820 C 600 1760 1300 1880 2050 1800"];
+      const minor = []; for (let i = 0; i < 40; i++) { const x = rr.range(0, 2000), y = rr.range(500, 2000), a = rr.range(0, Math.PI), L = rr.range(160, 420); minor.push(`M${x} ${y} Q ${x + Math.cos(a) * L / 2 + rr.range(-60, 60)} ${y + Math.sin(a) * L / 2} ${x + Math.cos(a) * L} ${y + Math.sin(a) * L}`); }
+      minor.forEach((d) => el("path", { d, fill: "none", stroke: "#DCD6C8", "stroke-width": 16, "stroke-linecap": "round" }));
+      roads.forEach((d) => el("path", { d, fill: "none", stroke: "#DCD6C8", "stroke-width": 30, "stroke-linecap": "round" }));
+      minor.forEach((d) => el("path", { d, fill: "none", stroke: "#FFFFFF", "stroke-width": 11, "stroke-linecap": "round" }));
+      roads.forEach((d) => el("path", { d, fill: "none", stroke: "#FFFFFF", "stroke-width": 23, "stroke-linecap": "round" }));
+      // rings (screen coords inside the camera layer)
+      const rings = document.getElementById("rings"), R = [[140, "5 min", 0.6], [280, "10 min", 0.4], [420, "15 min", 0.25]];
+      el("circle", { cx: 540, cy: 900, r: 140, fill: "#2B54D6", "fill-opacity": 0.06, id: "fill5" }, rings);
+      R.forEach(([r, l, o], i) => { el("circle", { cx: 540, cy: 900, r, fill: "none", stroke: "#2B54D6", "stroke-opacity": o, "stroke-width": 2.5, id: "ring" + i }, rings);
+        const d = document.createElement("div"); d.className = "rl"; d.id = "rl" + i; d.dataset.t = l; d.style.left = (540 + r * 0.707) + "px"; d.style.top = (900 - r * 0.707) + "px"; document.getElementById("cam").appendChild(d); });
+      const ICON = {
+        cup: '<path d="M8 14 h20 v10 a8 8 0 0 1 -8 8 h-4 a8 8 0 0 1 -8 -8Z M28 17 h3 a4 4 0 0 1 0 8 h-3 M14 6 v4 M20 4 v6"/>',
+        tree: '<path d="M20 36 V24 M20 4 C 10 4 6 14 10 20 C 6 26 12 30 20 28 C 28 30 34 26 30 20 C 34 14 30 4 20 4Z"/>',
+        book: '<path d="M6 8 h11 a3 3 0 0 1 3 3 v23 a3 3 0 0 0 -3 -3 h-11Z M34 8 h-11 a3 3 0 0 0 -3 3 v23 a3 3 0 0 1 3 -3 h11Z"/>',
+        train: '<rect x="9" y="5" width="22" height="24" rx="5"/><path d="M9 18 h22 M14 35 l3 -6 M26 35 l-3 -6"/><circle cx="15" cy="23" r="1.5"/><circle cx="25" cy="23" r="1.5"/>',
+        basket: '<path d="M5 16 h30 l-4 18 h-22Z M12 16 l6 -10 M28 16 l-6 -10 M14 22 v6 M20 22 v6 M26 22 v6"/>',
+      };
+      const badge = (icon, x, y, parent) => { const b = document.createElement("div"); b.className = "badge"; b.style.left = x + "px"; b.style.top = y + "px"; b.innerHTML = `<svg viewBox="0 0 40 40">${ICON[icon]}</svg>`; parent.appendChild(b); return b; };
+      const bh = document.getElementById("badges");
+      const cafes = [[640, 870], [450, 960], [600, 1010], [430, 840], [660, 960], [520, 775]].map(([x, y]) => badge("cup", x, y, bh));
+      const parks = [[620, 660], [390, 1120], [760, 1040]].map(([x, y]) => badge("tree", x, y, bh));
+      const sortByDist = (arr) => arr.slice().sort((a, b) => Math.hypot(+a.style.left.slice(0, -2) - 540, +a.style.top.slice(0, -2) - 900) - Math.hypot(+b.style.left.slice(0, -2) - 540, +b.style.top.slice(0, -2) - 900));
+      const leg = document.getElementById("legend"), legB = ["cup", "tree", "book", "train", "basket"].map((k) => badge(k, 0, 0, leg));
+
+      const DUR = 4.5;
+      const tl = MF.timeline("main", DUR);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.fromTo(["#title", "#sub"], { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", stagger: 0.08 }, 0);
+      // open close on the pin, pull back to show the 15-minute ring
+      tl.fromTo("#cam", { scale: 1.6 }, { scale: 1, duration: 1.4, ease: "power3.inOut" }, 0.3);
+      tl.fromTo("#home", { y: -90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "back.out(1.8)" }, 0.15);
+      tl.fromTo("#homeSh", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4 }, 0.15);
+      tl.fromTo("#fill5", { attr: { r: 0 } }, { attr: { r: 140 }, duration: 0.7, ease: "power2.out" }, 0.8);
+      R.forEach(([r], i) => {
+        tl.fromTo("#ring" + i, { attr: { r: 0 } }, { attr: { r }, duration: 0.7, ease: "power2.out" }, 0.8 + i * 0.25);
+        const lab = document.getElementById("rl" + i), txt = lab.dataset.t, o = { n: 0 };
+        tl.fromTo(lab, { opacity: 0 }, { opacity: 1, duration: 0.1 }, 1.3 + i * 0.25);
+        tl.fromTo(o, { n: 0 }, { n: txt.length, duration: txt.length / 20, ease: "none", onUpdate: () => { lab.textContent = txt.slice(0, Math.max(1, Math.round(o.n))); } }, 1.3 + i * 0.25);
+      });
+      tl.fromTo("#legend .badge", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)", stagger: 0.05 }, 1.4);
+      // category pop: cafés nearest-first, active legend icon grows, chip counts
+      const pop = (arr, t, li, chip, n) => {
+        tl.to(legB[li], { scale: 1.35, duration: 0.25, ease: "back.out(2)" }, t);
+        tl.set(legB[li], { className: "badge on" }, t);
+        tl.set(arr, { className: "badge on" }, 0);
+        tl.fromTo(sortByDist(arr), { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.32, ease: "back.out(2.2)", stagger: 0.04 }, t + 0.05);
+        tl.fromTo(chip, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, t + 0.15);
+        const b = document.querySelector(chip + " b"), o = { v: 0 };
+        tl.fromTo(o, { v: 0 }, { v: n, duration: 0.5, ease: "power2.out", onUpdate: () => { b.textContent = Math.round(o.v); } }, t + 0.15);
+      };
+      pop(cafes, 2.0, 0, "#chip1", 6);
+      // finished category shrinks to 14 px ink dots
+      tl.to(cafes, { scale: 0.2, backgroundColor: "#23302A", duration: 0.25, ease: "power2.in" }, 3.3);
+      tl.to(cafes.map((b) => b.querySelector("svg")), { opacity: 0, duration: 0.1 }, 3.3);
+      tl.to("#chip1", { opacity: 0, duration: 0.2 }, 3.3);
+      tl.to(legB[0], { scale: 1, duration: 0.25 }, 3.3);
+      tl.set(legB[0], { className: "badge" }, 3.3);
+      pop(parks, 3.4, 1, "#chip2", 3);
+      tl.fromTo("#cap", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3 }, 2.2);
+      tl.fromTo("#credit", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 1.6);
+      tl.seek(0);
+    </script>
+  </body>
+</html>

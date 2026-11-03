@@ -3,7 +3,7 @@
 One HyperFrames scene per style in [`skills/style-library/styles/`](../../skills/style-library/styles/).
 Each folder holds the scene source (`index.html`, `hyperframes.json`, `meta.json`) that rendered the
 style's `preview.gif`: a 4.5-second, 1080×1920 composition drawn only with HTML, CSS, SVG and canvas.
-There are no external images and no fonts beyond Inter, Instrument Serif and JetBrains Mono.
+There are no external images, photos or footage; places, people, brands and numbers are fictional or labelled as sample data. Fonts are the ones the style names, listed in each folder's `meta.json` (`fonts`: the `@fontsource/*` packages), together with `three: true` when the scene uses the three.js layer.
 
 ## Render one
 
@@ -11,7 +11,7 @@ The `assets/` folder (base.css, mf-runtime.js, GSAP, fonts) is not stored here. 
 to get it, then drop in the preview's `index.html`:
 
 ```bash
-# once, in your project: npm i -D hyperframes gsap @fontsource/inter @fontsource/instrument-serif @fontsource/jetbrains-mono
+# once, in your project: npm i -D hyperframes gsap three, plus the @fontsource packages in the style's meta.json
 engines/hyperframes/scripts/new-scene.sh pixel-quest --dest scenes
 cp examples/styles/pixel-quest/index.html scenes/pixel-quest/
 cd scenes/pixel-quest

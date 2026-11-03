@@ -47,7 +47,7 @@ motionforge 会经过固定的几个阶段，把它变成一个检查过的 MP4�
 
 ## 风格库
 
-<p align="center"><img src="../media/styles.gif" alt="20 种 motionforge 风格的动态预览" width="720"></p>
+<p align="center"><img src="../media/styles-categories.gif" alt="20 种 motionforge 风格的动态预览" width="720"></p>
 
 100 种外观，按使用它们的账号类型分组。每个类别举几个例子：
 

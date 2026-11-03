@@ -1,0 +1,142 @@
+<!doctype html>
+<!--
+  motionforge style preview: listing-tour-cards
+  © 2026 motionforge contributors, MIT
+  Bright, neutral "walkthrough footage" (two original illustrated rooms with slow pans and a hard cut),
+  the address on a top scrim, the whole price fading in with a 1.04 -> 1 settle (never counting), then the
+  signature fact card: white card with a teal edge tab rising 80 px, rows landing 0.08 s apart with line icons
+  drawing and counts running up; the room ticker widens its active dot across the cut.
+  Address, price and figures are fictional sample data. Font: Plus Jakarta Sans (Fontsource, OFL).
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      /* fonts:begin */
+      @font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/plus-jakarta-sans-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/plus-jakarta-sans-latin-ext-600-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/plus-jakarta-sans-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/plus-jakarta-sans-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/plus-jakarta-sans-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/plus-jakarta-sans-latin-ext-800-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      /* fonts:end */
+      :root { --paper: #FFFDF9; --ink: #1B2430; --acc: #0E7C74; --sup: #E6E1D8; --muted: #5F6B78; --mf-grain-opacity: .04; }
+      html, body { background: var(--paper); }
+      #root { background: var(--paper); font-family: "Plus Jakarta Sans", sans-serif; }
+      #root::before { z-index: 3; mix-blend-mode: overlay; }
+      #root::after { display: none; }
+      .shot { position: absolute; inset: 0; overflow: hidden; }
+      .shot svg { position: absolute; left: 0; top: 0; width: 1180px; height: 1920px; }
+      #scrim { position: absolute; left: 0; top: 0; width: 1080px; height: 520px; background: linear-gradient(rgba(0,0,0,.7), rgba(0,0,0,0)); z-index: 4; }
+      #bscrim { position: absolute; left: 0; top: 1520px; width: 1080px; height: 400px; background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.45)); z-index: 4; }
+      #eyebrow { position: absolute; left: 60px; top: 250px; font: 700 26px/1 "Plus Jakarta Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.85); z-index: 5; }
+      #addr { position: absolute; left: 60px; top: 292px; font: 800 86px/1.02 "Plus Jakarta Sans", sans-serif; letter-spacing: -0.02em; color: #fff; z-index: 5; }
+      #price { position: absolute; left: 60px; top: 1030px; padding: 20px 30px; border-radius: 22px; background: var(--paper); box-shadow: 0 18px 40px rgba(27,36,48,.22); z-index: 5; white-space: nowrap; }
+      #price b { font: 800 84px/1 "Plus Jakarta Sans", sans-serif; letter-spacing: -0.02em; color: var(--acc); font-variant-numeric: tabular-nums; }
+      #price span { margin-left: 10px; font: 700 44px/1 "Plus Jakarta Sans", sans-serif; color: var(--muted); }
+      #card { position: absolute; left: 60px; top: 1210px; width: 840px; height: 340px; border-radius: 28px; background: var(--paper); box-shadow: 0 18px 40px rgba(27,36,48,.22); overflow: hidden; z-index: 5; }
+      #card .tab { position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--acc); }
+      .row { position: absolute; left: 50px; right: 40px; height: 100px; display: flex; align-items: center; gap: 26px; border-bottom: 2px solid var(--sup); }
+      .row:last-child { border-bottom: none; }
+      .row svg { width: 56px; height: 56px; flex: none; }
+      .row svg path, .row svg rect, .row svg circle { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .row b { font: 800 56px/1 "Plus Jakarta Sans", sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; min-width: 110px; }
+      .row span { font: 700 27px/1 "Plus Jakarta Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+      #ticker { position: absolute; left: 60px; top: 1632px; display: flex; gap: 12px; align-items: center; z-index: 5; }
+      #ticker i { display: block; width: 12px; height: 12px; border-radius: 6px; background: var(--sup); box-shadow: 0 1px 4px rgba(0,0,0,.2); }
+      #room { position: absolute; left: 330px; top: 1622px; font: 700 28px/1 "Plus Jakarta Sans", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.45); z-index: 5; }
+      #note { position: absolute; left: 60px; top: 1690px; font: 600 22px/1 "Plus Jakarta Sans", sans-serif; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,.5); z-index: 5; opacity: .9; }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="4.5" data-width="1080" data-height="1920">
+      <div id="s1" class="shot clip" data-start="0" data-duration="4.5" data-track-index="0">
+        <svg viewBox="0 0 1180 1920" aria-hidden="true">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#cfe2ee"/><stop offset="1" stop-color="#eef4f6"/></linearGradient>
+            <linearGradient id="fl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9b88f"/><stop offset="1" stop-color="#b8925f"/></linearGradient>
+            <radialGradient id="sun" cx=".3" cy=".4" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".7"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          </defs>
+          <rect width="1180" height="1920" fill="#f3efe7"/>
+          <rect x="80" y="380" width="520" height="900" fill="url(#sky)"/>
+          <path d="M80 1000 C 200 940 300 980 400 950 C 480 930 560 960 600 950 V1280 H80Z" fill="#a9c39a"/>
+          <path d="M80 1080 C 220 1040 360 1070 600 1040 V1280 H80Z" fill="#8fae80"/>
+          <g fill="none" stroke="#e9e4da" stroke-width="22"><rect x="80" y="380" width="520" height="900"/><path d="M340 380 V1280"/></g>
+          <rect x="0" y="0" width="1180" height="1920" fill="url(#sun)"/>
+          <rect x="760" y="560" width="260" height="330" fill="#fff" stroke="#c9c1b3" stroke-width="10"/><circle cx="850" cy="700" r="70" fill="#e5b77c"/><rect x="860" y="740" width="120" height="110" fill="#6c8ea3"/>
+          <rect y="1380" width="1180" height="540" fill="url(#fl)"/>
+          <path d="M0 1460 H1180 M0 1560 H1180 M0 1680 H1180 M0 1820 H1180" stroke="#c8a77d" stroke-width="3"/>
+          <ellipse cx="640" cy="1640" rx="480" ry="110" fill="#ece6da"/>
+          <path d="M380 1240 h560 q40 0 40 40 v160 h-640 v-160 q0 -40 40 -40Z" fill="#b9b3aa"/>
+          <rect x="330" y="1350" width="680" height="150" rx="30" fill="#c9c3ba"/>
+          <rect x="400" y="1290" width="220" height="90" rx="24" fill="#d8d2c8"/><rect x="660" y="1290" width="220" height="90" rx="24" fill="#d8d2c8"/>
+          <rect x="520" y="1560" width="260" height="70" rx="10" fill="#8a6a48"/><rect x="540" y="1630" width="16" height="70" fill="#6f5338"/><rect x="744" y="1630" width="16" height="70" fill="#6f5338"/>
+          <path d="M1080 1400 h70 l-10 -100 h-50Z" fill="#efe9de"/><path d="M1115 1300 C 1060 1200 1030 1150 1000 1120 C 1060 1130 1100 1190 1115 1300 C 1130 1180 1170 1130 1200 1110 C 1180 1170 1140 1220 1115 1300Z" fill="#5d8a55"/>
+        </svg>
+      </div>
+      <div id="s2" class="shot clip" data-start="0" data-duration="4.5" data-track-index="1">
+        <svg viewBox="0 0 1180 1920" aria-hidden="true">
+          <defs><linearGradient id="fl2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2d6c4"/><stop offset="1" stop-color="#c7b49a"/></linearGradient>
+          <radialGradient id="sun2" cx=".7" cy=".3" r=".7"><stop offset="0" stop-color="#fff" stop-opacity=".6"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+          <rect width="1180" height="1920" fill="#f1ede6"/>
+          <rect x="700" y="420" width="380" height="520" fill="#d6e7ef"/><g fill="none" stroke="#e9e4da" stroke-width="18"><rect x="700" y="420" width="380" height="520"/><path d="M890 420 V940"/></g>
+          <rect x="0" y="0" width="1180" height="1920" fill="url(#sun2)"/>
+          <rect x="60" y="460" width="560" height="300" fill="#fbfaf7" stroke="#e1dbd0" stroke-width="4"/><path d="M247 460 V760 M433 460 V760" stroke="#e1dbd0" stroke-width="4"/>
+          <rect x="60" y="960" width="1060" height="30" fill="#d9d2c6"/>
+          <rect x="60" y="990" width="1060" height="330" fill="#fbfaf7" stroke="#e1dbd0" stroke-width="4"/><path d="M325 990 V1320 M590 990 V1320 M855 990 V1320" stroke="#e1dbd0" stroke-width="4"/>
+          <rect x="200" y="1080" width="60" height="8" rx="4" fill="#9a9488"/><rect x="465" y="1080" width="60" height="8" rx="4" fill="#9a9488"/><rect x="730" y="1080" width="60" height="8" rx="4" fill="#9a9488"/>
+          <rect y="1320" width="1180" height="600" fill="url(#fl2)"/>
+          <rect x="200" y="1360" width="780" height="60" fill="#e9e3d8"/><rect x="230" y="1420" width="720" height="300" fill="#2f4a46"/>
+          <g fill="#8a6a48"><rect x="300" y="1500" width="90" height="20" rx="8"/><rect x="520" y="1500" width="90" height="20" rx="8"/><rect x="740" y="1500" width="90" height="20" rx="8"/></g>
+                    <path d="M520 1360 c 0 -60 30 -80 50 -80 c 20 0 50 20 50 80Z" fill="#efe9de"/><path d="M570 1290 C 540 1240 520 1220 500 1210 C 540 1214 560 1240 570 1290 C 580 1240 600 1220 630 1210 C 610 1236 590 1256 570 1290Z" fill="#5d8a55"/>
+        </svg>
+      </div>
+      <div id="scrim"></div><div id="bscrim"></div>
+      <div id="eyebrow" class="clip" data-start="0" data-duration="4.5" data-track-index="2">Listing tour cards · for sale</div>
+      <div id="addr" class="clip" data-start="0" data-duration="4.5" data-track-index="3">14 Linden Row,<br />flat 3</div>
+      <div id="price" class="clip" data-start="0" data-duration="4.5" data-track-index="4"><b>€385,000</b><span>asking</span></div>
+      <div id="card" class="clip" data-start="0" data-duration="4.5" data-track-index="5"><div class="tab"></div>
+        <div class="row" style="top:20px"><svg viewBox="0 0 56 56"><path d="M6 40 V16 M6 30 H50 V40 M6 24 h14 a6 6 0 0 1 6 6"/><rect x="28" y="22" width="22" height="8" rx="3"/></svg><b data-n="3">0</b><span>Bedrooms</span></div>
+        <div class="row" style="top:120px"><svg viewBox="0 0 56 56"><path d="M6 28 H50 V36 a10 10 0 0 1 -10 10 H16 a10 10 0 0 1 -10 -10Z M12 28 V12 a6 6 0 0 1 12 0 M14 46 l-3 5 M42 46 l3 5"/></svg><b data-n="2">0</b><span>Bathrooms</span></div>
+        <div class="row" style="top:220px"><svg viewBox="0 0 56 56"><rect x="8" y="8" width="40" height="40" rx="3"/><path d="M8 20 H20 V8 M36 48 V36 H48"/></svg><b data-n="92">0</b><span>m² net living area</span></div>
+      </div>
+      <div id="ticker" class="clip" data-start="0" data-duration="4.5" data-track-index="6"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div id="room" class="clip" data-start="0" data-duration="4.5" data-track-index="7">Living room</div>
+      <div id="note" class="clip" data-start="0" data-duration="4.5" data-track-index="8">Sample listing · illustrated rooms</div>
+    </div>
+
+    <script>
+      const DUR = 4.5, CUT = 2.9;
+      const tl = MF.timeline("main", DUR);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      // footage: slow pan (7 % of width) on the living room, hard cut to the kitchen with a 1.00 -> 1.08 push
+      tl.fromTo("#s1 svg", { x: 0, scale: 1.02 }, { x: -82, scale: 1.04, duration: CUT, ease: "power1.inOut" }, 0);
+      tl.set("#s2", { opacity: 0 }, 0); tl.set("#s2", { opacity: 1 }, CUT); tl.set("#s1", { opacity: 0 }, CUT);
+      tl.fromTo("#s2 svg", { x: -50, scale: 1.0, transformOrigin: "50% 50%" }, { x: -50, scale: 1.08, duration: DUR - CUT, ease: "power1.inOut" }, CUT);
+      tl.fromTo(["#eyebrow", "#addr"], { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out", stagger: 0.08 }, 0.1);
+      // price chip: appears whole, 0.2 s fade with a 1.04 -> 1 settle
+      tl.fromTo("#price", { opacity: 0, scale: 1.04, transformOrigin: "0 50%" }, { opacity: 1, scale: 1, duration: 0.2, ease: "power2.out" }, 0.8);
+      // fact card: rises 80 px with fade, rows stagger 0.08 s, icons draw 0.3 s, counts run 0.5 s
+      tl.fromTo("#card", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 1.35);
+      tl.fromTo(".row", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out", stagger: 0.08 }, 1.5);
+      document.querySelectorAll(".row svg *").forEach((p) => { const L = p.getTotalLength ? p.getTotalLength() : 200; p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+      tl.to(".row svg *", { strokeDashoffset: 0, duration: 0.3, ease: "power2.out", stagger: 0.04 }, 1.55);
+      document.querySelectorAll(".row b").forEach((b, i) => { const o = { v: 0 }, n = +b.dataset.n; tl.to(o, { v: n, duration: 0.5, ease: "power2.out", onUpdate: () => { b.textContent = Math.round(o.v); } }, 1.55 + i * 0.08); });
+      // room ticker: active dot widens 12 -> 36 px and fills teal as the room name swaps
+      const dots = gsap.utils.toArray("#ticker i");
+      tl.fromTo("#ticker, #room, #note", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.4);
+      tl.fromTo(dots[0], { width: 12, backgroundColor: "#E6E1D8" }, { width: 36, backgroundColor: "#0E7C74", duration: 0.3 }, 0.5);
+      tl.to(dots[0], { width: 12, backgroundColor: "#E6E1D8", duration: 0.3 }, CUT);
+      tl.fromTo(dots[1], { width: 12, backgroundColor: "#E6E1D8" }, { width: 36, backgroundColor: "#0E7C74", duration: 0.3 }, CUT);
+      const room = document.getElementById("room");
+      tl.call(() => { room.textContent = "Living room"; }, null, 0.01);
+      tl.call(() => { room.textContent = "Kitchen"; }, null, CUT);
+      tl.seek(0);
+    </script>
+  </body>
+</html>

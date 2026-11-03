@@ -1,0 +1,118 @@
+<!doctype html>
+<!--
+  motionforge style preview: matchday-graphics
+  © 2026 motionforge contributors, MIT
+  Night-match package: floodlight stinger on navy haze, the scorebug, then the signature score slam: two team
+  blocks slide in along a 12 deg slant (0.35 s power4.out) and meet at the divider, the digits drop 60 px with
+  scale 1.25 -> 1 (back.out(2.2)), one floodlight sweep crosses the panel, scorers type in and three stat bars
+  grow. Teams are fictional (colour roundels with 3-letter codes, no crests); all figures are sample data.
+  Fonts: Big Shoulders Display, Barlow (Fontsource, OFL).
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      /* fonts:begin */
+      @font-face { font-family: "Big Shoulders Display"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/big-shoulders-display-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Big Shoulders Display"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/big-shoulders-display-latin-ext-800-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Big Shoulders Display"; font-style: normal; font-weight: 900; font-display: block; src: url("assets/fonts/big-shoulders-display-latin-900-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Big Shoulders Display"; font-style: normal; font-weight: 900; font-display: block; src: url("assets/fonts/big-shoulders-display-latin-ext-900-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/barlow-latin-600-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Barlow"; font-style: normal; font-weight: 600; font-display: block; src: url("assets/fonts/barlow-latin-ext-600-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/barlow-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Barlow"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/barlow-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      /* fonts:end */
+      :root { --bg: #0A1022; --panel: #121B33; --ink: #F4F6FB; --acc: #FFA41B; --sup: #8C97B2; --home: #B3122E; --away: #13757A; --mf-grain-opacity: .06; }
+      html, body { background: var(--bg); }
+      #root { background: radial-gradient(700px 1300px at 200px -100px, rgba(27,42,74,.95), transparent 70%), radial-gradient(700px 1300px at 880px -100px, rgba(27,42,74,.95), transparent 70%), var(--bg); }
+      #haze { position: absolute; inset: 0; background: radial-gradient(500px 1500px at 200px -200px, rgba(200,215,255,.10), transparent 70%), radial-gradient(500px 1500px at 880px -200px, rgba(200,215,255,.10), transparent 70%); }
+      #bug { position: absolute; left: 60px; top: 250px; height: 80px; display: flex; align-items: stretch; border: 1px solid rgba(255,255,255,.12); background: rgba(18,27,51,.9); clip-path: polygon(0 0, 100% 0, calc(100% - 17px) 100%, 0 100%); }
+      #bug div { display: flex; align-items: center; padding: 0 20px; font: 800 44px/1 "Big Shoulders Display", sans-serif; color: var(--ink); letter-spacing: .02em; }
+      #bug .c { font-size: 40px; } #bug .h { background: var(--home); } #bug .a { background: var(--away); }
+      #bug .t { font: 700 28px/1 "Barlow", sans-serif; letter-spacing: .12em; color: var(--acc); padding-right: 34px; }
+      #eyebrow { position: absolute; left: 60px; top: 372px; font: 700 28px/1 "Barlow", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--sup); }
+      #ft { position: absolute; left: 50px; top: 412px; font: 900 200px/0.9 "Big Shoulders Display", sans-serif; letter-spacing: .01em; text-transform: uppercase; color: var(--ink); white-space: nowrap; }
+      #hero { position: absolute; left: 0; top: 660px; width: 1080px; height: 520px; overflow: hidden; }
+      .blk { position: absolute; top: 0; height: 520px; width: 600px; display: flex; flex-direction: column; justify-content: center; }
+      #bh { left: 0; background: linear-gradient(160deg, #c8173a, var(--home) 60%, #8c0e24); clip-path: polygon(0 0, 100% 0, calc(100% - 110px) 100%, 0 100%); padding-left: 60px; }
+      #ba { right: 0; background: linear-gradient(200deg, #1a8f95, var(--away) 60%, #0c5458); clip-path: polygon(110px 0, 100% 0, 100% 100%, 0 100%); align-items: flex-end; padding-right: 60px; }
+      .rnd { width: 96px; height: 96px; border-radius: 50%; border: 5px solid rgba(255,255,255,.9); display: flex; align-items: center; justify-content: center; font: 900 34px/1 "Big Shoulders Display", sans-serif; color: #fff; background: rgba(0,0,0,.18); }
+      .tn { margin-top: 18px; font: 900 64px/1 "Big Shoulders Display", sans-serif; text-transform: uppercase; color: #fff; }
+      .dg { position: absolute; top: 90px; font: 900 330px/1 "Big Shoulders Display", sans-serif; color: #fff; font-variant-numeric: tabular-nums; text-shadow: 0 10px 30px rgba(0,0,0,.25); }
+      #dh { left: 330px; } #da { left: 640px; }
+      #sweep { position: absolute; top: -100px; left: 0; width: 260px; height: 720px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,240,210,.35), rgba(255,255,255,0)); transform: rotate(12deg); mix-blend-mode: screen; opacity: 0; }
+      .sc { position: absolute; top: 1200px; font: 600 40px/1.3 "Barlow", sans-serif; color: var(--ink); white-space: nowrap; }
+      .sc b { color: var(--acc); font-weight: 700; }
+      #sh { left: 60px; } #sa { right: 60px; text-align: right; }
+      #stats { position: absolute; left: 60px; right: 60px; top: 1320px; }
+      .st { position: relative; height: 92px; }
+      .st .l { position: absolute; left: 0; right: 0; top: 0; text-align: center; font: 700 26px/1 "Barlow", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--sup); }
+      .st .v1, .st .v2 { position: absolute; top: 0; font: 800 34px/1 "Big Shoulders Display", sans-serif; color: var(--ink); }
+      .st .v2 { right: 0; }
+      .st .bars { position: absolute; left: 0; right: 0; top: 42px; height: 14px; display: flex; gap: 6px; }
+      .st .bars i { display: block; height: 14px; border-radius: 3px; }
+      .st .bars i:first-child { background: var(--home); transform-origin: left; }
+      .st .bars i:last-child { background: var(--away); transform-origin: right; }
+      #venue { position: absolute; left: 60px; top: 1640px; font: 700 26px/1 "Barlow", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--sup); }
+      #wipe { position: absolute; left: -400px; top: -200px; width: 600px; height: 2400px; background: var(--panel); transform: rotate(12deg); }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="4.5" data-width="1080" data-height="1920">
+      <div id="haze" class="clip" data-start="0" data-duration="4.5" data-track-index="0"></div>
+      <div id="bug" class="clip" data-start="0" data-duration="4.5" data-track-index="1"><div class="h c">HBR</div><div>2–1</div><div class="a c">RVL</div><div class="t">FT</div></div>
+      <div id="eyebrow" class="clip" data-start="0" data-duration="4.5" data-track-index="2">Matchday graphics · sample fixture</div>
+      <div id="ft" class="clip" data-start="0" data-duration="4.5" data-track-index="3">Full time</div>
+      <div id="hero" class="clip" data-start="0" data-duration="4.5" data-track-index="4">
+        <div id="bh" class="blk"><div class="rnd">HBR</div><div class="tn">Harbor</div></div>
+        <div id="ba" class="blk"><div class="rnd">RVL</div><div class="tn">Riverlea</div></div>
+        <div id="dh" class="dg">2</div><div id="da" class="dg">1</div>
+        <div id="sweep"></div>
+      </div>
+      <div id="sh" class="sc clip" data-start="0" data-duration="4.5" data-track-index="5"></div>
+      <div id="sa" class="sc clip" data-start="0" data-duration="4.5" data-track-index="6"></div>
+      <div id="stats" class="clip" data-start="0" data-duration="4.5" data-track-index="7"></div>
+      <div id="venue" class="clip" data-start="0" data-duration="4.5" data-track-index="8">Harbor Park · Matchday 12 · 20:45 CET</div>
+      <div id="wipe" class="clip" data-start="0" data-duration="4.5" data-track-index="9"></div>
+    </div>
+
+    <script>
+      const S = [["Possession", 58, 42, "%"], ["Shots", 14, 9, ""], ["Expected goals (sample)", 1.8, 0.9, ""]];
+      const st = document.getElementById("stats");
+      S.forEach(([l, a, b, u]) => { const d = document.createElement("div"); d.className = "st";
+        d.innerHTML = `<div class="l">${l}</div><div class="v1">${a}${u}</div><div class="v2">${b}${u}</div><div class="bars"><i style="flex:${a}"></i><i style="flex:${b}"></i></div>`; st.appendChild(d); });
+      const DUR = 4.5;
+      const tl = MF.timeline("main", DUR);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      // stinger: a slanted panel sweeps the frame, floodlights come up
+      tl.fromTo("#wipe", { x: -300 }, { x: 1700, duration: 0.4, ease: "power2.inOut" }, 0);
+      tl.fromTo("#haze", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.1);
+      tl.fromTo("#root", { "--x": 0 }, { "--x": 1, duration: 0.01 }, 0);
+      tl.fromTo("#bug", { opacity: 0, x: -160 }, { opacity: 1, x: 0, duration: 0.35, ease: "power4.out" }, 0.3);
+      tl.fromTo("#eyebrow", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.4);
+      tl.fromTo("#ft", { opacity: 0, scale: 1.25, transformOrigin: "0 50%" }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.2)" }, 0.45);
+      // score slam: blocks slide 160 px along the 12 deg slant from opposite sides
+      const dx = 160, dy = 160 * Math.tan(12 * Math.PI / 180);
+      tl.fromTo("#bh", { x: -dx - 500, y: dy, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.35, ease: "power4.out" }, 0.8);
+      tl.fromTo("#ba", { x: dx + 500, y: -dy, opacity: 0 }, { x: 0, y: 0, opacity: 1, duration: 0.35, ease: "power4.out" }, 0.86);
+      tl.fromTo(".rnd, .tn", { opacity: 0 }, { opacity: 1, duration: 0.2, stagger: 0.05 }, 1.0);
+      tl.fromTo("#dh", { y: -60, scale: 1.25, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.2)" }, 1.2);
+      tl.fromTo("#da", { y: -60, scale: 1.25, opacity: 0 }, { y: 0, scale: 1, opacity: 1, duration: 0.3, ease: "back.out(2.2)" }, 1.3);
+      tl.fromTo("#sweep", { x: -300, opacity: 0.9 }, { x: 1200, opacity: 0.9, duration: 0.6, ease: "power1.inOut" }, 1.55);
+      // scorers type on under each side (minutes in amber)
+      const type = (sel, html, plain, t) => { const e = document.querySelector(sel), o = { n: 0 };
+        tl.fromTo(o, { n: 0 }, { n: plain.length, duration: plain.length / 30, ease: "none", onUpdate: () => { const n = Math.round(o.n); e.innerHTML = n >= plain.length ? html : plain.slice(0, n); } }, t); };
+      type("#sh", "Varn <b>23'</b> <b>67'</b>", "Varn 23' 67'", 2.0);
+      type("#sa", "Ostell <b>81'</b>", "Ostell 81'", 2.1);
+      tl.fromTo(".st", { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.08 }, 2.4);
+      tl.fromTo(".st .bars i", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.out", stagger: 0.04 }, 2.45);
+      tl.fromTo("#venue", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.6);
+      tl.seek(0);
+    </script>
+  </body>
+</html>

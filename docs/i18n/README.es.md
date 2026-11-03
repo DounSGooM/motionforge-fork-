@@ -47,7 +47,7 @@ motionforge lo convierte en un MP4 revisado a través de etapas fijas:
 
 ## Biblioteca de estilos
 
-<p align="center"><img src="../media/styles.gif" alt="Vistas previas animadas de 20 estilos de motionforge" width="720"></p>
+<p align="center"><img src="../media/styles-categories.gif" alt="Vistas previas animadas de 20 estilos de motionforge" width="720"></p>
 
 100 estilos visuales, agrupados según el tipo de cuenta que los usa. Algunos por categoría:
 

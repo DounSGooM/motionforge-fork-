@@ -47,7 +47,7 @@ motionforge는 정해진 단계를 거쳐 이를 검수된 MP4로 만듭니다:
 
 ## 스타일 라이브러리
 
-<p align="center"><img src="../media/styles.gif" alt="motionforge 스타일 20가지의 애니메이션 미리보기" width="720"></p>
+<p align="center"><img src="../media/styles-categories.gif" alt="motionforge 스타일 20가지의 애니메이션 미리보기" width="720"></p>
 
 사용하는 계정 유형별로 묶은 100가지 룩. 카테고리마다 몇 가지씩 소개합니다:
 

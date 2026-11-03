@@ -47,7 +47,7 @@ motionforge は決まった工程を経て、チェック済みの MP4 に仕上
 
 ## スタイルライブラリ
 
-<p align="center"><img src="../media/styles.gif" alt="motionforge の 20 スタイルのアニメーションプレビュー" width="720"></p>
+<p align="center"><img src="../media/styles-categories.gif" alt="motionforge の 20 スタイルのアニメーションプレビュー" width="720"></p>
 
 使うアカウントの種類ごとにまとめた 100 のルック。カテゴリごとにいくつか紹介します：
 

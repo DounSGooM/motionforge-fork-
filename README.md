@@ -47,9 +47,9 @@ motionforge turns that into a checked MP4 through fixed stages:
 
 ## Style library
 
-<p align="center"><img src="docs/media/styles.gif" alt="Animated previews of 20 motionforge styles" width="720"></p>
+<p align="center"><img src="docs/media/styles-categories.gif" alt="One animated style preview from each of the 20 categories" width="600"></p>
 
-100 looks, grouped by the kind of account that uses them. A few per category:
+100 looks, grouped by the kind of account that uses them. Every style has its own animated preview. A few per category:
 
 | Category | Styles (examples) |
 |---|---|
@@ -60,7 +60,7 @@ motionforge turns that into a checked MP4 through fixed stages:
 | Documentary & storytelling | `archival-newsreel`, `true-crime-board`, `history-map-campaign`, `interview-doc`, `cosmos-scale` |
 | Education, tech, finance, news, food, travel, events, fashion… | see the full catalogue |
 
-Full catalogue with one line per style: [skills/style-library/styles/README.md](skills/style-library/styles/README.md).
+Full catalogue with all 100 animated previews: [skills/style-library/styles/README.md](skills/style-library/styles/README.md).
 
 ## 3D scenes
 

@@ -1,0 +1,121 @@
+<!doctype html>
+<!--
+  motionforge style preview: luxury-estate
+  © 2026 motionforge contributors, MIT
+  Engraved open: on an umber card the 1 px champagne frame (inset 56 px) draws in from the four corners
+  (1.4 s power2.inOut) while the spaced-capital title fades up letter by letter (0.035 s stagger, 0.9 s each),
+  then a 0.8 s dissolve into a slow "drone" push over an original illustrated villa at dusk, and the quiet
+  facts line fades in with thin dividers. Property and figures are fictional, marked as visualisation.
+  Fonts: Cormorant Garamond, Jost (Fontsource, OFL).
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      /* fonts:begin */
+      @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 300; font-display: block; src: url("assets/fonts/cormorant-garamond-latin-300-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 300; font-display: block; src: url("assets/fonts/cormorant-garamond-latin-ext-300-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: block; src: url("assets/fonts/cormorant-garamond-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400; font-display: block; src: url("assets/fonts/cormorant-garamond-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Jost"; font-style: normal; font-weight: 300; font-display: block; src: url("assets/fonts/jost-latin-300-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Jost"; font-style: normal; font-weight: 300; font-display: block; src: url("assets/fonts/jost-latin-ext-300-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Jost"; font-style: normal; font-weight: 400; font-display: block; src: url("assets/fonts/jost-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Jost"; font-style: normal; font-weight: 400; font-display: block; src: url("assets/fonts/jost-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      /* fonts:end */
+      :root { --bg: #13100D; --ink: #F2EDE3; --acc: #CBB089; --sup: #7A6F62; --mf-grain-opacity: .05; }
+      html, body { background: var(--bg); }
+      #root { background: radial-gradient(700px 600px at 50% 50%, rgba(80,60,40,.30) 0%, transparent 70%), var(--bg); }
+      #root::before { z-index: 8; mix-blend-mode: overlay; }
+      #root::after { z-index: 8; background: radial-gradient(ellipse at 50% 50%, transparent 62%, rgba(0,0,0,.35) 100%); }
+      #shot { position: absolute; inset: 0; overflow: hidden; opacity: 0; }
+      #shot svg { position: absolute; left: -60px; top: 0; width: 1200px; height: 1920px; transform-origin: 600px 1000px; }
+      #frame { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; z-index: 5; overflow: visible; }
+      #frame path { fill: none; stroke: var(--acc); stroke-width: 1.5; }
+      #title { position: absolute; left: 0; right: 0; top: 880px; text-align: center; font: 300 76px/1 "Cormorant Garamond", serif; letter-spacing: .24em; text-transform: uppercase; color: var(--ink); z-index: 6; padding-left: .24em; }
+      #title span { display: inline-block; }
+      #tl2 { position: absolute; left: 0; right: 0; top: 1010px; text-align: center; font: 400 26px/1 "Jost", sans-serif; letter-spacing: .32em; text-transform: uppercase; color: var(--sup); z-index: 6; }
+      #facts { position: absolute; left: 96px; top: 1360px; display: flex; align-items: center; gap: 28px; font: 400 26px/1 "Jost", sans-serif; letter-spacing: .32em; text-transform: uppercase; color: var(--ink); z-index: 6; }
+      #facts i { width: 1px; height: 34px; background: var(--acc); }
+      #place { position: absolute; left: 96px; top: 1270px; font: 400 64px/1 "Cormorant Garamond", serif; letter-spacing: .24em; text-transform: uppercase; color: var(--ink); z-index: 6; }
+      #place em { font-style: normal; color: var(--acc); }
+      #credit { position: absolute; left: 96px; top: 1540px; font: 300 26px/1.3 "Jost", sans-serif; letter-spacing: .02em; color: var(--ink); opacity: .75; z-index: 6; }
+      #lowerShade { position: absolute; left: 0; top: 1150px; width: 1080px; height: 770px; background: linear-gradient(rgba(19,16,13,0), rgba(19,16,13,.82) 30%, rgba(19,16,13,.9)); z-index: 4; opacity: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="4.5" data-width="1080" data-height="1920">
+      <div id="shot" class="clip" data-start="0" data-duration="4.5" data-track-index="0">
+        <svg viewBox="0 0 1200 1920" aria-hidden="true">
+          <defs>
+            <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2a33"/><stop offset=".45" stop-color="#6a5a55"/><stop offset=".62" stop-color="#c59a72"/><stop offset=".7" stop-color="#e8c79a"/></linearGradient>
+            <linearGradient id="pool" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#6fa0a8"/><stop offset="1" stop-color="#2f5b63"/></linearGradient>
+            <linearGradient id="lawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a5236"/><stop offset="1" stop-color="#232718"/></linearGradient>
+            <radialGradient id="win" cx=".5" cy=".5" r=".7"><stop offset="0" stop-color="#ffe2ad"/><stop offset="1" stop-color="#e8a868"/></radialGradient>
+            <filter id="h"><feGaussianBlur stdDeviation="6"/></filter><filter id="g"><feGaussianBlur stdDeviation="22"/></filter>
+          </defs>
+          <rect width="1200" height="1100" fill="url(#sky)"/>
+          <path d="M0 760 C 200 680 380 700 560 740 C 760 690 980 660 1200 720 V1100 H0Z" fill="#4b4441" filter="url(#h)"/>
+          <path d="M0 860 C 260 800 520 840 760 820 C 940 800 1080 830 1200 840 V1100 H0Z" fill="#33302b"/>
+          <rect y="900" width="1200" height="1020" fill="url(#lawn)"/>
+          <!-- villa -->
+          <rect x="180" y="860" width="900" height="260" fill="#d8d0c2"/>
+          <rect x="120" y="840" width="1000" height="22" fill="#efe8dc"/>
+          <rect x="230" y="900" width="720" height="190" fill="url(#win)"/>
+          <path d="M410 900 V1090 M590 900 V1090 M770 900 V1090" stroke="#3a332b" stroke-width="6"/>
+          <rect x="460" y="700" width="560" height="140" fill="#cfc6b6"/>
+          <rect x="400" y="684" width="680" height="18" fill="#efe8dc"/>
+          <rect x="500" y="730" width="420" height="90" fill="url(#win)" opacity=".9"/>
+          <path d="M640 730 V820 M780 730 V820" stroke="#3a332b" stroke-width="5"/>
+          <circle cx="590" cy="1000" r="120" fill="#ffd79a" opacity=".25" filter="url(#g)"/>
+          <rect x="120" y="1120" width="1000" height="26" fill="#bfb5a4"/>
+          <path d="M120 1146 H1120 L 1180 1240 H60Z" fill="#a89e8c"/>
+          <path d="M150 1250 H1050 L 1110 1420 H90Z" fill="url(#pool)"/>
+          <g opacity=".55" filter="url(#h)"><rect x="300" y="1270" width="560" height="60" fill="#ffd8a0" opacity=".45"/></g>
+          <path d="M90 1420 H1110 L 1140 1460 H60Z" fill="#bfb5a4"/>
+          <g fill="#1d2316">
+            <path d="M60 1120 C 40 980 60 820 80 760 C 100 820 120 980 100 1120Z"/><path d="M1130 1120 C 1110 1000 1120 860 1140 800 C 1160 860 1170 1000 1150 1120Z"/>
+            <path d="M20 1150 C 10 1050 20 940 34 900 C 48 940 56 1050 46 1150Z"/>
+          </g>
+          <ellipse cx="600" cy="1700" rx="700" ry="200" fill="#1a1d12" opacity=".6"/>
+        </svg>
+      </div>
+      <div id="lowerShade" class="clip" data-start="0" data-duration="4.5" data-track-index="1"></div>
+      <svg id="frame" class="clip" viewBox="0 0 1080 1920" data-start="0" data-duration="4.5" data-track-index="2">
+        <path d="M56 56 H540"/><path d="M56 56 V960"/><path d="M1024 56 H540"/><path d="M1024 56 V960"/><path d="M56 1864 H540"/><path d="M56 1864 V960"/><path d="M1024 1864 H540"/><path d="M1024 1864 V960"/>
+      </svg>
+      <div id="title" class="clip" data-start="0" data-duration="4.5" data-track-index="3"></div>
+      <div id="tl2" class="clip" data-start="0" data-duration="4.5" data-track-index="4">Villa Aster · a film in three chapters</div>
+      <div id="place" class="clip" data-start="0" data-duration="4.5" data-track-index="5"><em>Arrival</em></div>
+      <div id="facts" class="clip" data-start="0" data-duration="4.5" data-track-index="6"><span>6 Bedrooms</span><i></i><span>820 m²</span><i></i><span>1.2 ha</span></div>
+      <div id="credit" class="clip" data-start="0" data-duration="4.5" data-track-index="7">Price on request · visualisation, sample listing</div>
+    </div>
+
+    <script>
+      const title = document.getElementById("title");
+      title.innerHTML = "Luxury estate".split("").map((c) => c === " " ? "<span>&nbsp;</span>" : `<span>${c}</span>`).join("");
+      const DUR = 4.5, DIS = 2.0;
+      const tl = MF.timeline("main", DUR);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      // hairline frame draws from the corners (each path starts at a corner-side midpoint and runs both ways in)
+      document.querySelectorAll("#frame path").forEach((p) => { const L = p.getTotalLength(); p.style.strokeDasharray = L; p.style.strokeDashoffset = L; });
+      // run from the corners: reverse the dash direction so the line grows out of each corner
+      tl.to("#frame path", { strokeDashoffset: 0, duration: 1.4, ease: "power2.inOut" }, 0.1);
+      tl.fromTo("#title span", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.9, ease: "power1.out", stagger: 0.035 }, 0.3);
+      tl.fromTo("#tl2", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, 0.9);
+      // dissolve (0.8 s) into the slow drone push; the title leaves first
+      tl.to(["#title", "#tl2"], { opacity: 0, duration: 0.8, ease: "sine.inOut" }, DIS - 0.1);
+      tl.to("#shot", { opacity: 1, duration: 0.8, ease: "sine.inOut" }, DIS);
+      tl.fromTo("#shot svg", { scale: 1.0, y: 0 }, { scale: 1.07, y: -30, duration: DUR - DIS, ease: "none" }, DIS);
+      tl.to("#lowerShade", { opacity: 1, duration: 0.8 }, DIS + 0.4);
+      tl.fromTo("#place", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.9, ease: "power1.out" }, DIS + 0.8);
+      tl.fromTo("#facts", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power1.out" }, DIS + 1.1);
+      tl.fromTo("#credit", { opacity: 0 }, { opacity: 0.75, duration: 0.9, ease: "power1.out" }, DIS + 1.4);
+      tl.seek(0);
+    </script>
+  </body>
+</html>

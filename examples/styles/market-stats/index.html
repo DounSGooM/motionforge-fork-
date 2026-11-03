@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+  motionforge style preview: market-stats
+  © 2026 motionforge contributors, MIT
+  The district ladder: grey bars grow from a zero baseline (0.7 s power3.out, 0.05 s stagger), re-sort by
+  value (FLIP, 0.6 s power2.inOut), the subject district turns raspberry, its value counts up and a ▲ arrow
+  slides in while the change types on; masthead rule with the period stamp, source line with the chart.
+  Districts and figures are fictional sample data, labelled on screen. Fonts: Libre Franklin, Red Hat Mono.
+-->
+<html lang="en" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/mf-runtime.js"></script>
+    <link rel="stylesheet" href="assets/base.css" />
+    <style>
+      /* fonts:begin */
+      @font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/libre-franklin-latin-500-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 500; font-display: block; src: url("assets/fonts/libre-franklin-latin-ext-500-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/libre-franklin-latin-700-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 700; font-display: block; src: url("assets/fonts/libre-franklin-latin-ext-700-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/libre-franklin-latin-800-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Libre Franklin"; font-style: normal; font-weight: 800; font-display: block; src: url("assets/fonts/libre-franklin-latin-ext-800-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      @font-face { font-family: "Red Hat Mono"; font-style: normal; font-weight: 400; font-display: block; src: url("assets/fonts/red-hat-mono-latin-400-normal.woff2") format("woff2"); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+2000-206F, U+20AC, U+20BA, U+2122, U+2190-2193, U+2212; }
+      @font-face { font-family: "Red Hat Mono"; font-style: normal; font-weight: 400; font-display: block; src: url("assets/fonts/red-hat-mono-latin-ext-400-normal.woff2") format("woff2"); unicode-range: U+0100-0130, U+0132-0151, U+0154-024F, U+1E00-1EFF; }
+      /* fonts:end */
+      :root { --paper: #F2F3EF; --ink: #14202B; --neutral: #A3ADB5; --axis: #C9CFD3; --acc: #C9184A; --sup: #2E6F95; --mf-grain-opacity: .03; }
+      html, body { background: var(--paper); }
+      #root { background: radial-gradient(900px 700px at 15% 5%, #fafbf8 0%, transparent 70%), var(--paper); color: var(--ink); }
+      #root::before { mix-blend-mode: multiply; }
+      #root::after { background: radial-gradient(ellipse at 50% 50%, transparent 65%, rgba(20,32,43,.05) 100%); }
+      #rule { position: absolute; left: 80px; top: 250px; width: 920px; height: 2px; background: var(--ink); transform-origin: left; }
+      #mast { position: absolute; left: 80px; right: 80px; top: 218px; display: flex; justify-content: space-between; font: 400 24px/1 "Red Hat Mono", monospace; letter-spacing: .06em; text-transform: uppercase; }
+      #title { position: absolute; left: 80px; right: 80px; top: 286px; font: 800 90px/1.02 "Libre Franklin", sans-serif; letter-spacing: -0.02em; }
+      #title .s { color: var(--acc); }
+      #unit { position: absolute; left: 80px; top: 500px; font: 500 30px/1 "Libre Franklin", sans-serif; color: #5d6873; }
+      #chart { position: absolute; left: 80px; top: 570px; width: 920px; height: 760px; }
+      #base { position: absolute; left: 300px; top: 0; width: 2px; height: 720px; background: var(--axis); }
+      .r { position: absolute; left: 0; width: 920px; height: 100px; }
+      .lab { position: absolute; left: 0; width: 280px; top: 0; height: 72px; display: flex; align-items: center; justify-content: flex-end; font: 500 32px/1 "Libre Franklin", sans-serif; color: var(--ink); }
+      .bar { position: absolute; left: 302px; top: 0; height: 72px; border-radius: 0 4px 4px 0; background: var(--neutral); transform-origin: left; }
+      .val { position: absolute; top: 0; height: 72px; display: flex; align-items: center; font: 700 38px/1 "Libre Franklin", sans-serif; font-variant-numeric: tabular-nums; color: var(--ink); }
+      .r.sub .lab { font-weight: 700; }
+      #delta { position: absolute; display: flex; align-items: center; gap: 10px; font: 700 40px/1 "Libre Franklin", sans-serif; color: var(--acc); white-space: nowrap; }
+      #delta i { font-style: normal; font-size: 34px; }
+      #src { position: absolute; left: 80px; top: 1400px; font: 400 24px/1.5 "Red Hat Mono", monospace; color: #5d6873; }
+      #cap { position: absolute; left: 80px; right: 80px; top: 1520px; font: 500 50px/1.2 "Libre Franklin", sans-serif; }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="mf-stage" data-composition-id="main" data-start="0" data-duration="4.5" data-width="1080" data-height="1920">
+      <div id="mast" class="clip" data-start="0" data-duration="4.5" data-track-index="0"><span>Market stats · district report</span><span>Q3 2026</span></div>
+      <div id="rule" class="clip" data-start="0" data-duration="4.5" data-track-index="1"></div>
+      <div id="title" class="clip" data-start="0" data-duration="4.5" data-track-index="2"><span class="s">Ridgeway</span> rose fastest this quarter</div>
+      <div id="unit" class="clip" data-start="0" data-duration="4.5" data-track-index="3">Median asking price, € per m²</div>
+      <div id="chart" class="clip" data-start="0" data-duration="4.5" data-track-index="4"><div id="base"></div><div id="delta"><i>▲</i><span></span></div></div>
+      <div id="src" class="clip" data-start="0" data-duration="4.5" data-track-index="5">Source: sample data for this preview, Q3 2026, n = 412<br />Asking prices, not sold prices</div>
+      <div id="cap" class="clip" data-start="0" data-duration="4.5" data-track-index="6">Up 4.1 % on Q3 2025, same method</div>
+    </div>
+
+    <script>
+      const D = [["Old Town", 5120], ["Eastfield", 3240], ["Ridgeway", 4180], ["Harbourside", 4890], ["Millbrook", 2960], ["Larchmont", 3710], ["Southgate", 3380]];
+      const SUB = 2, MAXW = 400, MAXV = 5200;
+      const chart = document.getElementById("chart");
+      const rows = D.map(([n, v], i) => {
+        const r = document.createElement("div"); r.className = "r" + (i === SUB ? " sub" : ""); r.style.top = (i * 100) + "px";
+        const w = v / MAXV * MAXW;
+        r.innerHTML = `<div class="lab">${n}</div><div class="bar" style="width:${w}px"></div><div class="val" style="left:${302 + w + 18}px">${v.toLocaleString("en")}</div>`;
+        chart.appendChild(r); return r;
+      });
+      const order = D.map((d, i) => i).sort((a, b) => D[b][1] - D[a][1]);
+      const delta = document.getElementById("delta");
+      const subW = D[SUB][1] / MAXV * MAXW;
+      delta.style.left = (302 + subW + 140) + "px";
+
+      const DUR = 4.5, SORT = 1.45;
+      const tl = MF.timeline("main", DUR);
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = tl;
+      tl.fromTo("#rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power2.inOut" }, 0);
+      tl.fromTo("#mast", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.1);
+      tl.fromTo("#title", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.15);
+      tl.fromTo(["#unit", "#src"], { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.45);
+      tl.fromTo("#base", { scaleY: 0, transformOrigin: "top" }, { scaleY: 1, duration: 0.4, ease: "power2.out" }, 0.45);
+      tl.fromTo(".lab", { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.05 }, 0.5);
+      tl.fromTo(".bar", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out", stagger: 0.05 }, 0.55);
+      tl.fromTo(rows.filter((r, i) => i !== SUB).map((r) => r.querySelector(".val")), { opacity: 0 }, { opacity: 1, duration: 0.25, stagger: 0.05 }, 0.95);
+      gsap.set(rows[SUB].querySelector(".val"), { opacity: 0 });
+      tl.to(rows[SUB].querySelector(".val"), { opacity: 1, duration: 0.15 }, SORT + 0.65);
+      // re-sort by value (FLIP: rows slide to their ranked slot)
+      order.forEach((idx, rank) => tl.to(rows[idx], { top: rank * 100, duration: 0.6, ease: "power2.inOut" }, SORT));
+      const rank = order.indexOf(SUB);
+      tl.set(delta, { top: rank * 100 + 14 }, 0);
+      // subject turns raspberry, its value counts up, the arrow slides up 20 px and the change types on
+      tl.to(rows[SUB].querySelector(".bar"), { backgroundColor: "#C9184A", duration: 0.3 }, SORT + 0.65);
+      tl.to(rows[SUB].querySelector(".val"), { color: "#C9184A", duration: 0.3 }, SORT + 0.65);
+      tl.to(rows.filter((r, i) => i !== SUB).map((r) => r.querySelector(".bar")), { opacity: 0.7, duration: 0.3 }, SORT + 0.65);
+      const vEl = rows[SUB].querySelector(".val"), o = { v: 4015 };
+      tl.fromTo(o, { v: 4015 }, { v: D[SUB][1], duration: 0.6, ease: "power2.out", immediateRender: false, onUpdate: () => { vEl.textContent = Math.round(o.v).toLocaleString("en"); } }, SORT + 0.65);
+      tl.fromTo(delta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "back.out(1.5)" }, SORT + 1.05);
+      const ds = delta.querySelector("span"), txt = "+4.1 %", ty = { n: 0 };
+      tl.fromTo(ty, { n: 0 }, { n: txt.length, duration: 0.4, ease: "none", onUpdate: () => { ds.textContent = txt.slice(0, Math.round(ty.n)); } }, SORT + 1.15);
+      tl.fromTo("#cap", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, SORT + 1.4);
+      tl.seek(0);
+    </script>
+  </body>
+</html>

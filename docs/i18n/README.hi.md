@@ -47,7 +47,7 @@ motionforge इसे तय चरणों से गुज़ारकर ए
 
 ## स्टाइल लाइब्रेरी
 
-<p align="center"><img src="../media/styles.gif" alt="motionforge के 20 स्टाइल के एनिमेटेड प्रीव्यू" width="720"></p>
+<p align="center"><img src="../media/styles-categories.gif" alt="motionforge के 20 स्टाइल के एनिमेटेड प्रीव्यू" width="720"></p>
 
 100 लुक, उन्हें इस्तेमाल करने वाले अकाउंट के प्रकार के हिसाब से समूहों में। हर श्रेणी से कुछ:
 

@@ -47,7 +47,7 @@ motionforge macht daraus in festen Schritten ein geprüftes MP4:
 
 ## Style-Bibliothek
 
-<p align="center"><img src="../media/styles.gif" alt="Animierte Vorschauen von 20 motionforge-Styles" width="720"></p>
+<p align="center"><img src="../media/styles-categories.gif" alt="Animierte Vorschauen von 20 motionforge-Styles" width="720"></p>
 
 100 Looks, gruppiert nach der Art von Account, die sie nutzt. Ein paar pro Kategorie:
 

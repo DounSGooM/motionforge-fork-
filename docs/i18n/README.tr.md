@@ -47,7 +47,7 @@ motionforge bunu sabit aşamalardan geçirerek kontrol edilmiş bir MP4'e dönü
 
 ## Stil kütüphanesi
 
-<p align="center"><img src="../media/styles.gif" alt="20 motionforge stilinin animasyonlu önizlemeleri" width="720"></p>
+<p align="center"><img src="../media/styles-categories.gif" alt="20 motionforge stilinin animasyonlu önizlemeleri" width="720"></p>
 
 Onları kullanan hesap türüne göre gruplanmış 100 görünüm. Her kategoriden birkaç örnek:
 

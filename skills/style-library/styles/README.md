@@ -1,49 +1,16 @@
 # Style catalogue
 
-100 styles in 20 categories, each a `STYLE.md` in the same format (`_template/STYLE.md`).
-How to pick, customise or create one: [`../SKILL.md`](../SKILL.md). All styles are original
-motionforge work (MIT); fonts named in them are free (SIL OFL or similar) but are not bundled.
-
-## Gallery (first 20 styles)
-
-Four-second previews rendered from [`examples/styles/`](../../../examples/styles/) with the HyperFrames engine.
-
-<table>
-  <tr>
-    <td align="center" valign="top" width="25%"><a href="creator-reels-dark/STYLE.md"><img src="creator-reels-dark/preview.gif" width="180" alt="creator-reels-dark preview"></a><br><code>creator-reels-dark</code><br><sub>Charcoal + lime accent, bold sans with an italic-serif word, pop-out talking head in a rounded card</sub></td>
-    <td align="center" valign="top" width="25%"><a href="agency-info-brand/STYLE.md"><img src="agency-info-brand/preview.gif" width="180" alt="agency-info-brand preview"></a><br><code>agency-info-brand</code><br><sub>Brand-kit colours on dark, corner watermark, captions, save/send CTA, logo end card</sub></td>
-    <td align="center" valign="top" width="25%"><a href="kinetic-captions/STYLE.md"><img src="kinetic-captions/preview.gif" width="180" alt="kinetic-captions preview"></a><br><code>kinetic-captions</code><br><sub>Big voice-synced words on a quiet field, accent on the stressed word</sub></td>
-    <td align="center" valign="top" width="25%"><a href="archival-newsreel/STYLE.md"><img src="archival-newsreel/preview.gif" width="180" alt="archival-newsreel preview"></a><br><code>archival-newsreel</code><br><sub>Black-and-white film, gate weave and dust, slab-serif title cards</sub></td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="25%"><a href="storybook-isometric/STYLE.md"><img src="storybook-isometric/preview.gif" width="180" alt="storybook-isometric preview"></a><br><code>storybook-isometric</code><br><sub>Pastel isometric miniatures that assemble block by block</sub></td>
-    <td align="center" valign="top" width="25%"><a href="retro-anime-cel/STYLE.md"><img src="retro-anime-cel/preview.gif" width="180" alt="retro-anime-cel preview"></a><br><code>retro-anime-cel</code><br><sub>Two-tone cel shading, glowing highlights, speed lines, sunset skies</sub></td>
-    <td align="center" valign="top" width="25%"><a href="pixel-quest/STYLE.md"><img src="pixel-quest/preview.gif" width="180" alt="pixel-quest preview"></a><br><code>pixel-quest</code><br><sub>16-bit sprites, tile levels, dialogue boxes, level-up chimes</sub></td>
-    <td align="center" valign="top" width="25%"><a href="rubber-hose-toon/STYLE.md"><img src="rubber-hose-toon/preview.gif" width="180" alt="rubber-hose-toon preview"></a><br><code>rubber-hose-toon</code><br><sub>Early-cartoon bendy limbs, sepia ink on cream, everything on the beat</sub></td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="25%"><a href="riso-print/STYLE.md"><img src="riso-print/preview.gif" width="180" alt="riso-print preview"></a><br><code>riso-print</code><br><sub>Two spot inks overprinting, halftones, slight misregistration</sub></td>
-    <td align="center" valign="top" width="25%"><a href="blueprint-schematic/STYLE.md"><img src="blueprint-schematic/preview.gif" width="180" alt="blueprint-schematic preview"></a><br><code>blueprint-schematic</code><br><sub>White line work on cyanotype blue, exploded views, callouts (no grid)</sub></td>
-    <td align="center" valign="top" width="25%"><a href="swiss-poster/STYLE.md"><img src="swiss-poster/preview.gif" width="180" alt="swiss-poster preview"></a><br><code>swiss-poster</code><br><sub>Strict columns, huge grotesque type, flat red blocks</sub></td>
-    <td align="center" valign="top" width="25%"><a href="terminal-crt/STYLE.md"><img src="terminal-crt/preview.gif" width="180" alt="terminal-crt preview"></a><br><code>terminal-crt</code><br><sub>Phosphor monospace on a tube, typing commands, scanlines and bloom</sub></td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="25%"><a href="keynote-dark/STYLE.md"><img src="keynote-dark/preview.gif" width="180" alt="keynote-dark preview"></a><br><code>keynote-dark</code><br><sub>Near-black stage, one lit hero object, gradient word, big numbers</sub></td>
-    <td align="center" valign="top" width="25%"><a href="marker-whiteboard/STYLE.md"><img src="marker-whiteboard/preview.gif" width="180" alt="marker-whiteboard preview"></a><br><code>marker-whiteboard</code><br><sub>Marker sketches drawn live on a clean board, arrows and circles</sub></td>
-    <td align="center" valign="top" width="25%"><a href="data-story/STYLE.md"><img src="data-story/preview.gif" width="180" alt="data-story preview"></a><br><code>data-story</code><br><sub>Honest charts, grey first, one accent insight, visible source</sub></td>
-    <td align="center" valign="top" width="25%"><a href="screencast-zoom/STYLE.md"><img src="screencast-zoom/preview.gif" width="180" alt="screencast-zoom preview"></a><br><code>screencast-zoom</code><br><sub>Real screens in a floating window, guided zooms and highlights</sub></td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="25%"><a href="paper-cutout/STYLE.md"><img src="paper-cutout/preview.gif" width="180" alt="paper-cutout preview"></a><br><code>paper-cutout</code><br><sub>Layered coloured card with real shadows, stop-motion jitter</sub></td>
-    <td align="center" valign="top" width="25%"><a href="ink-crosshatch/STYLE.md"><img src="ink-crosshatch/preview.gif" width="180" alt="ink-crosshatch preview"></a><br><code>ink-crosshatch</code><br><sub>Pen-and-ink hatching on warm paper with one colour wash</sub></td>
-    <td align="center" valign="top" width="25%"><a href="sketchbook-pencil/STYLE.md"><img src="sketchbook-pencil/preview.gif" width="180" alt="sketchbook-pencil preview"></a><br><code>sketchbook-pencil</code><br><sub>Graphite sketches, sticky notes and taped photos on a sketchbook page</sub></td>
-    <td align="center" valign="top" width="25%"><a href="math-explainer/STYLE.md"><img src="math-explainer/preview.gif" width="180" alt="math-explainer preview"></a><br><code>math-explainer</code><br><sub>Colour-coded geometry and equations morphing on dark slate</sub></td>
-  </tr>
-</table>
+100 styles in 20 categories. Every style is a `STYLE.md` in the same format (`_template/STYLE.md`) with an animated preview rendered by the HyperFrames engine from [`examples/styles/`](../../../examples/styles/).
+How to pick, customise or create one: [`../SKILL.md`](../SKILL.md). All styles are original motionforge work (MIT); fonts named in them are free (SIL OFL or similar) and are installed from Fontsource, not bundled. Previews use fictional names, places and sample data.
 
 **Categories:** [Creators & personal brands](#creators--personal-brands) · [E-commerce & products](#e-commerce--products) · [Real estate & maps](#real-estate--maps) · [Football & sports](#football--sports) · [Documentary & storytelling](#documentary--storytelling) · [Education & explainers](#education--explainers) · [Tech, SaaS & AI](#tech-saas--ai) · [Finance & money](#finance--money) · [Food & restaurants](#food--restaurants) · [Fitness, health & wellness](#fitness-health--wellness) · [Travel & hospitality](#travel--hospitality) · [Music, events & weddings](#music-events--weddings) · [News & commentary](#news--commentary) · [Business, B2B & local](#business-b2b--local) · [Gaming & esports](#gaming--esports) · [Kids & animation](#kids--animation) · [Fashion & beauty](#fashion--beauty) · [Automotive](#automotive) · [Art direction & design looks](#art-direction--design-looks) · [Nonprofit & causes](#nonprofit--causes)
 
 ## Creators & personal brands
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="creator-reels-dark/STYLE.md"><img src="creator-reels-dark/preview.gif" width="160" alt="creator-reels-dark preview"></a><br><code>creator-reels-dark</code><br><sub>Charcoal + lime accent, bold sans with an italic-serif word, pop-out talking head in a rounded card</sub></td><td align="center" valign="top" width="25%"><a href="kinetic-captions/STYLE.md"><img src="kinetic-captions/preview.gif" width="160" alt="kinetic-captions preview"></a><br><code>kinetic-captions</code><br><sub>Big voice-synced words on a quiet field, accent on the stressed word</sub></td><td align="center" valign="top" width="25%"><a href="vlog-film-diary/STYLE.md"><img src="vlog-film-diary/preview.gif" width="160" alt="vlog-film-diary preview"></a><br><code>vlog-film-diary</code><br><sub>Warm faded day footage, orange LED date stamp, pen notes, moments that freeze into prints</sub></td><td align="center" valign="top" width="25%"><a href="podcast-clip-studio/STYLE.md"><img src="podcast-clip-studio/preview.gif" width="160" alt="podcast-clip-studio preview"></a><br><code>podcast-clip-studio</code><br><sub>Speaker windows with a coral ring on the voice, waveform playhead, italic pull-quote</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="talking-head-pop/STYLE.md"><img src="talking-head-pop/preview.gif" width="160" alt="talking-head-pop preview"></a><br><code>talking-head-pop</code><br><sub>Punch-in on every cut, white caption plates with a yellow key word, giant word behind the head</sub></td><td align="center" valign="top" width="25%"><a href="minimal-journal/STYLE.md"><img src="minimal-journal/preview.gif" width="160" alt="minimal-journal preview"></a><br><code>minimal-journal</code><br><sub>A beige page, thin serif lines one at a time, small mounted photos, long dissolves</sub></td><td align="center" valign="top" width="25%"><a href="cinematic-quote/STYLE.md"><img src="cinematic-quote/preview.gif" width="160" alt="cinematic-quote preview"></a><br><code>cinematic-quote</code><br><sub>Footage in a widescreen band, a large serif quote line by line, warm light leaks</sub></td><td width="25%"></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -56,6 +23,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [cinematic-quote](cinematic-quote/STYLE.md) | Footage inside a widescreen band between black bars, a slow push, a large serif quote set in the lower bar line by line, and a… | quotes, mottos, short reflections, book lines, motivational openers | hyperframes (remotion for long footage) |
 
 ## E-commerce & products
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="product-hero-turntable/STYLE.md"><img src="product-hero-turntable/preview.gif" width="160" alt="product-hero-turntable preview"></a><br><code>product-hero-turntable</code><br><sub>One product turning on a white plinth, leader lines snap to features with teal dots</sub></td><td align="center" valign="top" width="25%"><a href="unboxing-pop/STYLE.md"><img src="unboxing-pop/preview.gif" width="160" alt="unboxing-pop preview"></a><br><code>unboxing-pop</code><br><sub>Top-down on kraft, flaps fold open, items rise with a squash, pink stickers slap on</sub></td><td align="center" valign="top" width="25%"><a href="flash-sale/STYLE.md"><img src="flash-sale/preview.gif" width="160" alt="flash-sale preview"></a><br><code>flash-sale</code><br><sub>Sale red, yellow starbursts, screen-high numbers, the old price slashed on the beat</sub></td><td align="center" valign="top" width="25%"><a href="ugc-testimonial/STYLE.md"><img src="ugc-testimonial/preview.gif" width="160" alt="ugc-testimonial preview"></a><br><code>ugc-testimonial</code><br><sub>Customer clips as review cards: name, city, real stars, the key phrase swept with a marker</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="catalog-grid/STYLE.md"><img src="catalog-grid/preview.gif" width="160" alt="catalog-grid preview"></a><br><code>catalog-grid</code><br><sub>A wall of white product tiles, the camera dives into one, a red-orange tag swings in</sub></td><td align="center" valign="top" width="25%"><a href="before-after-split/STYLE.md"><img src="before-after-split/preview.gif" width="160" alt="before-after-split preview"></a><br><code>before-after-split</code><br><sub>One frame, one slider: grey before, mint after, a round handle scrubbing between</sub></td><td align="center" valign="top" width="25%"><a href="luxury-product/STYLE.md"><img src="luxury-product/preview.gif" width="160" alt="luxury-product preview"></a><br><code>luxury-product</code><br><sub>A product rising from black into warm light, a gold sweep, Bodoni name over a hairline</sub></td><td align="center" valign="top" width="25%"><a href="beauty-glow/STYLE.md"><img src="beauty-glow/preview.gif" width="160" alt="beauty-glow preview"></a><br><code>beauty-glow</code><br><sub>Blush field, glossy highlight on the bottle, a droplet ripple, ingredients on rosewood leaders</sub></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -70,6 +42,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Real estate & maps
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="map-flyover-pins/STYLE.md"><img src="map-flyover-pins/preview.gif" width="160" alt="map-flyover-pins preview"></a><br><code>map-flyover-pins</code><br><sub>Dark muted map tilts and glides, a coral route draws itself, pins drop with distance chips</sub></td><td align="center" valign="top" width="25%"><a href="floorplan-draw-on/STYLE.md"><img src="floorplan-draw-on/preview.gif" width="160" alt="floorplan-draw-on preview"></a><br><code>floorplan-draw-on</code><br><sub>Walls trace and fill graphite on vellum, doors swing, rooms take ochre with name and area</sub></td><td align="center" valign="top" width="25%"><a href="listing-tour-cards/STYLE.md"><img src="listing-tour-cards/preview.gif" width="160" alt="listing-tour-cards preview"></a><br><code>listing-tour-cards</code><br><sub>Bright walkthrough footage, white fact cards with a teal tab rise for price, rooms and area</sub></td><td align="center" valign="top" width="25%"><a href="neighborhood-guide/STYLE.md"><img src="neighborhood-guide/preview.gif" width="160" alt="neighborhood-guide preview"></a><br><code>neighborhood-guide</code><br><sub>Daylight map around one home, walking-time rings breathe out, amenity badges pop by category</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="luxury-estate/STYLE.md"><img src="luxury-estate/preview.gif" width="160" alt="luxury-estate preview"></a><br><code>luxury-estate</code><br><sub>Slow moves through a fine home, spaced-capital serif titles, a champagne hairline frame</sub></td><td align="center" valign="top" width="25%"><a href="market-stats/STYLE.md"><img src="market-stats/preview.gif" width="160" alt="market-stats preview"></a><br><code>market-stats</code><br><sub>Cool research paper, districts as sorted bars, one raspberry district with a trend arrow</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [map-flyover-pins](map-flyover-pins/STYLE.md) | A dark, desaturated street map tilts and glides between places: a coral route line draws itself, pins drop with a bounce and… | property location, "how far is it from…", commutes, branch openings, short itineraries | hyperframes (SVG or vector-tile map); hyperframes + three.js for the 3D arrival |
@@ -80,6 +57,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [market-stats](market-stats/STYLE.md) | A crisp property research note on cool paper: price-per-m² columns rise, districts line up as sorted bars, and one raspberry… | housing market updates, rent vs buy, district comparisons, agency market reports | hyperframes (SVG charts); hyperframes + three.js for one hero chart |
 
 ## Football & sports
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="matchday-graphics/STYLE.md"><img src="matchday-graphics/preview.gif" width="160" alt="matchday-graphics preview"></a><br><code>matchday-graphics</code><br><sub>Night-match package: navy floodlight haze, slanted score panels in kit colours, amber clock</sub></td><td align="center" valign="top" width="25%"><a href="tactics-board/STYLE.md"><img src="tactics-board/preview.gif" width="160" alt="tactics-board preview"></a><br><code>tactics-board</code><br><sub>Tilted matte pitch, flat tokens shift shape, passes draw, cyan pressing zones bloom</sub></td><td align="center" valign="top" width="25%"><a href="player-stat-card/STYLE.md"><img src="player-stat-card/preview.gif" width="160" alt="player-stat-card preview"></a><br><code>player-stat-card</code><br><sub>Collectible card, silver foil sweep, a mint radar that unfolds, ratings that count up</sub></td><td align="center" valign="top" width="25%"><a href="transfer-breaking/STYLE.md"><img src="transfer-breaking/preview.gif" width="160" alt="transfer-breaking preview"></a><br><code>transfer-breaking</code><br><sub>Red breaking bar, diagonal club split, a fee odometer and a five-step confirmation meter</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="telestrator-replay/STYLE.md"><img src="telestrator-replay/preview.gif" width="160" alt="telestrator-replay preview"></a><br><code>telestrator-replay</code><br><sub>The play freezes, one player in a spotlight, yellow pen strokes pinned to the pitch</sub></td><td align="center" valign="top" width="25%"><a href="fixture-countdown/STYLE.md"><img src="fixture-countdown/preview.gif" width="160" alt="fixture-countdown preview"></a><br><code>fixture-countdown</code><br><sub>Matchday paper, split-flap tiles to the next opponent, a green days-to-go countdown</sub></td><td align="center" valign="top" width="25%"><a href="athlete-hype-reel/STYLE.md"><img src="athlete-hype-reel/preview.gif" width="160" alt="athlete-hype-reel preview"></a><br><code>athlete-hype-reel</code><br><sub>Freeze on the decisive frame, duotone, a huge name behind the athlete, blue stat chips</sub></td><td width="25%"></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -93,6 +75,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Documentary & storytelling
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="archival-newsreel/STYLE.md"><img src="archival-newsreel/preview.gif" width="160" alt="archival-newsreel preview"></a><br><code>archival-newsreel</code><br><sub>Black-and-white film, gate weave and dust, slab-serif title cards</sub></td><td align="center" valign="top" width="25%"><a href="true-crime-board/STYLE.md"><img src="true-crime-board/preview.gif" width="160" alt="true-crime-board preview"></a><br><code>true-crime-board</code><br><sub>Dim corkboard, pinned cards, red string between them, redaction bars that lift</sub></td><td align="center" valign="top" width="25%"><a href="nature-field-notes/STYLE.md"><img src="nature-field-notes/preview.gif" width="160" alt="nature-field-notes preview"></a><br><code>nature-field-notes</code><br><sub>A notebook ink sketch draws itself and fades to the real scene, specimen tags and scale bars</sub></td><td align="center" valign="top" width="25%"><a href="history-map-campaign/STYLE.md"><img src="history-map-campaign/preview.gif" width="160" alt="history-map-campaign preview"></a><br><code>history-map-campaign</code><br><sub>Engraved paper map, a madder arrow sweeps the route while the dated caption ticks</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="interview-doc/STYLE.md"><img src="interview-doc/preview.gif" width="160" alt="interview-doc preview"></a><br><code>interview-doc</code><br><sub>Off-centre interview, amber-rule name supers, serif chapter cards on black</sub></td><td align="center" valign="top" width="25%"><a href="timeline-chronicle/STYLE.md"><img src="timeline-chronicle/preview.gif" width="160" alt="timeline-chronicle preview"></a><br><code>timeline-chronicle</code><br><sub>Gallery-green wall, years roll like an odometer, photo cards drop onto their wires</sub></td><td align="center" valign="top" width="25%"><a href="cosmos-scale/STYLE.md"><img src="cosmos-scale/preview.gif" width="160" alt="cosmos-scale preview"></a><br><code>cosmos-scale</code><br><sub>Black space at true proportions, the camera pulls back a decade at a time, amber counters</sub></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [archival-newsreel](archival-newsreel/STYLE.md) | Black-and-white film stock, gate weave and dust, bold slab-serif title cards, and an announcer's cadence — history told like a… | "how it started", anniversaries, history of a technology or company | canvas (film effects) + hyperframes (title cards) |
@@ -104,6 +91,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [cosmos-scale](cosmos-scale/STYLE.md) | Black space with honest proportions: planets and stars at true relative size, a camera that pulls back one order of magnitude… | astronomy, space missions, "how big is…", distance and light-time explainers | hyperframes + three.js (canvas starfield) |
 
 ## Education & explainers
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="math-explainer/STYLE.md"><img src="math-explainer/preview.gif" width="160" alt="math-explainer preview"></a><br><code>math-explainer</code><br><sub>Colour-coded geometry and equations morphing on dark slate</sub></td><td align="center" valign="top" width="25%"><a href="marker-whiteboard/STYLE.md"><img src="marker-whiteboard/preview.gif" width="160" alt="marker-whiteboard preview"></a><br><code>marker-whiteboard</code><br><sub>Marker sketches drawn live on a clean board, arrows and circles</sub></td><td align="center" valign="top" width="25%"><a href="blueprint-schematic/STYLE.md"><img src="blueprint-schematic/preview.gif" width="160" alt="blueprint-schematic preview"></a><br><code>blueprint-schematic</code><br><sub>White line work on cyanotype blue, exploded views, callouts (no grid)</sub></td><td align="center" valign="top" width="25%"><a href="storybook-isometric/STYLE.md"><img src="storybook-isometric/preview.gif" width="160" alt="storybook-isometric preview"></a><br><code>storybook-isometric</code><br><sub>Pastel isometric miniatures that assemble block by block</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="science-lab/STYLE.md"><img src="science-lab/preview.gif" width="160" alt="science-lab preview"></a><br><code>science-lab</code><br><sub>Bright lab bench, labelled glassware, an indicator flips colour as a 3D molecule swaps bonds</sub></td><td align="center" valign="top" width="25%"><a href="language-flashcards/STYLE.md"><img src="language-flashcards/preview.gif" width="160" alt="language-flashcards preview"></a><br><code>language-flashcards</code><br><sub>Cream cards on teal, the word flips to meaning and IPA, the stressed syllable jumps</sub></td><td align="center" valign="top" width="25%"><a href="quiz-countdown/STYLE.md"><img src="quiz-countdown/preview.gif" width="160" alt="quiz-countdown preview"></a><br><code>quiz-countdown</code><br><sub>Game-show cobalt, four white tiles, a yellow 3-2-1 ring, the right tile turns green</sub></td><td align="center" valign="top" width="25%"><a href="chalkboard-lesson/STYLE.md"><img src="chalkboard-lesson/preview.gif" width="160" alt="chalkboard-lesson preview"></a><br><code>chalkboard-lesson</code><br><sub>Green board in a wooden frame, chalk writes itself, yellow circles the answer, eraser wipes</sub></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -118,6 +110,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Tech, SaaS & AI
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="screencast-zoom/STYLE.md"><img src="screencast-zoom/preview.gif" width="160" alt="screencast-zoom preview"></a><br><code>screencast-zoom</code><br><sub>Real screens in a floating window, guided zooms and highlights</sub></td><td align="center" valign="top" width="25%"><a href="terminal-crt/STYLE.md"><img src="terminal-crt/preview.gif" width="160" alt="terminal-crt preview"></a><br><code>terminal-crt</code><br><sub>Phosphor monospace on a tube, typing commands, scanlines and bloom</sub></td><td align="center" valign="top" width="25%"><a href="keynote-dark/STYLE.md"><img src="keynote-dark/preview.gif" width="160" alt="keynote-dark preview"></a><br><code>keynote-dark</code><br><sub>Near-black stage, one lit hero object, gradient word, big numbers</sub></td><td align="center" valign="top" width="25%"><a href="saas-launch-glass/STYLE.md"><img src="saas-launch-glass/preview.gif" width="160" alt="saas-launch-glass preview"></a><br><code>saas-launch-glass</code><br><sub>Frosted glass over a blurred product, a lens sharpens the feature, rose chips mark what is new</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="ai-agent-flow/STYLE.md"><img src="ai-agent-flow/preview.gif" width="160" alt="ai-agent-flow preview"></a><br><code>ai-agent-flow</code><br><sub>Ink diagram on sage paper, agents and tools as nodes, violet pulses along the edges</sub></td><td align="center" valign="top" width="25%"><a href="code-diff/STYLE.md"><img src="code-diff/preview.gif" width="160" alt="code-diff preview"></a><br><code>code-diff</code><br><sub>Dark editor, removed lines strike and fold, added lines type in green, yellow review pins</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [screencast-zoom](screencast-zoom/STYLE.md) | Real screens, framed and directed: a browser or app window floats on a soft backdrop, the camera glides and zooms to each… | product demos, tutorials, repo/site walkthroughs, "how I did X" | hyperframes (or remotion) |
@@ -129,6 +126,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Finance & money
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="data-story/STYLE.md"><img src="data-story/preview.gif" width="160" alt="data-story preview"></a><br><code>data-story</code><br><sub>Honest charts, grey first, one accent insight, visible source</sub></td><td align="center" valign="top" width="25%"><a href="market-terminal/STYLE.md"><img src="market-terminal/preview.gif" width="160" alt="market-terminal preview"></a><br><code>market-terminal</code><br><sub>Sober trading screen, ticker tape, candles build bar by bar, an amber crosshair on the move</sub></td><td align="center" valign="top" width="25%"><a href="crypto-neon-chart/STYLE.md"><img src="crypto-neon-chart/preview.gif" width="160" alt="crypto-neon-chart preview"></a><br><code>crypto-neon-chart</code><br><sub>One glowing aqua price line on black, glossy coin cards that flip, transfers traced as pulses</sub></td><td align="center" valign="top" width="25%"><a href="budget-infographic/STYLE.md"><img src="budget-infographic/preview.gif" width="160" alt="budget-infographic preview"></a><br><code>budget-infographic</code><br><sub>Pastel icons on warm cream, a donut that splits into categories, a green savings counter</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="receipt-roll/STYLE.md"><img src="receipt-roll/preview.gif" width="160" alt="receipt-roll preview"></a><br><code>receipt-roll</code><br><sub>A thermal receipt prints line by line, the total pauses, a blue rubber stamp lands</sub></td><td width="25%"></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [data-story](data-story/STYLE.md) | Clean, honest charts that animate one insight at a time: bars grow, lines draw, the key point lights up in the accent and gets… | statistics, trends, comparisons, research summaries | hyperframes (SVG/HTML charts) |
@@ -139,6 +141,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Food & restaurants
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="bistro-menu-cards/STYLE.md"><img src="bistro-menu-cards/preview.gif" width="160" alt="bistro-menu-cards preview"></a><br><code>bistro-menu-cards</code><br><sub>Cream menu cards on linen, the dish slides out from under, a bottle-green special stamp</sub></td><td align="center" valign="top" width="25%"><a href="recipe-top-down/STYLE.md"><img src="recipe-top-down/preview.gif" width="160" alt="recipe-top-down preview"></a><br><code>recipe-top-down</code><br><sub>Overhead worktop, numbered step cards slide up, a tomato timer ring runs on fast-forward</sub></td><td align="center" valign="top" width="25%"><a href="food-macro-warm/STYLE.md"><img src="food-macro-warm/preview.gif" width="160" alt="food-macro-warm preview"></a><br><code>food-macro-warm</code><br><sub>Warm close-ups, shallow focus and steam, a big italic appetite word tucked behind the food</sub></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [bistro-menu-cards](bistro-menu-cards/STYLE.md) | Cream menu cards placed one by one on real linen; dish photos slide out from under the paper, prices sit in a refined serif,… | restaurant and café menus, daily specials, tasting menus, opening announcements | hyperframes |
@@ -146,6 +152,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [food-macro-warm](food-macro-warm/STYLE.md) | Extreme close-ups in warm light, shallow focus and rising steam, with one big italic appetite word tucked behind the food so… | restaurant and product ads, signature dishes, bakery drops, food brand teasers | remotion (footage-heavy edit) + hyperframes (type layers) |
 
 ## Fitness, health & wellness
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="gym-hype/STYLE.md"><img src="gym-hype/preview.gif" width="160" alt="gym-hype preview"></a><br><code>gym-hype</code><br><sub>Black gym floor, chalk-white condensed type, one blaze-orange rep counter, cuts on every rep</sub></td><td align="center" valign="top" width="25%"><a href="workout-intervals/STYLE.md"><img src="workout-intervals/preview.gif" width="160" alt="workout-intervals preview"></a><br><code>workout-intervals</code><br><sub>A countdown ring that empties in real time, mint for work, amber for rest, a next-up card</sub></td><td align="center" valign="top" width="25%"><a href="wellness-sage/STYLE.md"><img src="wellness-sage/preview.gif" width="160" alt="wellness-sage preview"></a><br><code>wellness-sage</code><br><sub>Sand paper light, a sage circle that swells at breathing pace, a soft serif and slow fades</sub></td><td align="center" valign="top" width="25%"><a href="clinic-clean/STYLE.md"><img src="clinic-clean/preview.gif" width="160" alt="clinic-clean preview"></a><br><code>clinic-clean</code><br><sub>Clinical white, one calm blue, numbered icon steps, a patient leaflet in motion</sub></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -156,6 +166,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Travel & hospitality
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="passport-stamps/STYLE.md"><img src="passport-stamps/preview.gif" width="160" alt="passport-stamps preview"></a><br><code>passport-stamps</code><br><sub>Guilloche passport pages, rubber stamps thudding down in vermilion and green, dashed flight arcs</sub></td><td align="center" valign="top" width="25%"><a href="route-journey/STYLE.md"><img src="route-journey/preview.gif" width="160" alt="route-journey preview"></a><br><code>route-journey</code><br><sub>A muted map, one raspberry route drawing leg by leg, a transport icon riding the line, day markers</sub></td><td align="center" valign="top" width="25%"><a href="postcard-collage/STYLE.md"><img src="postcard-collage/preview.gif" width="160" alt="postcard-collage preview"></a><br><code>postcard-collage</code><br><sub>Kraft desk, postcards and instant photos laid down by hand, washi tape, blue ballpoint notes</sub></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [passport-stamps](passport-stamps/STYLE.md) | Cream security-paper pages with fine wavy guilloche lines, rubber entry stamps thudding down in vermilion and green ink, and a… | multi-country trips, travel recaps, visa and entry tips, "countries I visited" lists | hyperframes (+ three.js for the globe beat) |
@@ -163,6 +177,11 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [postcard-collage](postcard-collage/STYLE.md) | A kraft-paper desk where postcards, instant photos and ticket stubs are laid down by hand, held with washi tape, and annotated… | city guides, weekend trips, hotel and café recommendations, personal travel diaries | hyperframes |
 
 ## Music, events & weddings
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="lyric-kinetic/STYLE.md"><img src="lyric-kinetic/preview.gif" width="160" alt="lyric-kinetic preview"></a><br><code>lyric-kinetic</code><br><sub>Word-by-word lyrics on deep wine, words land on the beat, held notes stretch</sub></td><td align="center" valign="top" width="25%"><a href="gig-poster-grunge/STYLE.md"><img src="gig-poster-grunge/preview.gif" width="160" alt="gig-poster-grunge preview"></a><br><code>gig-poster-grunge</code><br><sub>A photocopied show flyer: toner slab type, torn edges, a day-glo strip, the date stamped hard</sub></td><td align="center" valign="top" width="25%"><a href="festival-lineup/STYLE.md"><img src="festival-lineup/preview.gif" width="160" alt="festival-lineup preview"></a><br><code>festival-lineup</code><br><sub>A midnight-blue bill built tier by tier, the headliner last and biggest in sun-yellow</sub></td><td align="center" valign="top" width="25%"><a href="wedding-elegant/STYLE.md"><img src="wedding-elegant/preview.gif" width="160" alt="wedding-elegant preview"></a><br><code>wedding-elegant</code><br><sub>Ivory stationery: script names, a botanical line that grows around them, a gold foil sweep</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="ticket-stub-event/STYLE.md"><img src="ticket-stub-event/preview.gif" width="160" alt="ticket-stub-event preview"></a><br><code>ticket-stub-event</code><br><sub>One oversized paper ticket: fields print in, the stub tears along its perforation</sub></td><td width="25%"></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -174,6 +193,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## News & commentary
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="breaking-ticker/STYLE.md"><img src="breaking-ticker/preview.gif" width="160" alt="breaking-ticker preview"></a><br><code>breaking-ticker</code><br><sub>Red tag on a white headline slab, a yellow ticker crawling below, a pulsing LIVE dot</sub></td><td align="center" valign="top" width="25%"><a href="newspaper-print/STYLE.md"><img src="newspaper-print/preview.gif" width="160" alt="newspaper-print preview"></a><br><code>newspaper-print</code><br><sub>Newsprint columns, a heavy serif headline the camera dives into, blue pencil circling the quote</sub></td><td align="center" valign="top" width="25%"><a href="social-recap/STYLE.md"><img src="social-recap/preview.gif" width="160" alt="social-recap preview"></a><br><code>social-recap</code><br><sub>Real posts as white cards stacked on cool grey, counts tick up, one line gets a coral swipe</sub></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [breaking-ticker](breaking-ticker/STYLE.md) | A broadcast news package in 9:16: a red tag slams onto a white headline slab, a yellow ticker crawls at a steady pace below, a… | news updates, announcements, policy changes, results, event coverage | hyperframes (remotion for footage-heavy packages) |
@@ -181,6 +204,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [social-recap](social-recap/STYLE.md) | Real posts as white cards stacked on a cool grey field: each new card slides up and pushes the last one back, its counts tick… | reaction roundups, online debates, launch responses, weekly internet recaps | hyperframes |
 
 ## Business, B2B & local
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="annual-report/STYLE.md"><img src="annual-report/preview.gif" width="160" alt="annual-report preview"></a><br><code>annual-report</code><br><sub>Light stone layout, brand blocks wipe across, KPI tiles count up with period and source</sub></td><td align="center" valign="top" width="25%"><a href="now-hiring/STYLE.md"><img src="now-hiring/preview.gif" width="160" alt="now-hiring preview"></a><br><code>now-hiring</code><br><sub>Butter-yellow field, role cards dealt like a hand, perks pop in, an orange Apply button</sub></td><td align="center" valign="top" width="25%"><a href="case-study/STYLE.md"><img src="case-study/preview.gif" width="160" alt="case-study preview"></a><br><code>case-study</code><br><sub>Three-act story on warm stone: serif chapter cards, greyed before, teal metric once proven</sub></td><td align="center" valign="top" width="25%"><a href="local-shop-promo/STYLE.md"><img src="local-shop-promo/preview.gif" width="160" alt="local-shop-promo preview"></a><br><code>local-shop-promo</code><br><sub>Opening hours set on a felt letter board, map pin, big yellow Call and Directions buttons</sub></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -191,6 +218,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Gaming & esports
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="pixel-quest/STYLE.md"><img src="pixel-quest/preview.gif" width="160" alt="pixel-quest preview"></a><br><code>pixel-quest</code><br><sub>16-bit sprites, tile levels, dialogue boxes, level-up chimes</sub></td><td align="center" valign="top" width="25%"><a href="esports-hud/STYLE.md"><img src="esports-hud/preview.gif" width="160" alt="esports-hud preview"></a><br><code>esports-hud</code><br><sub>Chamfered broadcast panels, two team colours, kill feed, gold flash on the play of the round</sub></td><td align="center" valign="top" width="25%"><a href="patch-notes/STYLE.md"><img src="patch-notes/preview.gif" width="160" alt="patch-notes preview"></a><br><code>patch-notes</code><br><sub>Dark in-game menu with gold trim, old → new values, green buff and red nerf arrows</sub></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [pixel-quest](pixel-quest/STYLE.md) | A 16-bit adventure: chunky pixel sprites, tile-built levels, dialogue boxes and level-up chimes — explaining a journey as a game. | step-by-step journeys, "level up your skills", gaming and dev culture | canvas (pixel-exact) |
@@ -198,6 +229,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [patch-notes](patch-notes/STYLE.md) | A dark in-game menu with gold trim: a version banner unfurls, ability and item rows show old value → new value, and green buff… | patch and update rundowns, balance changes, tier shifts, game-dev changelogs | hyperframes (remotion for gameplay inserts) |
 
 ## Kids & animation
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="rubber-hose-toon/STYLE.md"><img src="rubber-hose-toon/preview.gif" width="160" alt="rubber-hose-toon preview"></a><br><code>rubber-hose-toon</code><br><sub>Early-cartoon bendy limbs, sepia ink on cream, everything on the beat</sub></td><td align="center" valign="top" width="25%"><a href="retro-anime-cel/STYLE.md"><img src="retro-anime-cel/preview.gif" width="160" alt="retro-anime-cel preview"></a><br><code>retro-anime-cel</code><br><sub>Two-tone cel shading, glowing highlights, speed lines, sunset skies</sub></td><td align="center" valign="top" width="25%"><a href="crayon-story/STYLE.md"><img src="crayon-story/preview.gif" width="160" alt="crayon-story preview"></a><br><code>crayon-story</code><br><sub>Waxy crayon strokes that skip on the paper, wobbly outlines on twos, big read-along words</sub></td><td align="center" valign="top" width="25%"><a href="clay-look/STYLE.md"><img src="clay-look/preview.gif" width="160" alt="clay-look preview"></a><br><code>clay-look</code><br><sub>Stop-motion plasticine in 3D: thumbprint texture, soft shadows, squash and stretch on twos</sub></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -208,6 +243,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Fashion & beauty
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="fashion-editorial/STYLE.md"><img src="fashion-editorial/preview.gif" width="160" alt="fashion-editorial preview"></a><br><code>fashion-editorial</code><br><sub>A print spread that moves: hairline-serif masthead, tall crops, oxblood folios, bone margins</sub></td><td align="center" valign="top" width="25%"><a href="runway-flash/STYLE.md"><img src="runway-flash/preview.gif" width="160" alt="runway-flash preview"></a><br><code>runway-flash</code><br><sub>Black room, white catwalk light, camera-flash freezes and a numbered card for every look</sub></td><td align="center" valign="top" width="25%"><a href="streetwear-drop/STYLE.md"><img src="streetwear-drop/preview.gif" width="160" alt="streetwear-drop preview"></a><br><code>streetwear-drop</code><br><sub>Concrete wall, pasted condensed type, cobalt sticker slaps, size run and a drop countdown</sub></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [fashion-editorial](fashion-editorial/STYLE.md) | A print magazine spread that moves: a hairline-serif masthead across the top, tall model-crop frames that slide like turning… | lookbooks, collection stories, designer and stylist profiles, beauty features, brand campaigns | hyperframes (remotion optional for lookbook footage) |
@@ -216,12 +255,22 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 
 ## Automotive
 
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="car-spec-hud/STYLE.md"><img src="car-spec-hud/preview.gif" width="160" alt="car-spec-hud preview"></a><br><code>car-spec-hud</code><br><sub>Gunmetal instrument cluster: needles sweep, amber readouts lock onto the car like a HUD</sub></td><td align="center" valign="top" width="25%"><a href="garage-build-log/STYLE.md"><img src="garage-build-log/preview.gif" width="160" alt="garage-build-log preview"></a><br><code>garage-build-log</code><br><sub>Workshop diary: flat-lay parts, masking-tape labels, stencilled days, paint-pen torque stripes</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
 | Style | Look | Best for | Engine |
 |---|---|---|---|
 | [car-spec-hud](car-spec-hud/STYLE.md) | A gunmetal instrument cluster comes alive: needles sweep, an amber 0–100 timer runs, and spec readouts lock into place around… | car reviews, spec comparisons, dealer stock reels, EV range explainers, track-day results | hyperframes (SVG gauges); hyperframes + three.js for model turntables |
 | [garage-build-log](garage-build-log/STYLE.md) | A workshop diary: parts laid out flat on a dark shop mat, masking-tape labels in marker, stencilled day numbers, torque specs… | car and motorbike builds and restorations, maintenance how-tos, workshop and parts-shop accounts | hyperframes (overlays) + remotion (optional, footage-heavy edits) |
 
 ## Art direction & design looks
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="paper-cutout/STYLE.md"><img src="paper-cutout/preview.gif" width="160" alt="paper-cutout preview"></a><br><code>paper-cutout</code><br><sub>Layered coloured card with real shadows, stop-motion jitter</sub></td><td align="center" valign="top" width="25%"><a href="ink-crosshatch/STYLE.md"><img src="ink-crosshatch/preview.gif" width="160" alt="ink-crosshatch preview"></a><br><code>ink-crosshatch</code><br><sub>Pen-and-ink hatching on warm paper with one colour wash</sub></td><td align="center" valign="top" width="25%"><a href="riso-print/STYLE.md"><img src="riso-print/preview.gif" width="160" alt="riso-print preview"></a><br><code>riso-print</code><br><sub>Two spot inks overprinting, halftones, slight misregistration</sub></td><td align="center" valign="top" width="25%"><a href="swiss-poster/STYLE.md"><img src="swiss-poster/preview.gif" width="160" alt="swiss-poster preview"></a><br><code>swiss-poster</code><br><sub>Strict columns, huge grotesque type, flat red blocks</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="sketchbook-pencil/STYLE.md"><img src="sketchbook-pencil/preview.gif" width="160" alt="sketchbook-pencil preview"></a><br><code>sketchbook-pencil</code><br><sub>Graphite sketches, sticky notes and taped photos on a sketchbook page</sub></td><td align="center" valign="top" width="25%"><a href="agency-info-brand/STYLE.md"><img src="agency-info-brand/preview.gif" width="160" alt="agency-info-brand preview"></a><br><code>agency-info-brand</code><br><sub>Brand-kit colours on dark, corner watermark, captions, save/send CTA, logo end card</sub></td><td align="center" valign="top" width="25%"><a href="y2k-chrome/STYLE.md"><img src="y2k-chrome/preview.gif" width="160" alt="y2k-chrome preview"></a><br><code>y2k-chrome</code><br><sub>Liquid-chrome lettering, gel bubbles, glossy aqua buttons and early-2000s desktop windows</sub></td><td align="center" valign="top" width="25%"><a href="collage-zine/STYLE.md"><img src="collage-zine/preview.gif" width="160" alt="collage-zine preview"></a><br><code>collage-zine</code><br><sub>Scissor-cut halftone scraps on photocopy paper, ransom-letter headlines, one blue marker</sub></td></tr>
+  <tr><td align="center" valign="top" width="25%"><a href="neon-noir/STYLE.md"><img src="neon-noir/preview.gif" width="160" alt="neon-noir preview"></a><br><code>neon-noir</code><br><sub>Rain-wet street after midnight: one magenta neon sign buzzes on, cyan reflections below</sub></td><td align="center" valign="top" width="25%"><a href="watercolor-wash/STYLE.md"><img src="watercolor-wash/preview.gif" width="160" alt="watercolor-wash preview"></a><br><code>watercolor-wash</code><br><sub>Cold-press paper, colour blooming from a wet edge with darker rims, brush-pen lettering</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
@@ -237,6 +286,10 @@ Four-second previews rendered from [`examples/styles/`](../../../examples/styles
 | [watercolor-wash](watercolor-wash/STYLE.md) | Cold-press paper where colour blooms outward from a wet edge, pigment pools darker at the rims, and hand-lettered words appear… | gentle stories, book and poetry promos, illustrators' and artists' reels, cafés and small brands, greeting and seasonal messages | canvas |
 
 ## Nonprofit & causes
+
+<table>
+  <tr><td align="center" valign="top" width="25%"><a href="cause-documentary/STYLE.md"><img src="cause-documentary/preview.gif" width="160" alt="cause-documentary preview"></a><br><code>cause-documentary</code><br><sub>Warm-dark field documentary: testimony in italic serif, one apricot verified counter</sub></td><td align="center" valign="top" width="25%"><a href="impact-annual/STYLE.md"><img src="impact-annual/preview.gif" width="160" alt="impact-annual preview"></a><br><code>impact-annual</code><br><sub>Unbleached paper, tally marks bundling into big green totals, every number footnoted</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
 
 | Style | Look | Best for | Engine |
 |---|---|---|---|
