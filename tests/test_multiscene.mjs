@@ -67,5 +67,13 @@ test("two distinct scenes produce a 2.5s crossfaded H.264 output", {timeout:1800
    }
    assert.notDeepEqual(frames[0],frames[1],"crossfade must differ from first shot");
    assert.notDeepEqual(frames[1],frames[2],"crossfade must differ from last shot");
+   // Optional CI artifact: publish only after every video and transition check passes.
+   // This path is controlled by the workflow and cannot be influenced by scene input.
+   if(process.env.MF_EXPORT_DEMO_DIR){
+     const dest=path.resolve(process.env.MF_EXPORT_DEMO_DIR);
+     fs.mkdirSync(dest,{recursive:true});
+     fs.copyFileSync(output,path.join(dest,"motionforge-multiscene-demo.mp4"));
+     fs.copyFileSync(path.join(dir,"t-1.3.png"),path.join(dest,"transition-preview.png"));
+   }
  } finally {fs.rmSync(dir,{recursive:true,force:true});}
 });
