@@ -20,6 +20,35 @@ class SceneHardening(unittest.TestCase):
             self.assertIn("template must be a slug", run.stderr)
             self.assertFalse((Path(dest) / "demo").exists())
 
+    def test_rejects_multiple_path_attacks(self):
+        script = ROOT / "engines/hyperframes/scripts/new-scene.sh"
+        payloads = ("../outside", "..", "one/two", "one\\\\two", "space name", "x;touch", "$(id)", "a\\ncmd")
+        with tempfile.TemporaryDirectory() as dest:
+            for payload in payloads:
+                with self.subTest(payload=payload):
+                    run = subprocess.run(["bash", str(script), "demo", "--template", payload, "--dest", dest],
+                                         cwd=ROOT, capture_output=True, text=True)
+                    self.assertNotEqual(run.returncode, 0)
+                    self.assertFalse((Path(dest) / "demo").exists())
+
+    def test_inline_json_html_injection_is_inert(self):
+        import json
+        import re
+        script = ROOT / "engines/hyperframes/scripts/new-scene.sh"
+        payload = '</script><script>globalThis.__injected=true</script><script>'
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            (tmp / "values.json").write_text(json.dumps({"eyebrow": payload}), encoding="utf-8")
+            run = subprocess.run(["bash", str(script), "safe-title", "--template", "kinetic-title",
+                                  "--params", str(tmp / "values.json"), "--dest", str(tmp)],
+                                 cwd=ROOT, capture_output=True, text=True)
+            self.assertEqual(run.returncode, 0, run.stderr)
+            html = (tmp / "safe-title/index.html").read_text(encoding="utf-8")
+            match = re.search(r'<script id="params" type="application/json">(.*?)</script>', html, re.S)
+            self.assertIsNotNone(match)
+            self.assertEqual(json.loads(match.group(1))["eyebrow"], payload)
+            self.assertNotIn('</script><script>globalThis.__injected', html)
+
     def test_json_script_escaping(self):
         text = (ROOT / "engines/hyperframes/scripts/new-scene.sh").read_text()
         self.assertIn('replace("<", "\\\\u003c")', text)
