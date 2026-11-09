@@ -47,9 +47,19 @@ jobs:
       - name: Dynamic browser and HTTP security tests
         run: node --test tests/test_browser_security.mjs
       - name: End-to-end animation and MP4 encoding smoke test
+        env:
+          MF_EXPORT_DEMO_DIR: ${{ runner.temp }}/motionforge-demo
         run: |
           ffmpeg -version | head -n 1
           node --test tests/test_render_smoke.mjs tests/test_multiscene.mjs
+      - name: Publish verified demo MP4 and transition preview
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: motionforge-demo-linux
+          path: ${{ runner.temp }}/motionforge-demo/
+          if-no-files-found: error
+          retention-days: 14
 
   dependency-audit:
     runs-on: ubuntu-24.04
@@ -107,4 +117,14 @@ jobs:
           npm ci --ignore-scripts --no-fund --no-audit
           npx playwright install chromium
       - name: Run real macOS single and multi-scene video tests
+        env:
+          MF_EXPORT_DEMO_DIR: ${{ runner.temp }}/motionforge-demo
         run: node --test tests/test_render_smoke.mjs tests/test_multiscene.mjs
+      - name: Publish verified Apple Silicon demo
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: motionforge-demo-macos-arm64
+          path: ${{ runner.temp }}/motionforge-demo/
+          if-no-files-found: error
+          retention-days: 14
