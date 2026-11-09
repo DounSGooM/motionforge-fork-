@@ -111,5 +111,5 @@ jobs:
         run: |
           npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1 gsap @fontsource/inter @fontsource/instrument-serif @fontsource/jetbrains-mono
           npx playwright install chromium
-      - name: Run real macOS render smoke test
-        run: node --test tests/test_render_smoke.mjs
+      - name: Run real macOS single and multi-scene video tests
+        run: node --test tests/test_render_smoke.mjs tests/test_multiscene.mjs
