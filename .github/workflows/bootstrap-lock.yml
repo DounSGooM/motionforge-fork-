@@ -1,0 +1,39 @@
+name: Bootstrap reviewed npm lockfile
+
+on:
+  push:
+    branches: [security-hardening]
+    paths:
+      - package.json
+      - .github/workflows/bootstrap-lock.yml
+
+permissions:
+  contents: read
+
+jobs:
+  generate-lock:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/security-hardening'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Resolve exact versions without executing install scripts
+        run: |
+          npm install --package-lock-only --ignore-scripts --no-fund --no-audit
+          npm audit --audit-level=high
+          node -e 'const p=require("./package-lock.json"); if(p.packages["node_modules/undici"]?.version!=="7.30.2") process.exit(1)'
+      - name: Commit resulting lockfile exclusively on the review branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- package-lock.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "build: commit audited deterministic npm lockfile [skip ci]"
+          git push origin HEAD:security-hardening
