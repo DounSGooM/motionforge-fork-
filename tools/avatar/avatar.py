@@ -424,7 +424,10 @@ class WiroProvider(Provider):
         check_url(url, [urllib.parse.urlparse(self.cfg["base"]).hostname or ""])
         req = urllib.request.Request(url, data=data, method="POST", headers={**self.headers(), "Content-Type": ctype})
         try:
-            with urllib.request.urlopen(req, timeout=120) as resp:
+            # Never follow API redirects to other origins with authentication headers.
+            allowed_host = urllib.parse.urlparse(self.cfg["base"]).hostname or ""
+            opener = urllib.request.build_opener(_SafeRedirect([allowed_host]))
+            with opener.open(req, timeout=120) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as err:
             raise AvatarError(explain_http(err.code, err.read().decode("utf-8", "replace"), rid, "WIRO_API_KEY / WIRO_API_SECRET")) from None
