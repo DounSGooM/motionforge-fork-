@@ -36,3 +36,10 @@ Preserve original MIT license, copyright and third-party license notices.
 - Review all executable templates and dependency installation entrypoints, add signed/pinned versions to installation guidance.
 - Decide whether the CLI should disallow even same-host redirects on authenticated Wiro POST operations.
 - Have another reviewer inspect the full diff. Keep PR #1 as draft.
+
+## Multi-scene composition smoke test
+- `tests/test_multiscene.mjs` creates two local, independent HTML canvas scenes with distinct colors and animated elements.
+- Each scene renders at 320×568, 10 FPS, to H.264; FFmpeg then assembles them into a 2.5-second sequence with a 0.5-second crossfade.
+- The test checks codec, dimensions, duration, frame count, and distinct frames at start, transition and end.
+- CI invokes this test on Ubuntu and macOS arm64. These checks do not validate every production template or a complete real project.
+- Installation guidance for a separate M1 test user lives in `security/MAC_M1_TESTING.md`. No production use or PR merge is authorized solely by these checks.
