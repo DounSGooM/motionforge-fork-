@@ -42,7 +42,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
-          npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1 gsap @fontsource/inter @fontsource/instrument-serif @fontsource/jetbrains-mono
+          npm ci --ignore-scripts --no-fund --no-audit
           npx playwright install --with-deps chromium
       - name: Dynamic browser and HTTP security tests
         run: node --test tests/test_browser_security.mjs
@@ -64,29 +64,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: npm dependency vulnerability audit (no install scripts)
+      - name: Validate committed dependency lockfile and audit exact graph
         run: |
-          mkdir -p /tmp/mf-dep-audit
-          cat > /tmp/mf-dep-audit/package.json <<'EOF'
-          {
-            "private": true,
-            "dependencies": {
-              "hyperframes": "*",
-              "gsap": "*",
-              "three": "0.170.0",
-              "playwright": "1.56.1",
-              "@fontsource/inter": "*",
-              "@fontsource/instrument-serif": "*",
-              "@fontsource/jetbrains-mono": "*"
-            },
-            "overrides": {
-              "undici": "7.30.2"
-            }
-          }
-          EOF
-          cd /tmp/mf-dep-audit
-          npm install --package-lock-only --ignore-scripts --no-fund --no-audit
+          npm ci --ignore-scripts --no-fund --no-audit
           npm audit --audit-level=high
+          node - <<'NODE'
+          const assert=require("node:assert/strict");
+          const fs=require("node:fs");
+          const pkg=JSON.parse(fs.readFileSync("package.json","utf8"));
+          const lock=JSON.parse(fs.readFileSync("package-lock.json","utf8"));
+          assert.equal(lock.lockfileVersion,3);
+          assert.deepEqual(lock.packages[""].devDependencies,pkg.devDependencies);
+          assert.equal(lock.packages["node_modules/undici"].version,"7.30.2");
+          for(const [name,version] of Object.entries(pkg.devDependencies)) {
+            assert.match(version,/^\\d+\\.\\d+\\.\\d+$/);
+            assert.equal(lock.packages["node_modules/"+name].version,version);
+          }
+          console.log("Verified pinned top-level versions, integrity-backed lockfile and patched undici");
+          NODE
       - name: Python dependency vulnerability audit
         run: |
           python -m pip install --disable-pip-version-check pip-audit
@@ -109,7 +104,7 @@ jobs:
           if ! command -v ffmpeg >/dev/null 2>&1; then brew install ffmpeg; fi
       - name: Install isolated render dependencies
         run: |
-          npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1 gsap @fontsource/inter @fontsource/instrument-serif @fontsource/jetbrains-mono
+          npm ci --ignore-scripts --no-fund --no-audit
           npx playwright install chromium
       - name: Run real macOS single and multi-scene video tests
         run: node --test tests/test_render_smoke.mjs tests/test_multiscene.mjs
