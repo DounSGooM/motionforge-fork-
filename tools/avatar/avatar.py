@@ -324,6 +324,11 @@ def explain_http(code: int | None, body: str = "", request_id: str | None = None
     return f"HTTP {code}: {body[:200]}{rid}"
 
 
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
 class _SafeRedirect(urllib.request.HTTPRedirectHandler):
     def __init__(self, allowed):
         self.allowed = allowed
@@ -424,7 +429,10 @@ class WiroProvider(Provider):
         check_url(url, [urllib.parse.urlparse(self.cfg["base"]).hostname or ""])
         req = urllib.request.Request(url, data=data, method="POST", headers={**self.headers(), "Content-Type": ctype})
         try:
-            with urllib.request.urlopen(req, timeout=120) as resp:
+            # Authenticated API POSTs must never follow redirects, including same-host
+            # redirects, to avoid accidental credential forwarding or method rewriting.
+            opener = urllib.request.build_opener(_NoRedirect())
+            with opener.open(req, timeout=120) as resp:
                 return json.loads(resp.read().decode("utf-8"))
         except urllib.error.HTTPError as err:
             raise AvatarError(explain_http(err.code, err.read().decode("utf-8", "replace"), rid, "WIRO_API_KEY / WIRO_API_SECRET")) from None
