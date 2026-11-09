@@ -23,3 +23,16 @@ The changes here are *defense in depth*, not a claim that arbitrary generated br
 ## Source and attribution
 Original project: https://github.com/aykutucesai/motionforge
 Preserve original MIT license, copyright and third-party license notices.
+
+## Extended verification (2026-11-09)
+- The continuous integration workflow also runs a real Playwright Chromium scene that tries HTTPS Internet access, a separate localhost HTTP service, and a WebSocket handshake. Its scene root must remain accessible.
+- The local HTTP file server is also tested against malicious URL encodings, traversal, and a symlink pointing outside its allowed root.
+- The original Python suite includes an actual `kinetic-title` scene generated with a hostile HTML `</script>` payload; the result must preserve the JSON value without emitting an executable script.
+- A separate GitHub Actions job audits a resolved, **ephemeral** npm dependency graph and Python packages. The audit manifest overrides indirect `undici` with **7.30.2** because previous test resolutions produced a high-severity advisory with vulnerable 7.0.0–7.30.0 releases. This is NOT a production dependency lock or an upstream fix; real projects must pin the resolved graph and re-check the actual installed packages before use.
+- No code executes any paid APIs in CI and no production credentials are provided.
+
+## Remaining work before any merge
+- Test full HyperFrames rendering end-to-end on macOS arm64 and confirm that frame assets remain functional with the deny-by-default network policy.
+- Review all executable templates and dependency installation entrypoints, add signed/pinned versions to installation guidance.
+- Decide whether the CLI should disallow even same-host redirects on authenticated Wiro POST operations.
+- Have another reviewer inspect the full diff. Keep PR #1 as draft.
