@@ -34,6 +34,7 @@ jobs:
           node --check engines/canvas/render.mjs
           node --check tests/test_browser_security.mjs
           node --check tests/test_render_smoke.mjs
+          node --check tests/test_multiscene.mjs
           python -m py_compile tools/avatar/avatar.py
       - name: Python regression tests
         run: python -m unittest discover -s tests -p 'test_security_hardening.py' -v
@@ -48,7 +49,7 @@ jobs:
       - name: End-to-end animation and MP4 encoding smoke test
         run: |
           ffmpeg -version | head -n 1
-          node --test tests/test_render_smoke.mjs
+          node --test tests/test_render_smoke.mjs tests/test_multiscene.mjs
 
   dependency-audit:
     runs-on: ubuntu-24.04
