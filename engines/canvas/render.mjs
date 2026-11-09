@@ -110,7 +110,16 @@ export async function openPage(target, { width = 1080, height = 1920, root, quer
   const { server, port } = await serveDir(serveRoot);
   const chromium = await loadChromium();
   const browser = await chromium.launch({ args: ["--font-render-hinting=none", "--force-color-profile=srgb", "--autoplay-policy=no-user-gesture-required"] });
-  const page = await browser.newPage({ viewport: { width, height }, deviceScaleFactor: 1 });
+  const context = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: 1, serviceWorkers: "block" });
+  // Restrict scene HTML to its own ephemeral local server. Deny remote origins and other localhost ports.
+  const allowedOrigin = `http://127.0.0.1:${port}`;
+  await context.route("**/*", async (route) => {
+    try {
+      if (new URL(route.request().url()).origin === allowedOrigin) return await route.continue();
+    } catch { /* malformed or non-HTTP resource: deny */ }
+    await route.abort("blockedbyclient");
+  });
+  const page = await context.newPage();
 
   page.on("pageerror", (err) => {
     console.error("[page error]", err.message);
