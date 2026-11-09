@@ -39,7 +39,9 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_security_hardening.py' -v
       - name: Install isolated Chromium test dependency
         run: |
-          npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1 gsap
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1 gsap @fontsource/inter @fontsource/instrument-serif @fontsource/jetbrains-mono
           npx playwright install --with-deps chromium
       - name: Dynamic browser and HTTP security tests
         run: node --test tests/test_browser_security.mjs
@@ -106,7 +108,7 @@ jobs:
           if ! command -v ffmpeg >/dev/null 2>&1; then brew install ffmpeg; fi
       - name: Install isolated render dependencies
         run: |
-          npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1 gsap
+          npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1 gsap @fontsource/inter @fontsource/instrument-serif @fontsource/jetbrains-mono
           npx playwright install chromium
       - name: Run real macOS render smoke test
         run: node --test tests/test_render_smoke.mjs
