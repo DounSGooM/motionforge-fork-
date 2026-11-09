@@ -1,0 +1,8 @@
+# Dependencies audited as a resolved sample, not a locked production environment.
+# Versions intentionally reflect the project's optional current setup guidance.
+# Results may change as upstream releases change. See SECURITY_HARDENING.md.
+numpy>=1.26
+Pillow>=10
+rembg>=2
+faster-whisper>=1
+fal-client>=0.7
