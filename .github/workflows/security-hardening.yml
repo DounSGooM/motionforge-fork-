@@ -7,7 +7,8 @@ on:
     paths:
       - "engines/**"
       - "tools/avatar/**"
-      - "tests/test_security_hardening.py"
+      - "tests/**"
+      - "security/**"
       - ".github/workflows/security-hardening.yml"
 
 permissions:
@@ -16,6 +17,7 @@ permissions:
 jobs:
   security-tests:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -30,6 +32,51 @@ jobs:
         run: |
           bash -n engines/hyperframes/scripts/new-scene.sh
           node --check engines/canvas/render.mjs
+          node --check tests/test_browser_security.mjs
           python -m py_compile tools/avatar/avatar.py
-      - name: Security regressions
+      - name: Python regression tests
         run: python -m unittest discover -s tests -p 'test_security_hardening.py' -v
+      - name: Install isolated Chromium test dependency
+        run: |
+          npm install --no-save --ignore-scripts --no-fund --no-audit playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Dynamic browser and HTTP security tests
+        run: node --test tests/test_browser_security.mjs
+
+  dependency-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: npm dependency vulnerability audit (no install scripts)
+        run: |
+          mkdir -p /tmp/mf-dep-audit
+          cat > /tmp/mf-dep-audit/package.json <<'EOF'
+          {
+            "private": true,
+            "dependencies": {
+              "hyperframes": "*",
+              "gsap": "*",
+              "three": "0.170.0",
+              "playwright": "1.56.1",
+              "@fontsource/inter": "*",
+              "@fontsource/instrument-serif": "*",
+              "@fontsource/jetbrains-mono": "*"
+            }
+          }
+          EOF
+          cd /tmp/mf-dep-audit
+          npm install --package-lock-only --ignore-scripts --no-fund --no-audit
+          npm audit --audit-level=high
+      - name: Python dependency vulnerability audit
+        run: |
+          python -m pip install --disable-pip-version-check pip-audit
+          python -m pip_audit -r security/python-audit-requirements.txt
