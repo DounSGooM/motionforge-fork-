@@ -56,6 +56,10 @@ done
 case "$NAME" in *[!A-Za-z0-9_-]*) die "scene name may only use letters, digits, - and _" ;; esac
 
 if [ -n "$TEMPLATE" ]; then
+  # Reject paths and traversal: templates must use a single known slug.
+  case "$TEMPLATE" in
+    ""|*[!A-Za-z0-9_-]*) die "template must be a slug (letters, digits, - and _)" ;;
+  esac
   SRC="$MF_ROOT/templates/$TEMPLATE"
   [ -f "$SRC/index.html" ] || die "no template '$TEMPLATE' (looked in $MF_ROOT/templates/)"
 else
@@ -189,7 +193,8 @@ if not match:
 current = json.loads(match.group(2))
 old_duration = current.get("duration")
 current.update(values)
-block = "\n" + json.dumps(current, ensure_ascii=False, indent=2) + "\n    "
+# Keep JSON data from closing the surrounding HTML <script> element.
+block = "\n" + json.dumps(current, ensure_ascii=False, indent=2).replace("<", "\\u003c").replace(">", "\\u003e").replace("&", "\\u0026") + "\n    "
 html = html[: match.start(2)] + block + html[match.end(2):]
 # keep the composition length in the markup in sync with a changed "duration" parameter
 if "duration" in values and old_duration is not None and values["duration"] != old_duration:
