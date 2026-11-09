@@ -74,6 +74,13 @@ class AvatarHardening(unittest.TestCase):
             self.avatar._SafeRedirect(["api.wiro.ai"]).redirect_request(
                 mock.Mock(), None, 302, "redirect", {}, "https://untrusted.invalid/path")
 
+    def test_authenticated_api_never_follows_redirects(self):
+        handler = self.avatar._NoRedirect()
+        for target in ("https://api.wiro.ai/v2", "https://evil.invalid/collect", "http://127.0.0.1/"):
+            with self.subTest(target=target):
+                self.assertIsNone(handler.redirect_request(
+                    mock.Mock(), None, 307, "redirect", {}, target))
+
     def test_local_command_does_not_use_shell(self):
         args = self.avatar.local_command("python3 sync.py --video {video} --audio {audio} --out {out}",
                                          "clip;touch /tmp/unsafe", "audio.wav", "out.mp4")
