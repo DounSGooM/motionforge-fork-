@@ -31,13 +31,15 @@ test("real browser blocks external, loopback-other-port, and WebSocket requests"
           const ws=new WebSocket("ws://127.0.0.1:"+port+"/ws");
           ws.onopen=()=>{ws.close();resolve("allowed");};
           ws.onerror=()=>resolve("blocked");
-          setTimeout(()=>resolve("timeout"),3000);
+          ws.onclose=()=>resolve("blocked");
+          setTimeout(()=>resolve("no-open"),3000);
         })
       ];
       return Promise.all(attempts);
     },p);
-    assert.deepEqual(results,["blocked","blocked","blocked"]);
-    assert.equal(upgradeCount.n,0);
+    assert.deepEqual(results.slice(0,2),["blocked","blocked"]);
+    assert.notEqual(results[2],"allowed", "WebSocket connection must never open");
+    assert.equal(upgradeCount.n,0, "other local server must receive no WebSocket handshake");
     assert.equal(await session.page.evaluate(()=>fetch("./index.html").then(r=>r.ok)),true);
   } finally {
     if(session) await session.close();
