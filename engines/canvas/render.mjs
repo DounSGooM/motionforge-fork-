@@ -68,19 +68,34 @@ const MIME = {
 export function serveDir(root) {
   const base = path.resolve(root);
   const server = http.createServer((req, res) => {
-    const urlPath = decodeURIComponent(new URL(req.url, "http://x").pathname);
-    const file = path.resolve(base, "." + urlPath);
+    let file;
+    try {
+      const urlPath = decodeURIComponent(new URL(req.url, "http://x").pathname);
+      file = path.resolve(base, "." + urlPath);
+    } catch {
+      res.writeHead(400).end();
+      return;
+    }
     if (file !== base && !file.startsWith(base + path.sep)) {
       res.writeHead(403).end();
       return;
     }
-    fs.stat(file, (err, st) => {
-      if (err || !st.isFile()) {
-        res.writeHead(404).end();
+    fs.realpath(file, (realErr, real) => {
+      if (realErr) { res.writeHead(404).end(); return; }
+      // A symlink under the scene root must not expose files outside it.
+      const realBase = fs.realpathSync(base);
+      if (real !== realBase && !real.startsWith(realBase + path.sep)) {
+        res.writeHead(403).end();
         return;
       }
-      res.writeHead(200, { "content-type": MIME[path.extname(file).toLowerCase()] ?? "application/octet-stream", "cache-control": "no-store" });
-      fs.createReadStream(file).pipe(res);
+      fs.stat(real, (err, st) => {
+        if (err || !st.isFile()) { res.writeHead(404).end(); return; }
+        res.writeHead(200, {
+          "content-type": MIME[path.extname(real).toLowerCase()] ?? "application/octet-stream",
+          "cache-control": "no-store",
+        });
+        fs.createReadStream(real).pipe(res);
+      });
     });
   });
   return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve({ server, port: server.address().port })));
@@ -119,6 +134,9 @@ export async function openPage(target, { width = 1080, height = 1920, root, quer
     } catch { /* malformed or non-HTTP resource: deny */ }
     await route.abort("blockedbyclient");
   });
+  // Playwright's HTTP routing does not intercept WebSocket handshakes.
+  // Deny them separately so untrusted scenes cannot bypass request routing.
+  await context.routeWebSocket("**/*", (socket) => socket.close());
   const page = await context.newPage();
 
   page.on("pageerror", (err) => {
